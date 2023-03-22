@@ -36,52 +36,44 @@ body{
     gap: 40px;
 }
 
-.socials {
-    display: flex;
-    gap: 40px;
-    
+.socials {display: flex; gap: 40px;}
+
+.animate {
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out;
 }
 
-.animate {transition-duration: 150ms; transition-timing-function: ease-in-out;}
+.icon-window {
+    background-color: var(--white);
+    padding: 24px;
+    align-items: center;
+    display: flex;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#linkedin {background-image: url(icons/linkedin.svg);}
+#github {background-image: url(icons/github.svg);}
+
 @media only screen and (min-width: 500px) {
     .icon-window {
         height: 40px;
         width: 40px;
-        max-width: 500px;
-        background-color: var(--white);
-        padding: 24px 24px 24px 24px;
-        align-items: center;
-        display: flex;
-        background-size: 40px;
-        background-repeat: no-repeat;
-        background-position: center;
+        
     }
 
-    #linkedin {background-image: url(icons/linkedin.svg);}
     #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px;background-size: 200px;}
-    #github {background-image: url(icons/github.svg);}
     #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px;}
 }
 
 @media only screen and (max-width: 500px) {
-    .icon-window {
-        height: 20px;
-        width: 20px;
-        max-width: 500px;
-        background-color: var(--white);
-        padding: 24px 24px 24px 24px;
-        align-items: center;
-        display: flex;
-        background-size: 40px;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-
-    #linkedin {background-image: url(icons/linkedin.svg);}
-    #github {background-image: url(icons/github.svg);}
+    .icon-window {height: 20px; width: 20px;}
 }
 
-.window, .caption, .icon-window {filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6))}
+.window, .caption, .icon-window {will-change: filter; filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6)); -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));}
 
 .window {
     max-width: 500px;
@@ -89,16 +81,18 @@ body{
     padding: 24px 48px 48px 48px;
 }
 
-div.icon-window:hover, div.window:hover, div.caption:hover{transition-duration: 150ms;
-    transition-timing-function: ease-in-out;}
+div.icon-window:hover, div.window:hover, div.caption:hover{
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out;}
 
-div.icon-window:active {
+div.window:hover, div.caption:hover, div.icon-window:active {
     transform: translate(20px, 20px);
-    filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));}
-
-div.window:hover, div.caption:hover {
-    transform: translate(20px, 20px);
-    filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));}
+    filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
+    -webkit-transform: translate(20px, 20px);
+    -webkit-filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
+}
 
 .window>h1, .window>h2, .window>h3 {color: #343434;}
 
@@ -169,6 +163,9 @@ h3{
     padding: 0 40px;
 }
 
+.left{
+    min-width: 200px;
+}
 .tab {
     display: flex;
     flex-direction:row;
