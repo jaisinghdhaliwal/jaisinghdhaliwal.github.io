@@ -2,25 +2,58 @@
 <html>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="format-detection" content="telephone=no">
     <head ontouchstart="">
-        <div class="hero">
+        <nav role="navigation">
+            <div id="menuToggle">
+            
+              <!--
+              A fake / hidden checkbox is used as click reciever,
+              so you can use the :checked selector on it.
+              -->
+              <input type="checkbox" id="Toggle"/>
+              
+              <!--
+              Some spans to act as a hamburger.
+              
+              They are acting like a real hamburger,
+              not that McDonalds stuff.
+              -->
+              <span></span>
+              <span></span>
+              <span></span>
+              
+              <!--
+              Too bad the menu has to be inside of the button
+              but hey, it's pure CSS magic.
+              -->
+              <ul class="menu">
+                <a href="#home"><li><h2>home</h2></li></a>
+                <a href="#contact"><li><h2>contact</h2></li></a>
+                <a href="#workexperience"><li><h2>work experience</h2></li></a>
+                <a href="#portfolio"><li><h2>portfolio</h2></li></a>
+              </ul>
+            </div>
+          </nav>
+        <div class="hero" id="home">
             <div class="window animate">
                 <h1>Jai Singh Dhaliwal</h1>
                 <h3>A highly creative graphic design student looking to develop UI/UX design skills and gain experience in the industry. </h3>
             </div>
             <div class="socials">
-                <div class="icon-window animate" id="linkedin"></div>
-                <div class="icon-window animate" id="github"></div>
+                <a href="https://www.linkedin.com/in/jaidhaliwal"><div class="icon-window animate" id="linkedin"></div></a>
+                <a href="https://www.github.com/joonga"><div class="icon-window animate" id="github"></div></a>
                 <div class="icon-window animate" id="linkedin"></div>
             </div>
         </div>
     </head>
     <body ontouchstart="">
         
-        <div class="yesnt">
+        <div class="yesnt" id="contact">
             <div class="left">
                 <h2>contact</h2>
                 <div id="yellow"><h3>MOBILE NUMBER</h3></div>
@@ -58,7 +91,7 @@
                     Movies<br>
                     Technology</h3>
             </div>
-            <div class="right">
+            <div class="right" id="workexperience">
                 <h2>work experience</h2>
                 <div id="blue">
                     <h3>DESIGN INTERN</h3>
@@ -144,7 +177,7 @@
                 </div>
             </div>
         </div>
-        <div class="portfolio" style="background-image: url(1.jpg);">
+        <div class="portfolio" id="portfolio" style="background-image: url(1.jpg);">
             <div class="caption">
                 <h2>heklsdhiosudfh</h2>
                 <h3>khfudiojfhoidadfshjiajhskdbiou</h3>
