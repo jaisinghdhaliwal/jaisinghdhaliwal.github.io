@@ -203,7 +203,7 @@ p {font-weight: 500}
 
 @media only screen and (max-width: 800px) {
     .portfolio {
-        width: 70%;
+        width: 80%;
         height: 600px;
         display:flex;
         margin: auto;
@@ -215,14 +215,15 @@ p {font-weight: 500}
         -webkit-background-size: cover;
         filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));
         -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));
+        padding: 0;
     }
 
     .caption {
         background: rgb(52, 52, 52, 0.7);
         backdrop-filter: blur(16px);
-        padding: 24px 48px 30px 48px;
+        -webkit-backdrop-filter: blur(16px);
+        padding: 20px;
         margin-right: 0;
-        width: 97%;
         max-width: none;
         filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0));
         -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0));
@@ -231,7 +232,7 @@ p {font-weight: 500}
     .portfolio-container {
         display: flex;
         flex-direction: column;
-        gap: 50px;
+        gap: 80px;
     }
 }
 
