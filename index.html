@@ -10,39 +10,29 @@
     <head ontouchstart="">
         <nav role="navigation">
             <div id="menuToggle">
-            
-              <!--
-              A fake / hidden checkbox is used as click reciever,
-              so you can use the :checked selector on it.
-              -->
-              <input type="checkbox" id="Toggle"/>
-              
-              <!--
-              Some spans to act as a hamburger.
-              
-              They are acting like a real hamburger,
-              not that McDonalds stuff.
-              -->
-              <span></span>
-              <span></span>
-              <span></span>
-              
-              <!--
-              Too bad the menu has to be inside of the button
-              but hey, it's pure CSS magic.
-              -->
-              <ul class="menu">
-                <a href="#home"><li><h2>home</h2></li></a>
-                <a href="#contact"><li><h2>contact</h2></li></a>
-                <a href="#workexperience"><li><h2>work experience</h2></li></a>
-                <a href="#portfolio"><li><h2>portfolio</h2></li></a>
-              </ul>
+                <input type="checkbox" id="Toggle"/>
+                <span></span><span></span><span></span>
+                <ul class="menu">
+                    <a href="#home"><h2>home</h2></a>
+                    <a href="#contact"><h2>contact</h2></a>
+                    <a href="#skills"><h2>skills</h2></a>
+                    <a href="#workexperience"><h2>work experience</h2></a>
+                    <a href="#education"><h2>education</h2></a>
+                    <a href="#portfolio"><h2>portfolio</h2></a>
+                </ul>
             </div>
-          </nav>
+        </nav>
+        <!-- <div class="navbar">
+            <a href="#contact"><h2>contact</h2></a>
+            <a href="#workexperience"><h2>experience</h2></a>
+            <a href="#portfolio"><h2>portfolio</h2></a>
+        </div> -->
+    </head>
+    <body ontouchstart="">
         <div class="hero" id="home">
             <div class="window animate">
                 <h1>Jai Singh Dhaliwal</h1>
-                <h3>A highly creative graphic design student looking to develop UI/UX design skills and gain experience in the industry. </h3>
+                <p>A highly creative graphic design student looking to develop UI/UX design skills and gain experience in the industry. </p>
             </div>
             <div class="socials">
                 <a href="https://www.linkedin.com/in/jaidhaliwal"><div class="icon-window animate" id="linkedin"></div></a>
@@ -50,20 +40,25 @@
                 <div class="icon-window animate" id="linkedin"></div>
             </div>
         </div>
-    </head>
-    <body ontouchstart="">
-        
-        <div class="yesnt" id="contact">
+        <div class="cv animate" id="contact">
             <div class="left">
                 <h2>contact</h2>
+            </div>
+            <div class="right">
                 <div id="yellow"><h3>MOBILE NUMBER</h3></div>
-                <h3>07455 794117</h3>
+                <p>07455 794117</p>
                 <div id="yellow"><h3>EMAIL</h3></div>
-                <h3>i.jai@icloud.com</h3>
-                <div id="yellow"><h3>ADDRESS</h3></div>
-                <h3>West Midlands</h3>
+                <p>i.jai@icloud.com</p>
+                <div id="yellow"><h3>LOCATION</h3></div>
+                <p>West Midlands</p>
+            </div>
+        </div>
+        <div class="cv animate" id="skills">
+            <div class="left">
                 <h2>skills</h2>
-                <h3>Figma<br>
+            </div>
+            <div class="right column">
+                <p>Figma<br>
                     Adobe XD<br>
                     Adobe Photoshop<br>
                     Adobe Illustrator<br>
@@ -73,8 +68,8 @@
                     Blender<br>
                     HTML5 + CSS<br>
                     Python<br>
-                    Microsoft Office<br>
-                    <br>
+                    Microsoft Office</p>
+                    <p>
                     Wireframing<br>
                     Prototyping<br>
                     UX Research<br>
@@ -83,116 +78,118 @@
                     Site Maps<br>
                     Info Architecture<br>
                     Teamwork<br>
-                    Problem Solving</h3>
+                    Problem Solving</p>
+            </div>
+        </div>
+        <div class="cv animate" id="hobbies">
+            <div class="left">
                 <h2>hobbies</h2>
-                <h3>Blender<br>
+            </div>
+            <div class="right list">
+                <p>Blender<br>
                     Gaming<br>
                     Music<br>
                     Movies<br>
-                    Technology</h3>
+                    Technology</p>
             </div>
-            <div class="right" id="workexperience">
+        </div>
+        <div class="cv animate" id="workexperience">
+            <div class="left">
                 <h2>work experience</h2>
+            </div>
+            <div class="right">
                 <div id="blue">
                     <h3>DESIGN INTERN</h3>
                 </div>
                 <div class="tab" id="yellow">
-                    <h3>BOW WOW INTERNATIONAL</h3>
-                    <h3>2022</h3>
+                    <h3>BOW WOW INTERNATIONAL</h3><h3>2022</h3>
                 </div>
-                <h3>Animated car using Blender, 3D modelled terrain</h3>
+                <p>Animated car using Blender, 3D modelled terrain</p>
                 <div id="blue">
                     <h3>SUPPORTING STAFF</h3>
                 </div>
                 <div class="tab" id="yellow">
-                    <h3>ST MATTHEW'S PRIMARY SCHOOL</h3>
-                    <h3>2022</h3>
+                    <h3>ST MATTHEW'S PRIMARY SCHOOL</h3><h3>2022</h3>
                 </div>
-                <h3>Supported staff with classroom preparation, worked alongside pupils to help them with their learning. </h3>
+                <p>Supported staff with classroom preparation, worked alongside pupils to help them with their learning. </p>
+            </div>
+        </div>
+        <div class="cv animate" id="education">
+            <div class="left">
                 <h2>education</h2>
+            </div>
+            <div class="right list">
                 <div class="tab" id="yellow">
-                    <h3>COVENTRY UNIVERSITY</h3>
-                    <h3>2021 - 2025</h3>
+                    <h3>COVENTRY UNIVERSITY</h3><h3>2021 - 2025</h3>
                 </div>
-                <h3>Currently studying BA graphic design. Completed assignments on branding, typography, printed publication, video editing, UI/UX design and blogging. </h3>
+                <p>Currently studying BA graphic design. Completed assignments on branding, typography, printed publication, video editing, UI/UX design and blogging. </p>
                 <div class="grades">
                     <div class="tab">
-                        <h3>ICT I/CDL QUALIFICATION</h3>
-                        <h3>PASS</h3>
-                    </div>
-                </div>
-                <div class="tab" id="yellow">
-                    <h3>KING EDWARD VI COLLEGE</h3>
-                    <h3>2019 - 2021</h3>
-                </div>
-                <h3>Studied Maths, Physics and Computer Science for A Levels. </h3>
-                <div class="grades">
-                    <div class="tab">
-                        <h3>MATHS</h3>
-                        <h3>PASS</h3>
-                    </div>
-                    <div class="tab">
-                        <h3>PHYSICS</h3>
-                        <h3>PASS</h3>
-                    </div>
-                    <div class="tab">
-                        <h3>COMPUTER SCIENCE</h3>
-                        <h3>PASS</h3>
+                        <h3>ICT I/CDL QUALIFICATION</h3><h3>PASS</h3>
                     </div>
                 </div>
                 <div class="tab" id="yellow">
-                    <h3>BRISTNALL HALL ACADEMY</h3>
-                    <h3>2014 - 2019</h3>
+                    <h3>KING EDWARD VI COLLEGE</h3><h3>2019 - 2021</h3>
                 </div>
-                <h3>Studied core subjects alongsisde Computer Science, Geography and French for GCSEs.  </h3>
+                <p>Studied Maths, Physics and Computer Science for A Levels. </p>
                 <div class="grades">
                     <div class="tab">
-                        <h3>MATHS</h3>
-                        <h3>7</h3>
+                        <h3>MATHS</h3><h3>PASS</h3>
                     </div>
                     <div class="tab">
-                        <h3>ENGLISH</h3>
-                        <h3>5</h3>
+                        <h3>PHYSICS</h3><h3>PASS</h3>
                     </div>
                     <div class="tab">
-                        <h3>COMBINED SCIENCE</h3>
-                        <h3>7-6</h3>
+                        <h3>COMPUTER SCIENCE</h3><h3>PASS</h3>
+                    </div>
+                </div>
+                <div class="tab" id="yellow">
+                    <h3>BRISTNALL HALL ACADEMY</h3><h3>2014 - 2019</h3>
+                </div>
+                <p>Studied core subjects alongsisde Computer Science, Geography and French for GCSEs.  </p>
+                <div class="grades">
+                    <div class="tab">
+                        <h3>MATHS</h3><h3>7</h3>
                     </div>
                     <div class="tab">
-                        <h3>COMPUTER SCIENCE</h3>
-                        <h3>7</h3>
+                        <h3>ENGLISH</h3><h3>5</h3>
                     </div>
                     <div class="tab">
-                        <h3>GEOGRAPHY</h3>
-                        <h3>5</h3>
+                        <h3>COMBINED SCIENCE</h3><h3>7-6</h3>
                     </div>
                     <div class="tab">
-                        <h3>FRENCH</h3>
-                        <h3>5</h3>
+                        <h3>COMPUTER SCIENCE</h3><h3>7</h3>
                     </div>
                     <div class="tab">
-                        <h3>TLM OPEN SYSTEMS AND ADVANCED MANUFACTURING</h3>
-                        <h3>B</h3>
+                        <h3>GEOGRAPHY</h3><h3>5</h3>
+                    </div>
+                    <div class="tab">
+                        <h3>FRENCH</h3><h3>5</h3>
+                    </div>
+                    <div class="tab">
+                        <h3>TLM OPEN SYSTEMS AND ADVANCED MANUFACTURING</h3><h3>B</h3>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="portfolio" id="portfolio" style="background-image: url(1.jpg);">
-            <div class="caption">
-                <h2>heklsdhiosudfh</h2>
-                <h3>khfudiojfhoidadfshjiajhskdbiou</h3>
+        <div class="portfolio-container" id="portfolio">
+            <div class="portfolio animate" style="background-image: url(1.jpg);">
+                <div class="caption">
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui eaque voluptatum quibusdam minima deleniti aliquam ipsam natus, ipsa optio hic.</p>
+                </div>
             </div>
-        </div>
-        <div class="portfolio" style="background-image: url(1.jpg);">
-            <div class="caption">
-                <h2>heklsdhiosudfh</h2>
-                <h3>khfuskdbiou</h3>
+            <div class="portfolio animate" style="background-image: url(1.jpg);">
+                <div class="caption">
+                    <h2>heklsdhiosudfh</h2>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates necessitatibus at quo itaque architecto numquam iste in minus ipsum quae?</p>
+                </div>
             </div>
-        </div>
-        <div class="portfolio" style="background-image: url(1.jpg);">
-            <div class="caption">
-                <h2>heklsdhiosudfh</h2>
-                <h3>khfudiojfhoiei u o d fhgsiedhfisu dhfusdhfjsdh kdjfsjkd fksjdhfjjlkdjs jdadfshjiaj hskdbiou</h3>
+            <div class="portfolio" style="background-image: url(1.jpg);">
+                <div class="caption">
+                    <h2>Lorem ipsum dolor sit amet.</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe velit sint facilis cum explicabo error nihil magni accusamus officiis magnam!</p>
+                </div>
             </div>
         </div>
     </body>

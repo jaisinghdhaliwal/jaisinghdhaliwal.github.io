@@ -3,7 +3,7 @@ window.onload = function() {
     // Get the checkbox
     let chk = document.getElementById('Toggle');
     // Get all menu links
-    let menuLinks = document.querySelectorAll('.menu a li');
+    let menuLinks = document.querySelectorAll('.menu a');
     // Loop on links
     menuLinks.forEach(function(item) {
         // Add event listener to each links
