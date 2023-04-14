@@ -12,10 +12,7 @@ html {scroll-behavior: smooth}
 #blue>h3{color: var(--blue)}
 #red>h3{color: var(--red)}
 
-body{
-    background: var(--grey);
-    margin: auto;
-}
+body{background: var(--grey);margin: auto;}
 
 .hero {
     height: 100vh;
@@ -91,7 +88,8 @@ div.window:hover, div.icon-window:active {
 }
 
 h1, h2, h3, p {
-    font-family: 'Fira Code', monospace}
+    font-family: 'Fira Code', monospace;
+    font-display: swap;}
 
 h1{font-size: 32pt; color: var(--white)}
 
@@ -218,13 +216,6 @@ p {font-weight: 500}
     #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px;}
 }
 
-/*
-Made by Erik Terwan
-24th of November 2015
-MIT License
-If you are thinking of using this in production code, beware of the browser prefixes.
-*/
-
 #menuToggle {
     display: block;
     position: fixed;
@@ -253,7 +244,6 @@ ul {list-style-type: none}
     -webkit-touch-callout: none;
 }
 
-/* Just a quick hamburger */
 #menuToggle span {
     display: block;
     width: 33px;
@@ -271,12 +261,11 @@ ul {list-style-type: none}
 
 #menuToggle span:first-child {transform-origin: 0% 0%;}
 #menuToggle span:nth-last-child(2) {transform-origin: 0% 100%}
-/* Transform all the slices of hamburger into a crossmark. */
+
 #menuToggle input:checked ~ span {opacity: 1; transform: rotate(45deg) translate(-2px, -1px);}
-/* But let's hide the middle one. */
+
 #menuToggle input:checked ~ span:nth-last-child(3) {opacity: 0;transform: rotate(0deg) scale(0.2, 0.2)}
 #menuToggle input:checked ~ span:nth-last-child(2) {transform: rotate(-45deg) translate(0, -1px)}
-/* Make this absolute positioned at the top left of the screen */
 
 .menu {
     height: 100vh;
@@ -296,5 +285,4 @@ ul {list-style-type: none}
     flex-direction: column;
 }
 
-/* And let's slide it in from the left */
 #menuToggle input:checked ~ ul {transform: none}
