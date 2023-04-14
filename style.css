@@ -270,6 +270,7 @@ If you are thinking of using this in production code, beware of the browser pref
 }
 
 a {text-decoration: none}
+ul {list-style-type: none}
  
 #menuToggle input {
     display: block;
