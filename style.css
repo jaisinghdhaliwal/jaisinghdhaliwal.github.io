@@ -91,20 +91,11 @@ div.window:hover, div.icon-window:active {
 }
 
 h1, h2, h3, p {
-    font-family: 'Fira Code', monospace; font-style: normal}
+    font-family: 'Fira Code', monospace}
 
-h1{
-    font-weight: 500;
-    font-size: 32pt;
-    color: var(--white)
-}
+h1{font-size: 32pt; color: var(--white)}
 
-h2 {
-    font-weight: 500;
-    font-size: 18pt;
-    line-height: 18pt;
-    color: var(--red)
-}
+h2 {font-size: 18pt; line-height: 18pt;color: var(--red)}
 
 h3, p {
     font-size: 16px;
@@ -113,6 +104,7 @@ h3, p {
     margin: 8px 0
 }
 
+h1, h2 {font-weight: 500;}
 h3 {font-weight: 700}
 p {font-weight: 500}
 
@@ -132,7 +124,6 @@ p {font-weight: 500}
 }
 
 .right{
-    min-width: 5%;
     max-width: 600px;
     flex-grow: 999;
 }
@@ -170,7 +161,6 @@ p {font-weight: 500}
 .portfolio-container {
     margin-top: 40px;
 }
-
 
 @media only screen and (max-width: 650px) {
     .icon-window {height: 20px; width: 20px;}
