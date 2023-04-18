@@ -1,3 +1,22 @@
+h1, h2, h3, p {
+    font-family: 'Fira Code', monospace;
+    font-display: swap;}
+
+h1{font-size: 32pt; color: var(--white)}
+
+h2 {font-size: 18pt; line-height: 18pt;color: var(--red)}
+
+h3, p {
+    font-size: 16px;
+    color: var(--white);
+    line-height: 16pt;
+    margin: 8px 0
+}
+
+h1, h2 {font-weight: 500;}
+h3 {font-weight: 700}
+p {font-weight: 500}
+
 :root {
     --grey: #343434;
     --white: #DADADA;
@@ -5,13 +24,9 @@
     --yellow: #F0DD95;
     --blue: #76C9D9;
 }
-
 html {scroll-behavior: smooth}
-
 #yellow>h3{color: var(--yellow)}
 #blue>h3{color: var(--blue)}
-#red>h3{color: var(--red)}
-
 body{background: var(--grey);margin: auto;}
 
 .hero {
@@ -86,27 +101,6 @@ div.window:hover, div.icon-window:active {
     -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));
     max-width: 300px
 }
-
-h1, h2, h3, p {
-    font-family: 'Fira Code', monospace;
-    font-display: swap;}
-
-h1{font-size: 32pt; color: var(--white)}
-
-h2 {font-size: 18pt; line-height: 18pt;color: var(--red)}
-
-h3, p {
-    font-size: 16px;
-    color: var(--white);
-    line-height: 16pt;
-    margin: 8px 0
-}
-
-h1, h2 {font-weight: 500;}
-h3 {font-weight: 700}
-p {font-weight: 500}
-
-.centertext{padding: 1rem}
 
 .cv {
     display: flex;
@@ -200,15 +194,14 @@ p {font-weight: 500}
         flex-direction: column;
         gap: 80px;
     }
+
+    .column{gap: 10%}
 }
 
 @media only screen and (max-width: 475px) {
     .column{flex-direction: column;}
 }
 
-@media only screen and (max-width: 700px) {
-    .column{gap: 10%}
-}
 
 @media only screen and (min-width: 600px) {
     .icon-window {height: 40px; width: 40px;}
