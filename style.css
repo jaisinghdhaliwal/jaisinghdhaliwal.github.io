@@ -30,28 +30,28 @@ html {scroll-behavior: smooth}
 body{background: var(--grey);margin: auto;overflow-x: hidden;}
 
     #animatedBackground {
-        height: 150%;
+        height: 400%;
         width: 100%;
+        top: 0;
         position: absolute;
         overflow: hidden;
         transform: translate3d(0, 0, 0);
-        z-index: -1;}
+        z-index: -1}
 
     #animatedBackground > div {
         height: 100%;
         width: 10000px;
-        background: linear-gradient(transparent, var(--grey) 150vh), url(background.svg);
+        background: linear-gradient(transparent, var(--grey) 100%), url(background.svg);
         background-size: 2.5%;
         position: absolute;
         top: 0;
         left: 0;
-        height: 100%;
         transform: translate3d(0, 0, 0);
         -webkit-transform: translate3d(0, 0, 0);
         -moz-transform: translate3d(0, 0, 0);
-        animation: moveSlideshow 240s linear infinite; 
-        -webkit-animation: moveSlideshow 240s linear infinite;
-        -moz-animation: moveSlideshow 240s linear infinite}
+        animation: moveSlideshow 300s linear infinite; 
+        -webkit-animation: moveSlideshow 300s linear infinite;
+        -moz-animation: moveSlideshow 300s linear infinite}
 
       @keyframes moveSlideshow {
         100% { 
@@ -59,12 +59,8 @@ body{background: var(--grey);margin: auto;overflow-x: hidden;}
           -webkit-transform: translateX(-66.6666%);
           -moz-transform: translateX(-66.6666%)}}
 
-
-
 a {text-decoration: none}
 ul {list-style-type: none}
- 
-
 
 .hero {
     height: 100vh;
@@ -111,7 +107,7 @@ ul {list-style-type: none}
     padding: 24px 48px 48px 48px;
     outline: 3px dashed var(--grey);
     outline-offset: -15px;
-    translate: -1.5% 0px}
+    margin: auto;}
 
 div.icon-window:hover {
     transition-duration: 150ms;
@@ -201,7 +197,7 @@ div.window:active, div.icon-window:active, div.portfolio-tile:active {
 
 @media only screen and (max-width: 750px) {
     .icon-window {height: 20px; width: 20px;}
-    .window {padding: 18px 32px 32px 32px; outline: 0px; width: 90%;}
+    .window {padding: 18px 32px 32px 32px; outline: 0px; width: 75%;}
     .cv {flex-direction: column; gap: 0;}
     .column{columns: 1}
     .logo{width:90%;height: auto;}
@@ -210,10 +206,11 @@ div.window:active, div.icon-window:active, div.portfolio-tile:active {
 
 @media only screen and (max-width: 800px) {.column{gap: 10%}}
 
-@media only screen and (max-width: 475px) {.column{flex-direction: column;}}
+@media only screen and (max-width: 475px) {.column{flex-direction: column}}
 
 @media only screen and (min-width: 600px) {
     .icon-window {height: 40px; width: 40px;}
-    #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px;background-size: 200px;}
-    #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px;}
-    #document:hover {background-image: url(icons/document-big.svg);width: 80px;background-size: 80px;}}
+    #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px;background-size: 200px}
+    #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px}
+    #document:hover {background-image: url(icons/document-big.svg);width: 80px;background-size: 80px}
+    }
