@@ -1,0 +1,219 @@
+h1, h2, pb, p {
+    font-family: 'Fira Code', monospace;
+    font-display: swap}
+
+h1{font-size: 32pt; color: var(--white)}
+
+h2 {font-size: 18pt; line-height: 18pt;color: var(--red)}
+
+pb, p {font-size: 16px;
+    color: var(--white);
+    line-height: 16pt;
+    margin: 8px 0}
+
+z{border-bottom: 2px solid var(--grey); padding: 0 0 2px}
+
+h1, h2 {font-weight: 500}
+pb {font-weight: 700}
+p {font-weight: 500}
+
+:root {
+    --grey: #343434;
+    --white: #DADADA;
+    --red: #F08488;
+    --yellow: #F0DD95;
+    --blue: #76C9D9}
+
+html {scroll-behavior: smooth}
+#yellow>h3{color: var(--yellow)}
+#blue>h3{color: var(--blue)}
+body{background: var(--grey);margin: auto;overflow-x: hidden;}
+
+    #animatedBackground {
+        height: 150%;
+        width: 100%;
+        position: absolute;
+        overflow: hidden;
+        transform: translate3d(0, 0, 0);
+        z-index: -1;}
+
+    #animatedBackground > div {
+        height: 100%;
+        width: 10000px;
+        background: linear-gradient(transparent, var(--grey) 150vh), url(background.svg);
+        background-size: 2.5%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+        animation: moveSlideshow 240s linear infinite; 
+        -webkit-animation: moveSlideshow 240s linear infinite;
+        -moz-animation: moveSlideshow 240s linear infinite}
+
+      @keyframes moveSlideshow {
+        100% { 
+          transform: translateX(-66.6666%);
+          -webkit-transform: translateX(-66.6666%);
+          -moz-transform: translateX(-66.6666%)}}
+
+
+
+a {text-decoration: none}
+ul {list-style-type: none}
+ 
+
+
+.hero {
+    height: 100vh;
+    min-height: 550px;
+    display:flex;
+    margin: auto;
+    place-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-image: url();
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 15%;
+    padding: 0 40px;
+    gap: 40px;
+    opacity: 100%}
+
+.socials {display: flex; gap: 40px}
+
+.animate {
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out}
+
+.icon-window {
+    background: var(--white);
+    padding: 24px;
+    align-items: center;
+    display: flex;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center}
+
+#linkedin {background-image: url(icons/linkedin.svg)}
+#github {background-image: url(icons/github.svg)}
+#document {background-image: url(icons/document.svg)}
+
+.window, .icon-window, .portfolio-tile{will-change: filter; filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6)); -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));}
+
+.window {
+    max-width: 500px;
+    background: var(--white);
+    padding: 24px 48px 48px 48px;
+    outline: 3px dashed var(--grey);
+    outline-offset: -15px;
+    translate: -1.5% 0px}
+
+div.icon-window:hover {
+    transition-duration: 150ms;
+    animation:alternate;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out;}
+
+div.window:active, div.icon-window:active, div.portfolio-tile:active {
+    transform: translate(20px, 20px);
+    filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
+    -webkit-transform: translate(20px, 20px);
+    -webkit-filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));}
+
+.window>h1, .window>p {color: #343434}
+
+.portfolio-background {
+    margin: auto;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: fit-content;
+    flex-wrap: wrap;
+    min-width: none;
+    width: 95%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    transition: all .5s linear;
+    -webkit-transition: all .5s linear;}
+
+.portfolio-container {
+    margin: auto;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    width: fit-content;
+    flex-wrap: wrap;
+    min-width: none;
+    max-width: 1800px;
+    width: 95%;
+    transition: all .5s linear;
+    -webkit-transition: all .5s linear}
+
+.portfolio-category {
+    margin: auto;
+    padding-left: 8%;
+    width: 95%;
+    min-width: none;
+    max-width: 1800px}
+
+.portfolio-tile{
+    position: relative;
+    overflow: hidden;
+    height: 450px;
+    width: 45%}
+    div.portfolio-tile>img {
+        background-color: black;
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        position: absolute;
+        transition: all 300ms ease-in-out;
+        -webkit-transition: all 300ms ease-in-out}
+    .portfolio-tile:hover {
+        animation-play-state: paused;
+        transition: 0.2s}
+    .caption {
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        opacity: 0;
+        transition: all 300ms ease-in-out;
+        -webkit-transition: all 300ms ease-in-out;
+        padding: 10%;
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+        justify-content: center;
+        align-items: center}
+
+    .portfolio-tile:hover .caption {opacity: 1}
+    .portfolio-tile:hover img {filter:brightness(25%) blur(16px) saturate(0.2); transform: scale(1.2);align-self: center;
+    -webkit-filter: brightness(25%) blur(16px) saturate(0.2); -webkit-transform: scale(1.2);}
+    div.caption>h3, div.caption>h1 {text-align: center; margin: 5px;}
+
+@media only screen and (max-width: 750px) {
+    .icon-window {height: 20px; width: 20px;}
+    .window {padding: 18px 32px 32px 32px; outline: 0px; width: 90%;}
+    .cv {flex-direction: column; gap: 0;}
+    .column{columns: 1}
+    .logo{width:90%;height: auto;}
+    .portfolio-tile{width: 90%}
+    h1{font-size: 24pt; color: var(--white)}}
+
+@media only screen and (max-width: 800px) {.column{gap: 10%}}
+
+@media only screen and (max-width: 475px) {.column{flex-direction: column;}}
+
+@media only screen and (min-width: 600px) {
+    .icon-window {height: 40px; width: 40px;}
+    #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px;background-size: 200px;}
+    #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px;}
+    #document:hover {background-image: url(icons/document-big.svg);width: 80px;background-size: 80px;}}
