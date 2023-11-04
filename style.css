@@ -41,7 +41,7 @@ body{background: var(--grey);margin: auto;overflow-x: hidden;}
     #animatedBackground > div {
         height: 100%;
         width: 10000px;
-        background: linear-gradient(transparent, var(--grey) 100%), url(background.webp);
+        background: linear-gradient(transparent, var(--grey) 100%), url(background.svg);
         background-size: 2.5%;
         position: absolute;
         top: 0;
