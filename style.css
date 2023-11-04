@@ -111,7 +111,6 @@ ul {list-style-type: none}
 
 div.icon-window:hover {
     transition-duration: 150ms;
-    animation:alternate;
     transition-timing-function: ease-in-out;
     -webkit-transition-duration: 150ms;
     -webkit-transition-timing-function: ease-in-out;}
@@ -120,7 +119,11 @@ div.window:active, div.icon-window:active, div.portfolio-tile:active {
     transform: translate3d(20px, 20px, 0);
     filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
     -webkit-transform: translate3d(20px, 20px, 0);
-    -webkit-filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));}
+    -webkit-filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    -webkit-transition-duration: 150ms;
+    -webkit-transition-timing-function: ease-in-out;}
 
 .window>h1, .window>p {color: #343434}
 
