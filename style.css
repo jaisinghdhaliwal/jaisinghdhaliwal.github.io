@@ -95,7 +95,6 @@ ul {list-style-type: none}
 
 #linkedin {background-image: url(icons/linkedin.svg)}
 #github {background-image: url(icons/github.svg)}
-#document {background-image: url(icons/document.svg)}
 
 .window, .icon-window, .portfolio-tile{will-change: filter; filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6)); -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));}
 
@@ -189,7 +188,6 @@ div.window:active, div.icon-window:active, div.portfolio-tile:active {
 @media only screen and (max-width: 750px) {
     .icon-window {height: 20px; width: 20px;}
     .window {padding: 18px 32px 32px 32px; outline: 0px; width: 75%;}
-    .cv {flex-direction: column; gap: 0;}
     .column{columns: 1}
     .logo{width:90%;height: auto;}
     .portfolio-tile{width: 90%}
@@ -203,5 +201,4 @@ div.window:active, div.icon-window:active, div.portfolio-tile:active {
     .icon-window {height: 40px; width: 40px;}
     #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px; background-size: 200px}
     #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px}
-    #document:hover {background-image: url(icons/document-big.svg);width: 80px;background-size: 80px}
     }
