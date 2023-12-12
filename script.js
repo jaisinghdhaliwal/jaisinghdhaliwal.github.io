@@ -5,3 +5,4 @@ window.onload = function() {
         item.addEventListener('click', function() {chk.checked=false;});
     });
 }
+document.addEventListener('touchstart', onTouchStart, {passive: true});
