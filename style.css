@@ -1,204 +1,230 @@
-h1, h2, pb, p {
-    font-family: 'Fira Code', monospace;
-    font-display: swap}
-
-h1{font-size: 32pt; color: var(--white)}
-
-h2 {font-size: 18pt; line-height: 18pt;color: var(--red)}
-
-pb, p {font-size: 16px;
-    color: var(--white);
-    line-height: 16pt;
-    margin: 8px 0}
-
-z{border-bottom: 2px solid var(--grey); padding: 0 0 2px}
-
-h1, h2 {font-weight: 500}
-pb {font-weight: 700}
-p {font-weight: 500}
-
 :root {
-    --grey: #343434;
-    --white: #DADADA;
-    --red: #F08488;
-    --yellow: #F0DD95;
-    --blue: #76C9D9}
+    --white: #f5f5f5;
+    --black: #333333;
+}
 
-html {scroll-behavior: smooth}
-#yellow>h3{color: var(--yellow)}
-#blue>h3{color: var(--blue)}
-body{background: var(--grey);margin: auto;overflow-x: hidden;}
+body {background: var(--white)}
 
-    #animatedBackground {
-        height: 200%;
-        width: 100%;
-        top: 0;
-        position: absolute;
-        overflow: hidden;
-        transform: translate3d(0, 0, 0);
-        z-index: -1}
+p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 12pt;
+}
+  
+h1, h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
 
-    #animatedBackground > div {
-        height: 100%;
-        width: 5000px;
-        background: linear-gradient(transparent, var(--grey) 120vh), url(background.svg);
-        background-size: 5%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transform: translate3d(0, 0, 0);
-        -webkit-transform: translate3d(0, 0, 0);
-        -moz-transform: translate3d(0, 0, 0);
-        animation: moveSlideshow 300s linear infinite; 
-        -webkit-animation: moveSlideshow 300s linear infinite;
-        -moz-animation: moveSlideshow 300s linear infinite}
+h1 {font-size: 32pt}
 
-      @keyframes moveSlideshow {
-        100% { 
-          transform: translate3d(-66.6666%, 0, 0);
-          -webkit-transform: translate3d(-66.6666%, 0, 0);
-          -moz-transform: translate3d(-66.6666%, 0, 0)}}
+b {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16pt;
+}
 
-a {text-decoration: none}
-ul {list-style-type: none}
+.material-symbols-outlined {
+    /* font-size: 32px !important; */
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 24
+}
 
 .hero {
-    height: 100vh;
-    min-height: 550px;
-    display:flex;
-    margin: auto;
-    place-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-image: url();
-    background-attachment: fixed;
-    background-position: center;
-    background-size: 15%;
-    padding: 0 40px;
-    gap: 40px;
-    opacity: 100%}
-
-.socials {display: flex; gap: 40px; will-change: auto}
-
-.animate {
-    transition: 200ms ease-in-out;
-    -webkit-transition: 200ms ease-in-out;}
-
-.icon-window {
-    background: var(--white);
-    padding: 24px;
-    align-items: center;
+    margin: 0;
+    width: 100%;
+    min-height: 100vh;
+    max-height: fit-content;
     display: flex;
-    background-size: 40px;
-    background-repeat: no-repeat;
-    background-position: center}
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
 
-#linkedin {background-image: url(icons/linkedin.svg)}
-#github {background-image: url(icons/github.svg)}
-
-.window, .icon-window, .portfolio-tile{will-change: filter; filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6)); -webkit-filter: drop-shadow(20px 20px 0 rgba(0, 0, 0, 0.6));}
+.button, .window {
+    border-radius: 10px;
+    box-sizing: border-box;
+    box-shadow: 10px 10px 0 var(--black);
+    border: 3px #333333 solid;
+}
 
 .window {
-    max-width: 500px;
+    box-sizing: border-box;
+    width: clamp(10px, 500px, 85%);
+    padding: 35px;
+}
+
+.logo {
+    max-width: 100%;
+}
+
+.buttons {
+    display: flex;
+    flex-flow: row;
+    gap: 50px;
+    cursor: pointer;
+}
+
+.button {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
     background: var(--white);
-    padding: 24px 48px 48px 48px;
-    outline: 3px dashed var(--grey);
-    outline-offset: -15px;
-    margin: auto;}
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    background-size: 50px !important;
+    transition: 500ms;
+    text-align: center;
+    padding-top: 15px;
+    color: #333333;
+}
 
-div.window:active, div.icon-window:active, div.portfolio-tile:active {
+.button .material-symbols-outlined {font-size: 42px}
+
+.button:hover {
     will-change: translate;
-    transform: translate(20px, 20px);
-    filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));
-    -webkit-transform: translate(20px, 20px);
-    -webkit-filter: drop-shadow(0px 0px 0 rgba(0, 0, 0, 0.6));}
+    transform: translate(10px, 10px);
+    box-shadow: 0px 0px 0 var(--black);
+}
 
-.window>h1, .window>p {color: #343434}
+#cv {background: url(icons/mdi_cv.svg)}
+#linkedin {background: url(icons/mdi_linkedin.svg)}
+#github {background: url(icons/mdi_github.svg)}
 
-.portfolio-background {
-    margin: auto;
-    margin-bottom: 40px;
+.projects-page {
+    display:flex;
+    flex-flow: row;
+    width: 100%;
+    height: 100vh;
+}
+
+.title {
+    z-index: 99;
+    position: absolute;
+    padding: 20px 35px;
+    color: #333333;
+}
+
+.categories {
+    position: fixed;
+    top: 100%;
+    position: absolute;
+    height: 100%;
+    width: 100px;
     display: flex;
-    flex-direction: column;
-    gap: 40px;
-    width: fit-content;
-    flex-wrap: wrap;
-    min-width: none;
-    width: 95%;
-    padding-left: 2.5%;
-    padding-right: 2.5%}
-
-.portfolio-container {
-    margin: auto;
-    margin-bottom: 40px;
-    display: flex;
+    flex-flow: column;
+    align-items: start;
     justify-content: center;
-    gap: 40px;
-    width: fit-content;
-    flex-wrap: wrap;
-    min-width: none;
-    max-width: 1800px;
-    width: 95%;
-    transition: all .5s linear;
-    -webkit-transition: all .5s linear}
+    gap: 35px;
+    padding: 30px;
+    padding-right: 70px;
+    box-sizing: border-box;
+    background-color: rgba(245, 245, 245, 0.8);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    transition: 500ms;
+    overflow-x: hidden;
+}
 
-.portfolio-category {
-    margin: auto;
-    padding-left: 8%;
-    width: 95%;
-    min-width: none;
-    max-width: 1800px}
+.categories .material-symbols-outlined {font-size: 32px}
 
-.portfolio-tile{
-    position: relative;
-    overflow: hidden;
-    height: 450px;
-    width: 45%}
-    div.portfolio-tile>img {
-        background-color: black;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-        position: absolute;
-        transition: all 300ms ease-in-out;
-        -webkit-transition: all 300ms ease-in-out}
-    .portfolio-tile:hover {
-        animation-play-state: paused;
-        transition: 0.2s;
-        -webkit-transition: 0.2s}
-    .caption {
-        width: 80%;
-        height: 80%;
-        position: absolute;
-        opacity: 0;
-        transition: all 500ms ease-in-out;
-        -webkit-transition: all 500ms ease-in-out;
-        padding: 10%;
-        display: flex;
-        flex-direction: column;
-        gap: 1px;
-        justify-content: center;
-        align-items: center}
+.categories button b {
+    opacity: 0;
+    transition: opacity 750ms;
+}
 
-    .portfolio-tile:hover .caption {opacity: 1}
-    .portfolio-tile:hover img {filter:brightness(25%) blur(16px) saturate(0.2); transform: scale(1.2);align-self: center;
-    -webkit-filter: brightness(25%) blur(16px) saturate(0.2); -webkit-transform: scale(1.2);}
-    div.caption>h3, div.caption>h1 {text-align: center; margin: 5px;}
+.categories:hover {width: 350px}
+
+.categories:hover button b {opacity: 1}
+
+.categories button {
+    background: none;
+    border: none;
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    cursor: pointer;
+    transition: 350ms;
+    
+}
+
+.categories button.active {color: red}
+
+.projects {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    gap: 30px;
+    padding-left: 120px;
+    overflow: scroll;
+    padding-top: 160px;
+}
+
+.project {
+    min-width: 350px;
+    max-width: 500px;
+}
+
+.project .buttons {gap: 20px}
+
+.sequence-image {
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+}
 
 @media only screen and (max-width: 750px) {
-    .icon-window {height: 20px; width: 20px;}
-    .window {padding: 18px 32px 32px 32px; outline: 0px; width: 75%;}
-    .column{columns: 1}
-    .logo{width:90%;height: auto;}
-    .portfolio-tile{width: 90%}
-    h1{font-size: 24pt; color: var(--white)}}
+	.categories {display: none}
 
-@media only screen and (max-width: 800px) {.column{gap: 10%}}
-
-@media only screen and (max-width: 475px) {.column{flex-direction: column}}
-
-@media only screen and (min-width: 600px) {
-    .icon-window {height: 40px; width: 40px;}
-    #linkedin:hover {background-image: url(icons/linkedin-big.svg);width: 200px; background-size: 200px}
-    #github:hover {background-image: url(icons/github-big.svg);width: 160px;background-size: 160px}
+    .projects-page {
+        display: flex;
+        flex-flow: column;
+        height: auto;
     }
+
+    .title {
+        position: sticky;
+        padding: 20px 20px;
+    }
+    
+    .projects {
+        flex-flow: column;
+        height: auto;
+        width: 100%;
+        align-items: center;
+        gap: 80px;
+        padding: 20px;
+    }
+
+    .project {
+        min-width: none;
+        max-width: 100%
+    }
+    
+    .project .buttons {gap: 20px}
+    
+    .sequence-image {height: 50vh}
+
+    .button {
+        width: 70px;
+        height: 70px;
+        background-size: 43.75px;
+        padding-top: 11px;
+    }
+}
+
+@media only screen and (max-height: 750px) {
+    .sequence-image {height: 200px}
+    .categories {justify-content: end}
+}

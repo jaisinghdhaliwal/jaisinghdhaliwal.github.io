@@ -1,124 +1,42 @@
 <!DOCTYPE html>
-<html lang="en-GB">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<html lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-16">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
     <link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <link rel="stylesheet" href="style.css">
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap"/>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@500;700&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width initial-scale=1">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="description" content="Jai Singh Dhaliwal's CV">
-    <title>Jai Singh Dhaliwal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>TEST APP</title>
+    <meta name="description" content="Test app">
     <head>
     </head>
     <body>
-        <div id="animatedBackground">
-            <div></div>
-          </div>
-          
-            <div class="hero" id="home">
-                <a href="CV.pdf">
-                    <div class="window animate">
-                        <object data="personal logo.svg" width=370px class="logo" style="padding-top: 4%" aria-label="my personal logo saying Jai Singh Dhaliwal, custom made typeface"> </object>
-                        <p aria-label="A highly creative graphic design student looking to develop UI/UX design skills and gain experience in the industry. Click for full CV">A highly creative graphic design student looking to develop UI/UX design skills and gain experience in the industry. <br><br><z>Click for full CV</z></p>
-                    </div>
-                </a>
-                <div class="socials animate">
-                    <a href="https://www.linkedin.com/in/jaidhaliwal"  aria-label="Jai's LinkedIn"><div class="icon-window animate" id="linkedin"></div></a>
-                    <a href="https://www.github.com/joonga" aria-label="Jai's GitHub"><div class="icon-window animate" id="github"></div></a>
-                </div>
+        <div class="hero">
+            <div class="window">
+                <object data="personal logo.svg" width=370px class="logo" style="padding-top: 4%" aria-label="my personal logo saying Jai Singh Dhaliwal, custom made typeface"> </object>
+                <p>Creative, detail-oriented, first class Graphic Design graduate with a passion for UI, UX and web design. I enjoy coding websites and I have a keen interest in entering app/web design and development. I am enthusiastic about 3D modelling, rendering and augmented reality in Blender. I enjoy photography and videography and capturing the world. 
+                    <br><br>
+                    i.jai@icloud.com<br>
+                    +447455794117</p>
             </div>
-            </a>
-            
-            <div class="portfolio-background animate" id="portfolio" >
-
-                <div class="portfolio-category"><h1>UI/UX Design</h1></div>
-
-                <div class="portfolio-container">
-                    <div class="portfolio-tile"> 
-                        <img src="images/everyone eats.webp" loading="lazy" alt="image of everyone eats iphone mockup">
-                        <div class="caption">
-                            <h1>Everyone Eats</h1>
-                            <pb>COVENTRY UNIVERSITY</pb>
-                            <pb>2ND YEAR</pb>
-                            <pb>2023</pb>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="portfolio-category"><h1>3D Rendering</h1></div>
-
-                <div class="portfolio-container">
-                    <div class="portfolio-tile"> 
-                        <img src="images/bubble tea.webp" loading="lazy" alt="3d render of ios bubble tea emoji">
-                        <a href="images/bubble tea.webp">
-                            <div class="caption">
-                                <h1>Bubble Tea</h1>
-                                <pb>EMOJI COLLECTION</pb>
-                                <pb>2022</pb>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="portfolio-tile"> 
-                        <img src="images/clinking glasses.webp" loading="lazy" alt="3d render of ios clinking glasses emoji">
-                        <a href="images/clinking glasses.webp">
-                            <div class="caption">
-                                <h1>Clinking Glasses</h1>
-                                <pb>EMOJI COLLECTION</pb>
-                                <pb>2023</pb>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="portfolio-tile"> 
-                        <img src="images/anime1.webp" loading="lazy" alt="anime like render during the day">
-                        <a href="images/anime1.webp">
-                            <div class="caption">
-                                <h1>Anime Inspired (Day)</h1>
-                                <pb>2023</pb>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="portfolio-tile">
-                        <img src="images/anime2.webp" loading="lazy" alt="anime like render during the night">
-                        <a href="images/anime2.webp">
-                            <div class="caption">
-                                <h1>Anime Inspired (Night)</h1>
-                                <pb>2023</pb>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="portfolio-category"><h1>Misc</h1></div>
-
-                <div class="portfolio-container">
-                    <div class="portfolio-tile"> 
-                        <img src="images/delia derivative.webp" loading="lazy" alt="custom typeface inspired by delia derbyshire">
-                        <a href="images/delia derivative.webp">
-                            <div class="caption">
-                                <h1>Delia Derivative</h1>
-                                <pb>TYPOGRAPHY</pb>
-                                <pb>COVENTRY UNIVERSITY</pb>
-                                <pb>2ND YEAR</pb>
-                                <pb>2023</pb>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="portfolio-tile"> 
-                        <img src="images/herbert.webp" loading="lazy" alt="3d isometric map of herbert art gallery">
-                        <a href="images/herbert.webp">
-                            <div class="caption">
-                                <h1>Herbert Art Gallery Map</h1>
-                                <pb>COVENTRY UNIVERSITY</pb>
-                                <pb>1ST YEAR</pb>
-                                <pb>2021</pb>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div class="buttons">
+                <a class="button" id="cv" href="cv.pdf" aria-label="Jai's CV" target="_blank"></a>
+                <a class="button" id="linkedin" href="https://www.linkedin.com/in/jaidhaliwal"  aria-label="Jai's LinkedIn" target="_blank"></a>
+                <a class="button" id="github" href="https://www.github.com/joonga" aria-label="Jai's GitHub" target="_blank"></a>
             </div>
-    <link rel="preload" href="icons/github.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="icons/linkedin.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="icons/github-big.svg" as="image" type="image/svg+xml" />
-    <link rel="preload" href="icons/linkedin-big.svg" as="image" type="image/svg+xml" />
-</html>
+        </div>
+        <div class="projects-page">
+            <div class="title"><h1>PROJECTS</h1></div>
+            <div class="categories">
+                <button><span class="material-symbols-outlined">devices</span><b>WEB/UI/UX</b></button>
+                <button><span class="material-symbols-outlined">view_in_ar</span><b>3D</b></button>
+                <!-- <button><span class="material-symbols-outlined">photo_camera</span><b>PHOTOGRAPHY</b></button> -->
+                <!-- <button><span class="material-symbols-outlined">experiment</span><b>EXTRA</b></button> -->
+            </div>
+            <div class="projects"></div>
+        </div>
+    </body>
+    <script defer src="script.js"></script>
+</html
