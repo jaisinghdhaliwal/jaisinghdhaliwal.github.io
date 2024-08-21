@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalFrames: 10,
             description: "Designing and coding the website for the Coventry University Graphic Design Graduate Degree Showcase.",
             link: "https://justdesign.show",
-            readMoreLink: "#",
+            readMoreLink: "https://www.behance.net/gallery/204163899/JUSTDESIGNSHOW",
             githubLink: "https://github.com/justdesignshow/justdesignshow.github.io",
             color: "#E6F500",
             backgroundColor: "#F5F6E6",
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             totalFrames: 10,
             description: "Recreating my Graduate Degree Showcase exhibition in 3D using Blender and Unreal Editor. (Ongoing Project)",
             link: "https://www.youtube.com/watch?v=0OYFrGoJCF4",
-            readMoreLink: "",
+            readMoreLink: "https://www.behance.net/gallery/205917593/JUST-DESIGN-VIRITUAL-EXHIBITION",
             githubLink: "",
             color: "#E6F500",
             backgroundColor: "#F5F6E6",
@@ -26,14 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         {
             title: "COVENTRY AR MAP",
-            imagePath: "frames/project5",
+            imagePath: "frames/covmap",
             totalFrames: 10,
-            description: "An animated, interactive, augmented reality map of the Coventry city centre, including Coventry University.",
+            description: "An animated, interactive, augmented reality map of the Coventry city centre, including Coventry University. (iOS only)",
             link: "https://raw.githubusercontent.com/jaisinghdhaliwal/LFJGKPOFJ/8d91236b233664d289ff8aa15c32464f4d1ca315/AR%20Map.reality",
             readMoreLink: "",
             githubLink: "",
-            color: "#E6F500",
-            backgroundColor: "#808080",
+            color: "#87c0f5",
+            backgroundColor: "#d2e7fa",
             category: "3D"
         },
         {
@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const readMoreButton = document.createElement('a');
                     readMoreButton.classList.add('button');
                     readMoreButton.href = project.readMoreLink;
+                    readMoreButton.target = '_blank';
                     readMoreButton.innerHTML = '<span class="material-symbols-outlined">description</span>';
                     buttonsDiv.appendChild(readMoreButton);
                 }
@@ -118,14 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     githubButton.href = project.githubLink;
                     githubButton.setAttribute('aria-label', 'GitHub');
                     githubButton.target = '_blank';
-                    githubButton.innerHTML = '<span class="material-symbols-outlined">code</span>';
                     buttonsDiv.appendChild(githubButton);
                 }
 
                 projectDiv.appendChild(buttonsDiv);
                 projectsContainer.appendChild(projectDiv);
-
-                // Interactive image sequence logic
+                
                 const imageElement = sequenceImageDiv;
                 const totalFrames = project.totalFrames;
                 const imagePath = project.imagePath;
