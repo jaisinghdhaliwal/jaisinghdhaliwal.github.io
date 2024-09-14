@@ -48,6 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
             backgroundColor: "#79D3DD",
             category: "3D"
         },
+        {
+            title: "BHAM MELA 2024",
+            imagePath: "frames/bm",
+            totalFrames: 4,
+            description: "Some of my photography from the yearly Birmingham Mela, UK’s biggest South Asian music festival. ",
+            link: "https://www.behance.net/gallery/207381621/Birmingham-Mela-2024-Photography",
+            readMoreLink: "",
+            githubLink: "",
+            color: "#F00452",
+            backgroundColor: "#981F38",
+            category: "3D"
+        },
         
     ];
 
