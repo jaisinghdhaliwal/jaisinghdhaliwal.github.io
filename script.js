@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imagePath: "frames/nobloom",
             totalFrames: 10,
             description: "Designing and coding the website for the Coventry University Graphic Design Graduate Degree Showcase.",
-            link: "https://justdesign.show",
+            link: "https://justdesignshow.github.io",
             readMoreLink: "https://www.behance.net/gallery/204163899/JUSTDESIGNSHOW",
             githubLink: "https://github.com/justdesignshow/justdesignshow.github.io",
             color: "#E6F500",
