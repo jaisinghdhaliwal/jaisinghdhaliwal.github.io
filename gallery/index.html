@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Draggable Card Stack</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="preload" href="style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<script>
+		let allImages = [];
+		let availableImages = [];
+		const NUM_CARDS = 5;
+		let draggedCards = new Set();
+		let globalZIndex = 1;
+		let isSpawning = false;
+		const blurOverlay = document.getElementById('blur-overlay');
+
+
+		fetch('images.json')
+		.then(res => res.json())
+		.then(data => {
+			allImages = Object.values(data).flat();
+			availableImages = [...allImages];
+			spawnStack();
+		});
+
+		function getRandomImageUnique() {
+			if (availableImages.length === 0) return null;
+			const index = Math.floor(Math.random() * availableImages.length);
+			return availableImages.splice(index, 1)[0]; // remove and return
+		}
+
+		function spawnStack() {
+			if (isSpawning || availableImages.length === 0) return;
+			isSpawning = true;
+
+			const cardsToSpawn = Math.min(NUM_CARDS, availableImages.length);
+			let spawnedThisBatch = 0;
+
+			for (let i = 0; i < cardsToSpawn; i++) {
+				const img = getRandomImageUnique();
+				if (!img) break;
+
+				const card = document.createElement('div');
+				const shine = document.createElement('div');
+				shine.classList.add('shine');
+				card.appendChild(shine);
+				card.classList.add('card');
+				card.style.backgroundImage = `url(${img})`;
+				card.style.backgroundSize = 'cover';
+				card.style.backgroundPosition = 'center';
+
+				const rotation = (Math.random() * 10 - 5);
+				card.style.transform = `scale(1.2) rotate(${rotation}deg)`;
+				card.style.opacity = 0;
+				card.style.zIndex = globalZIndex++;
+
+				card.dataset.baseRotation = rotation;
+
+				document.body.appendChild(card); // Consider using a container
+
+				// Center and fade in card
+				requestAnimationFrame(() => {
+					const w = card.offsetWidth;
+					const h = card.offsetHeight;
+					card.style.left = `${(window.innerWidth - w) / 2}px`;
+					card.style.top = `${(window.innerHeight - h) / 2}px`;
+
+					requestAnimationFrame(() => {
+						card.style.transform = `rotate(${rotation}deg)`;
+						card.style.opacity = 1;
+					});
+				});
+
+				makeDraggable(card, () => {
+					draggedCards.add(card);
+					if (draggedCards.size >= cardsToSpawn) {
+						setTimeout(() => {
+							draggedCards.clear();
+							isSpawning = false;
+							spawnStack();
+						}, 500);
+					}
+				});
+
+				add3DTiltEffect(card);
+
+				card.addEventListener('click', (e) => {
+					if (card.classList.contains('dragging') || card._wasDraggingFar) return;
+					toggleEnlarge(card);
+				});
+
+
+				spawnedThisBatch++;
+			}
+
+			if (spawnedThisBatch > 0) {
+				updateShadows(); // Only call once after all cards are spawned
+			} else {
+				console.log("All images used, no more cards to spawn.");
+			}
+		}
+
+		function makeDraggable(card, onFirstDrag) {
+			let isDragging = false;
+			let offsetX = 0, offsetY = 0;
+			let lastX = 0, lastY = 0;
+			let velocityX = 0, velocityY = 0;
+			let rotation = 0;
+			let rotationVelocity = 0;
+			let animationFrameId = null;
+			let hasBeenDragged = false;
+			let totalDeltaX = 0;
+			let totalDeltaY = 0;
+			let wasDraggingFar = false;
+
+			function getRotationFromTransform(transform) {
+				const match = /rotate\((-?\d+\.?\d*)deg\)/.exec(transform);
+				return match ? parseFloat(match[1]) : 0;
+			}
+
+			rotation = getRotationFromTransform(card.style.transform);
+
+			function startDrag(x, y) {
+				totalDeltaX = 0;
+				totalDeltaY = 0;
+				wasDraggingFar = false;
+				isDragging = true;
+				card.classList.add('dragging');
+
+				// Find the current highest z-index and add 1
+				const highestZ = [...document.querySelectorAll('.card')]
+					.map(el => parseInt(getComputedStyle(el).zIndex) || 0)
+					.reduce((a, b) => Math.max(a, b), 0);
+
+				card.style.zIndex = highestZ + 1;
+				globalZIndex = highestZ + 1; // keep globalZIndex in sync
+
+				updateShadows();
+
+				const rect = card.getBoundingClientRect();
+				offsetX = x - rect.left;
+				offsetY = y - rect.top;
+
+				lastX = x;
+				lastY = y;
+
+				rotationVelocity = 0;
+
+				cancelAnimationFrame(animationFrameId);
+			}
+
+			function drag(x, y) {
+				if (!isDragging) return;
+
+				const newX = x - offsetX;
+				const newY = y - offsetY;
+
+				card.style.left = `${newX}px`;
+				card.style.top = `${newY}px`;
+
+				velocityX = x - lastX;
+				velocityY = y - lastY;
+				rotationVelocity = velocityX * 0.1;
+				totalDeltaX += Math.abs(x - lastX);
+				totalDeltaY += Math.abs(y - lastY);
+
+
+				lastX = x;
+				lastY = y;
+
+				rotation += rotationVelocity;
+				card.style.transform = `rotate(${rotation}deg) scale(1.05)`;
+
+				if (!hasBeenDragged) {
+				hasBeenDragged = true;
+				onFirstDrag();
+				}
+			}
+
+			function endDrag() {
+				if (!isDragging) return;
+				isDragging = false;
+				card.classList.remove('dragging');
+				card.style.transform = `rotate(${rotation}deg) scale(1)`;
+				wasDraggingFar = (totalDeltaX > 5 || totalDeltaY > 5); // Set threshold
+				card._wasDraggingFar = wasDraggingFar;
+				applyMomentum();
+			}
+
+			// 🖱️ Mouse Events
+			card.addEventListener('mousedown', (e) => {
+				e.preventDefault();
+				startDrag(e.clientX, e.clientY);
+			});
+
+			document.addEventListener('mousemove', (e) => {
+				drag(e.clientX, e.clientY);
+			});
+
+			document.addEventListener('mouseup', () => {
+				endDrag();
+			});
+
+			// 📱 Touch Events
+			card.addEventListener('touchstart', (e) => {
+				if (e.touches.length === 1) {
+				const touch = e.touches[0];
+				startDrag(touch.clientX, touch.clientY);
+				}
+			});
+
+			document.addEventListener('touchmove', (e) => {
+				if (e.touches.length === 1) {
+				const touch = e.touches[0];
+				drag(touch.clientX, touch.clientY);
+				}
+			}, { passive: false });
+
+			document.addEventListener('touchend', endDrag);
+
+			function applyMomentum() {
+				const friction = 0.88;
+				const threshold = 0.1;
+
+				function animate() {
+					let left = parseFloat(card.style.left) || 0;
+					let top = parseFloat(card.style.top) || 0;
+
+					left += velocityX;
+					top += velocityY;
+
+					card.style.left = `${left}px`;
+					card.style.top = `${top}px`;
+
+					velocityX *= friction;
+					velocityY *= friction;
+
+					rotation += rotationVelocity;
+					rotationVelocity *= friction;
+
+					card.style.transform = `rotate(${rotation}deg)`;
+
+					if (
+					Math.abs(velocityX) > threshold ||
+					Math.abs(velocityY) > threshold ||
+					Math.abs(rotationVelocity) > 0.01
+					) {
+					animationFrameId = requestAnimationFrame(animate);
+					} else {
+					// 🎯 When momentum ends, update the data attribute with final rotation
+					card.dataset.rotation = rotation;
+					}
+				}
+
+				animate();
+			}
+		}
+
+		function toggleEnlarge(card) {
+			const isEnlarged = card.classList.contains('enlarged');
+
+			if (isEnlarged) {
+				card.classList.remove('enlarged');
+				document.body.classList.remove('enlarged-mode');
+				// Optionally reset z-index after shrinking
+				card.style.zIndex = card.dataset.originalZ || '';
+			} else {
+				// Remove enlarged class from any other cards
+				document.querySelectorAll('.card.enlarged').forEach(c => {
+					c.classList.remove('enlarged');
+					c.style.zIndex = c.dataset.originalZ || '';
+				});
+
+				card.classList.add('enlarged');
+				document.body.classList.add('enlarged-mode');
+
+				// Store original z-index
+				card.dataset.originalZ = card.style.zIndex;
+				card.style.zIndex = 9999; // 🚀 Bring it to front
+			}
+		}
+
+		document.addEventListener('keydown', (e) => {
+			if (e.key === 'Escape') {
+				document.querySelectorAll('.card.enlarged').forEach(c => c.classList.remove('enlarged'));
+				document.body.classList.remove('enlarged-mode');
+			}
+		});
+
+	
+		function add3DTiltEffect(card) {
+			const shine = card.querySelector('.shine');
+
+			function getOriginalRotation() {
+				return parseFloat(card.dataset.rotation) || 0;
+			}
+
+			function handleMove(e) {
+				const rect = card.getBoundingClientRect();
+				const x = (e.clientX || e.touches?.[0].clientX) - rect.left;
+				const y = (e.clientY || e.touches?.[0].clientY) - rect.top;
+
+				const centerX = rect.width / 2;
+				const centerY = rect.height / 2;
+				const deltaX = x - centerX;
+				const deltaY = y - centerY;
+
+				const tiltX = (deltaY / centerY) * 5;
+				const tiltY = -(deltaX / centerX) * 5;
+
+				const originalRotation = getOriginalRotation();
+				const scale = card.classList.contains('enlarged') ? 1.15 : 1.08;
+
+				card.style.transform = `perspective(600px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotate(${originalRotation}deg) scale(${scale})`;
+
+				if (shine) {
+					const shineX = (x / rect.width) * 100;
+					const shineY = (y / rect.height) * 100;
+					shine.style.background = `radial-gradient(circle at ${shineX}% ${shineY}%, rgba(255,255,255,0.35), transparent 70%)`;
+					shine.style.opacity = 1;
+				}
+			}
+
+			function handleLeave() {
+				const originalRotation = getOriginalRotation();
+				const scale = card.classList.contains('enlarged') ? 1.5 : 1.0;
+
+				card.style.transform = `perspective(600px) rotateX(0deg) rotateY(0deg) rotate(${originalRotation}deg) scale(${scale})`;
+
+				if (shine) {
+					shine.style.opacity = 0;
+				}
+			}
+
+			card.addEventListener('mousemove', handleMove);
+			card.addEventListener('mouseleave', handleLeave);
+			card.addEventListener('touchmove', handleMove);
+			card.addEventListener('touchend', handleLeave);
+		}
+
+
+		function updateShadows() {
+			const cards = Array.from(document.querySelectorAll('.card'));
+			cards.sort((a, b) => {
+				return (parseInt(b.style.zIndex) || 0) - (parseInt(a.style.zIndex) || 0);
+			});
+
+			cards.forEach((card, index) => {
+				if (index < 7) {
+				card.classList.add('shadowed');
+				} else {
+				card.classList.remove('shadowed');
+				}
+			});
+		}
+
+
+
+
+	</script>
+
+</body>
+</html>
