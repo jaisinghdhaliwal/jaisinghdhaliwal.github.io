@@ -1,4 +1,4 @@
-const CACHE_NAME = "jai-portfolio-v77";
+const CACHE_NAME = "jai-portfolio-v78";
 const OFFLINE_URL = "./offline.html";
 const APP_SHELL = [
   "./",
