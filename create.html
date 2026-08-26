@@ -7,12 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Jai / SD">
-    <meta name="description" content="The portfolio of graphic designer Jai Singh Dhaliwal.">
-    <title>Jai Singh Dhaliwal - Graphic Designer</title>
+    <meta name="description" content="Photography, photogrammetry, AR and 3D experiments by Jai Singh Dhaliwal.">
+    <title>Create - Jai Singh Dhaliwal</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="ios_pwa/icon.png">
     <link rel="icon" href="ios_pwa/icon.png" type="image/png">
-    <link rel="preload" href="media/hero/showreel-thumb.avif" as="image" type="image/avif" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="ios_pwa/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="ios_pwa/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png">
@@ -58,279 +57,152 @@
     <link rel="apple-touch-startup-image" media="screen and (device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="ios_pwa/4__iPhone_SE__iPod_touch_5th_generation_and_later_landscape.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="ios_pwa/10.2__iPad_portrait.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="ios_pwa/12.9__iPad_Pro_landscape.png">
+    <script src="app.js" defer></script>
   </head>
-  <body data-page="work">
+  <body data-page="create">
     <a class="skip-link" href="#main">Skip to content</a>
-
     <header class="site-header">
       <div class="header-gradient-blur" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
         <span></span><span></span><span></span><span></span>
       </div>
-      <a class="wordmark" href="index.html" aria-label="Jai Singh Dhaliwal, home">
-        <img src="logo/logo-01.svg" alt="">
-      </a>
+      <a class="wordmark" href="index.html" aria-label="Jai Singh Dhaliwal, home"><img src="logo/logo-01.svg" alt=""></a>
       <nav class="site-nav glass" aria-label="Primary navigation">
         <span class="nav-active-pill" aria-hidden="true"></span>
-        <a class="is-active" href="index.html" data-nav="work" aria-current="page">Work</a>
-        <a href="create.html" data-nav="create">Create</a>
+        <a href="index.html" data-nav="work">Work</a>
+        <a class="is-active" href="create.html" data-nav="create" aria-current="page">Create</a>
         <a href="about.html" data-nav="cv">CV</a>
       </nav>
     </header>
 
-    <main id="main">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" style="background-color: #ffb255; background-image: linear-gradient(180deg, #f7d17f 0%, #f9dd8d 18%, #f8d783 31%, #f6c874 44%, #f3b364 60%, #f2a655 75%, #ea9d4d 100%);">
-          <picture>
-            <source srcset="media/hero/showreel-thumb.avif" type="image/avif">
-            <source srcset="media/hero/showreel-thumb.webp" type="image/webp">
-            <img
-              src="media/hero/showreel-thumb.webp"
-              width="960"
-              height="540"
-              loading="eager"
-              decoding="sync"
-              fetchpriority="high"
-              alt="A cinematic montage of Jai’s graphic design, photography and 3D work">
-          </picture>
-          <video
-            class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            aria-hidden="true">
-            <source src="media/hero/h265.mp4" type='video/mp4; codecs="hvc1"'>
-            <source src="media/hero/h264.mp4" type='video/mp4; codecs="avc1"'>
-          </video>
-        </div>
-        <div class="hero-shade" aria-hidden="true"></div>
-        <div class="hero-content page-shell">
-          <h1 class="page-title" id="hero-title">Hello, I’m Jai.</h1>
-          <div class="hero-copy">
-            <p>
-              I’m a multidisciplinary graphic designer working across branding,
-              packaging, 3D and motion, bringing physical products into
-              interactive digital experiences.
-            </p>
-          </div>
-          <address class="contact-lines">
-            <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
-            <span aria-hidden="true"></span>
-            <a href="tel:+447455794117">+44 7455 794117</a>
-          </address>
-          <div class="hero-actions">
-            <a class="button" id="linkedin" href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
-            <a class="button" id="download-cv" href="Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" download>Download CV</a>
-          </div>
-        </div>
-        <div class="hero-focus-label glass" aria-hidden="true">
-          <strong>Hello, I’m Jai.</strong>
-        </div>
+    <main id="main" class="create-page">
+      <section class="create-intro page-shell">
+        <h1 class="page-title">Create</h1>
+        <p class="create-tagline">Things I capture, reconstruct and imagine.</p>
+        <p>A personal archive of photographs, scanned objects and worlds built away from the desk.</p>
       </section>
 
-      <section class="work-section page-shell" id="selected-work" aria-labelledby="work-title">
+      <section class="create-section page-shell" id="captured" aria-labelledby="captured-title">
         <header class="section-heading">
-          <h2 id="work-title">Selected work</h2>
-          <span aria-hidden="true"></span>
+          <h2 id="captured-title">Captured - Photography</h2><span></span>
         </header>
-        <div class="project-grid" id="project-grid" aria-live="polite">
-          <p class="loading-copy">Loading selected work…</p>
+        <div class="country-tabs" role="tablist" aria-label="Photography collections">
+          <button class="is-active" id="tab-switzerland" type="button" role="tab" aria-selected="true" aria-controls="photos-switzerland" data-country="switzerland">Switzerland</button>
+          <button id="tab-space" type="button" role="tab" aria-selected="false" aria-controls="photos-space" data-country="space" tabindex="-1">Space</button>
+        </div>
+        <div class="photography-layout" id="photos-switzerland" role="tabpanel" aria-labelledby="tab-switzerland" data-country-panel="switzerland">
+          <div class="place-copy">
+            <p>Quiet journeys through light, architecture and landscapes - noticing the details that usually go unnoticed.</p>
+            <img class="location-map" src="media/create/photography/switzerland.svg" alt="Map of Switzerland showing photographed locations">
+          </div>
+          <div>
+            <div class="carousel-fade-shell">
+              <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling Switzerland photography carousel">
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2314.JPG" aria-label="View Switzerland travel photograph larger"><img src="media/create/photography/switzerland/_DSC2314.JPG" alt="Switzerland travel photograph" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2330.JPG" aria-label="View architecture in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2330.JPG" alt="Architecture in Switzerland" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2410.JPG" aria-label="View Swiss landscape detail larger"><img src="media/create/photography/switzerland/_DSC2410.JPG" alt="Swiss landscape detail" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2420.JPG" aria-label="View street scene in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2420.JPG" alt="Street scene in Switzerland" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2421.JPG" aria-label="View mountain view in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2421.JPG" alt="Mountain view in Switzerland" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC1904.JPG" aria-label="View Swiss mountain photograph larger"><img src="media/create/photography/switzerland/_DSC1904.JPG" alt="Swiss mountain photograph" loading="lazy" decoding="async"></button></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photography-layout" id="photos-space" role="tabpanel" aria-labelledby="tab-space" data-country-panel="space" hidden>
+          <div class="place-copy">
+            <p>Looking beyond the everyday through photographs of the Moon, starry skies, aurora and a solar eclipse.</p>
+          </div>
+          <div>
+            <div class="carousel-fade-shell">
+              <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling space photography carousel">
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/1.avif" aria-label="View photograph of the Moon larger"><img src="media/create/photography/space/1.webp" alt="The Moon against a dark sky" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/2.avif" aria-label="View aurora above a treeline larger"><img src="media/create/photography/space/2.webp" alt="Pink and green aurora above a treeline" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/3.avif" aria-label="View solar eclipse behind clouds larger"><img src="media/create/photography/space/3.webp" alt="A partial solar eclipse behind clouds" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/4.avif" aria-label="View aurora and stars larger"><img src="media/create/photography/space/4.webp" alt="Pink aurora and stars across the night sky" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/5.avif" aria-label="View aurora above trees larger"><img src="media/create/photography/space/5.webp" alt="Pink aurora above trees and rooftops" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/6.avif" aria-label="View partial solar eclipse larger"><img src="media/create/photography/space/6.webp" alt="A partial solar eclipse between clouds" loading="lazy" decoding="async"></button></figure>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
-      <script>
-        function setupHeroShowreel() {
-          const video = document.querySelector(".hero-video");
-          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          const saveData = navigator.connection?.saveData;
 
-          if (!video || reducedMotion || saveData) return;
+      <section class="create-section scan-section" id="scanned" aria-labelledby="scanned-title" hidden>
+        <div class="page-shell">
+          <header class="section-heading">
+            <h2 id="scanned-title">Scanned - Photogrammetry + AR</h2><span></span>
+          </header>
+          <div class="scan-carousel" data-carousel>
+            <button class="carousel-button previous" type="button" aria-label="Previous scan">←</button>
+            <div class="scan-track">
+              <figure class="scan-item is-active">
+                <img src="media/create/scans/reflective-form.webp" alt="Reflective 3D form study">
+                <figcaption>Reflective form</figcaption>
+              </figure>
+              <figure class="scan-item">
+                <img src="media/create/scans/scanned-object-2.webp" alt="Scanned identity object">
+                <figcaption>Scanned object</figcaption>
+              </figure>
+              <figure class="scan-item">
+                <img src="media/create/scans/scanned-object-3.webp" alt="Stylised environment study">
+                <figcaption>Environment study</figcaption>
+              </figure>
+            </div>
+            <button class="carousel-button next" type="button" aria-label="Next scan">→</button>
+          </div>
+          <div class="scan-controls">
+            <p><strong id="scan-position">01 / 03</strong> Drag to rotate</p>
+            <a class="button" id="view-ar" href="#" aria-label="View selected 3D model in augmented reality">View in AR</a>
+          </div>
+        </div>
+      </section>
 
-          const revealVideo = () => video.classList.add("is-active");
-          video.addEventListener("playing", revealVideo, { once: true });
-          if (!video.paused && video.readyState >= 2) revealVideo();
+      <section class="create-section page-shell" id="built" aria-labelledby="built-title" hidden>
+        <header class="section-heading">
+          <h2 id="built-title">Built - Blender scenes</h2><span></span>
+        </header>
+        <div class="scene">
+          <div class="scene-copy">
+            <h3>Just Design - Virtual Exhibition</h3>
+            <p>A virtual university exhibition showcasing student work in graphic design.</p>
+          </div>
+          <div class="comparison" data-compare style="--position: 52%">
+            <img class="comparison-final" src="media/create/scenes/just-design-final.AVIF" alt="Final rendered virtual exhibition">
+            <div class="comparison-clay">
+              <img src="media/create/scenes/just-design-final.AVIF" alt="">
+            </div>
+            <input type="range" min="0" max="100" value="52" aria-label="Compare clay and final exhibition renders">
+            <span class="comparison-label clay">Clay</span>
+            <span class="comparison-label final">Final</span>
+          </div>
+        </div>
+        <div class="scene">
+          <div class="scene-copy">
+            <h3>Anime-style environment</h3>
+            <p>A stylised environment exploring colour, atmosphere and world-building.</p>
+          </div>
+          <div class="comparison" data-compare style="--position: 48%">
+            <img class="comparison-final" src="media/create/scenes/anime-environment-final.webp" alt="Final stylised environment render">
+            <div class="comparison-clay">
+              <img src="media/create/scenes/anime-environment-final.webp" alt="">
+            </div>
+            <input type="range" min="0" max="100" value="48" aria-label="Compare clay and final environment renders">
+            <span class="comparison-label clay">Clay</span>
+            <span class="comparison-label final">Final</span>
+          </div>
+        </div>
+      </section>
 
-          window.addEventListener("load", () => {
-            video.play().catch(() => {
-              document.addEventListener("pointerdown", () => video.play(), { once: true });
-            });
-          }, { once: true });
-        }
-
-        function setupHeroFocusMode() {
-          const hero = document.querySelector(".hero");
-          const desktop = window.matchMedia("(min-width: 641px)");
-          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-          let heroVisible = true;
-          let idleTimer;
-
-          const clearFocusMode = () => {
-            window.clearTimeout(idleTimer);
-            hero.classList.remove("is-focus-mode");
-
-            if (desktop.matches && !reducedMotion.matches && heroVisible) {
-              idleTimer = window.setTimeout(() => {
-                if (!hero.matches(":focus-within")) {
-                  hero.classList.add("is-focus-mode");
-                }
-              }, 4000);
-            }
-          };
-
-          const observer = new IntersectionObserver(([entry]) => {
-            heroVisible = entry.intersectionRatio > 0.45;
-            if (heroVisible) clearFocusMode();
-            else hero.classList.remove("is-focus-mode");
-          }, { threshold: [0, 0.45, 1] });
-
-          observer.observe(hero);
-          window.addEventListener("scroll", clearFocusMode, { passive: true });
-          window.addEventListener("pointerdown", clearFocusMode, { passive: true });
-          window.addEventListener("keydown", clearFocusMode);
-          let lastPointerReset = 0;
-          hero.addEventListener("pointermove", (event) => {
-            if (event.timeStamp - lastPointerReset < 200) return;
-            lastPointerReset = event.timeStamp;
-            clearFocusMode();
-          }, { passive: true });
-          desktop.addEventListener("change", clearFocusMode);
-          clearFocusMode();
-        }
-
-        const escapeProjectHtml = (value = "") =>
-          String(value)
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
-
-        function setupProjectReveal(grid) {
-          const cards = [...grid.querySelectorAll(".project-card")];
-          if (!cards.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-          grid.classList.add("is-reveal-ready");
-
-          const revealAll = () => {
-            cards.forEach((card) => card.classList.add("is-visible"));
-          };
-
-          if (!("IntersectionObserver" in window)) {
-            revealAll();
-            return;
-          }
-
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            });
-          }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
-
-          cards.forEach((card) => observer.observe(card));
-        }
-
-        function setupProjectPlayback(grid) {
-          const videos = [...grid.querySelectorAll("video.project-video")];
-          if (!videos.length) return;
-
-          const pauseVideos = () => videos.forEach((video) => video.pause());
-          const playVideos = () => {
-            if (document.visibilityState !== "visible") return;
-
-            videos.forEach((video) => {
-              video.muted = true;
-              if (video.readyState === 0) video.load();
-              video.play().catch(() => {});
-            });
-          };
-          const resumeVideos = () => requestAnimationFrame(playVideos);
-
-          window.addEventListener("pagehide", pauseVideos);
-          window.addEventListener("pageshow", resumeVideos);
-          document.addEventListener("visibilitychange", () => {
-            if (document.hidden) pauseVideos();
-            else resumeVideos();
-          });
-
-          playVideos();
-        }
-
-        async function renderProjects() {
-          const grid = document.querySelector("#project-grid");
-
-          try {
-            const response = await fetch("projects.json");
-            if (!response.ok) {
-              throw new Error(`Projects request failed: ${response.status}`);
-            }
-
-            const data = await response.json();
-            grid.innerHTML = data.projects.filter((project) => project.featured !== false).map((project) => {
-              const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
-              const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
-              const projectMedia = project.video === false
-                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="" loading="lazy" decoding="async">`
-                : `<video
-                      class="project-video"
-                      autoplay
-                      muted
-                      loop
-                      playsinline
-                      preload="metadata"
-                      poster="${escapeProjectHtml(poster)}"
-                      aria-hidden="true">
-                      <source
-                        src="${escapeProjectHtml(`${mediaDirectory}/h265.mp4`)}"
-                        type='video/mp4; codecs="hvc1"'>
-                      <source
-                        src="${escapeProjectHtml(`${mediaDirectory}/h264.mp4`)}"
-                        type='video/mp4; codecs="avc1"'>
-                    </video>`;
-
-              return `
-                <div class="project-card">
-                  <a href="${escapeProjectHtml(project.href)}" aria-label="View ${escapeProjectHtml(project.title)}">
-                    ${projectMedia}
-                    <span class="project-caption glass">
-                      <strong>${escapeProjectHtml(project.title)}</strong>
-                      <time>${escapeProjectHtml(project.year)}</time>
-                    </span>
-                  </a>
-                </div>
-              `;
-            }).join("");
-            setupProjectReveal(grid);
-            setupProjectPlayback(grid);
-          } catch (error) {
-            console.error(error);
-            grid.innerHTML = `
-              <p class="load-error">
-                Projects could not be loaded. Open this site through a local
-                web server rather than directly from the filesystem.
-              </p>
-            `;
-          }
-        }
-
-        setupHeroShowreel();
-        setupHeroFocusMode();
-        renderProjects();
-        if ("serviceWorker" in navigator) {
-          window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
-        }
-      </script>
     </main>
+
+    <dialog class="image-viewer" data-image-viewer aria-label="Expanded photograph">
+      <button class="image-viewer-close" type="button" data-close-viewer aria-label="Close image viewer">Close</button>
+      <img data-viewer-image alt="">
+    </dialog>
 
     <footer class="site-footer">
       <a class="button button-small" id="get-in-touch" href="mailto:jaisinghdhaliwal@outlook.com">Get in touch</a>
-      <div class="footer-links">
-        <a href="index.html">Work</a>
-        <a href="create.html">Create</a>
-        <a href="about.html">CV</a>
-      </div>
+      <div class="footer-links"><a href="index.html">Work</a><a href="create.html">Create</a><a href="about.html">CV</a></div>
       <img class="footer-mark" src="logo/logo-01.svg" alt="Jai Singh Dhaliwal">
     </footer>
   </body>

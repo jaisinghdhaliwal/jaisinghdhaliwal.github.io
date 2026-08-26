@@ -1,0 +1,11 @@
+{
+  "name": "jai-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:projects": "node build-projects.mjs"
+  },
+  "dependencies": {
+    "marked": "17.0.5"
+  }
+}

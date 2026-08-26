@@ -1,0 +1,47 @@
+{
+  "mediaRoot": "media/projects",
+  "projects": [
+    {
+      "id": "gadjet-displays",
+      "title": "GadJet Display Visualiser",
+      "year": "2026",
+      "category": "3D + Web AR",
+      "href": "projects/gadjet-displays.html",
+      "poster": "case-study/website-recording-poster.avif",
+      "video": false,
+      "featured": true
+    },
+    {
+      "id": "gadjet-packaging",
+      "title": "GadJet Packaging",
+      "year": "2026",
+      "category": "Packaging systems + product visualisation",
+      "href": "projects/gadjet-packaging.html",
+      "featured": true
+    },
+    {
+      "id": "degree-show",
+      "title": "Degree Show Exhibition",
+      "year": "2025",
+      "category": "3D + interactive experience",
+      "href": "projects/degree-show.html",
+      "featured": true
+    },
+    {
+      "id": "justdesign-show",
+      "title": "JustDesign.Show",
+      "year": "2024",
+      "category": "Web design + development",
+      "href": "projects/justdesign-show.html",
+      "featured": true
+    },
+    {
+      "id": "coventry-ar",
+      "title": "Coventry AR Map",
+      "year": "2023",
+      "category": "3D + interaction",
+      "href": "https://www.behance.net/gallery/206007985/COVENTRY-AUGMENTED-REALITY-MAP",
+      "featured": false
+    }
+  ]
+}

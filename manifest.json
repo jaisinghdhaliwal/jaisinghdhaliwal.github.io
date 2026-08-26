@@ -1,16 +1,40 @@
 {
-    "name": "Test",
-    "short_name": "Test",
-    "display": "standalone",
-    "scope": "",
-    "start_url": "index.html",
-    "background_color": "#F28B2E",
-    "theme_color": "#F28B2E",
-    "icons": [
-      {
-        "src": "apple-touch-icon.png",
-        "type": "image/png",
-        "sizes": "192x192 180x180 168x168 152x152 144x144 120x120 114x114 96x96 76x76 72x72 64x64 57x57 48x48 32x32 24x24 16x16"
-      }
-    ]
+  "id": "./",
+  "name": "Jai Singh Dhaliwal - Portfolio",
+  "short_name": "Jai / SD",
+  "description": "The design, 3D, interaction and photography portfolio of Jai Singh Dhaliwal.",
+  "lang": "en-GB",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#f7f6f3",
+  "theme_color": "#151923",
+  "categories": ["design", "portfolio", "photography"],
+  "icons": [
+    {
+      "src": "ios_pwa/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Selected work",
+      "short_name": "Work",
+      "url": "./index.html"
+    },
+    {
+      "name": "Personal work",
+      "short_name": "Create",
+      "url": "./create.html"
+    },
+    {
+      "name": "Curriculum vitae",
+      "short_name": "CV",
+      "url": "./about.html"
+    }
+  ]
 }
