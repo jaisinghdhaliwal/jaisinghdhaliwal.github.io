@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f6f3">
+    <meta name="description" content="An interactive 3D retail-display experience that allows B2B customers to preview display units at accurate scale within their own stores using mobile augmented reality.">
+    <meta property="og:title" content="GadJet Display Visualiser - Jai Singh Dhaliwal">
+    <meta property="og:description" content="An interactive 3D retail-display experience that allows B2B customers to preview display units at accurate scale within their own stores using mobile augmented reality.">
+    <meta property="og:image" content="../media/projects/gadjet-displays/case-study/website-recording-poster.avif">
+    <title>GadJet Display Visualiser - Jai Singh Dhaliwal</title>
+    <link rel="manifest" href="../manifest.json">
+    <link rel="apple-touch-icon" href="../ios_pwa/icon.png">
+    <link rel="icon" href="../ios_pwa/icon.png" type="image/png">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../project.css">
+  </head>
+  <body data-page="work" data-project="gadjet-displays">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-gradient-blur" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <a class="wordmark" href="../index.html" aria-label="Jai Singh Dhaliwal, home"><img src="../logo/logo-01.svg" alt=""></a>
+      <nav class="site-nav glass" aria-label="Primary navigation">
+        <span class="nav-active-pill" aria-hidden="true"></span>
+        <a class="is-active" href="../index.html" data-nav="work" aria-current="page">Work</a>
+        <a href="../create.html" data-nav="create">Create</a>
+        <a href="../about.html" data-nav="cv">CV</a>
+      </nav>
+    </header>
+
+    <main id="main" class="case-study">
+      <header class="case-hero page-shell">
+        <h1 class="page-title">GadJet Display Visualiser</h1>
+        <p class="case-kicker"><span>3D + Web AR</span><span class="case-meta-year"><i></i><time>2026</time></span></p>
+        <p class="case-deck">An interactive 3D retail-display experience that allows B2B customers to preview display units at accurate scale within their own stores using mobile augmented reality.</p>
+        <div class="case-actions"><a class="button case-website" href="https://gadjetuk.com/displays" rel="noreferrer">Explore the Display Visualiser ↗</a></div>
+        <dl class="case-facts">
+          <div><dt>Role</dt><dd>Interactive viewer concept, retail display modelling, web optimisation and accurate-scale AR asset preparation</dd></div>
+          <div><dt>Tools</dt><dd>Blender, web-based 3D viewing and mobile augmented reality</dd></div>
+          <div><dt>Outcome</dt><dd>A live B2B catalogue combining product information, interactive 3D and accurate-scale AR</dd></div>
+        </dl>
+      </header>
+
+      <div class="case-layout page-shell">
+        <nav class="case-local-nav" aria-label="On this page"><strong>On this page</strong><a class="is-active" aria-current="location" href="#overview">Overview</a><a href="#the-problem">The problem</a><a href="#the-solution">The solution</a><a href="#building-the-display-models">Building the display models</a><a href="#optimising-for-the-web">Optimising for the web</a><a href="#interactive-3d-viewer">Interactive 3D viewer</a><a href="#accurate-scale-augmented-reality">Accurate-scale augmented reality</a><a href="#outcome">Outcome</a></nav>
+        <div class="case-body"><!-- Add the finished desktop-and-mobile visualiser overview here when it is ready. -->
+
+<div class="section-heading case-section-heading" id="overview"><h2>Overview</h2><span aria-hidden="true"></span></div>
+<p>Developed as part of GadJet&#39;s Product Design and Graphics team, the Display Visualiser is an interactive 3D retail-display experience for B2B customers. It allows display units to be inspected online and previewed at accurate scale within the customer&#39;s own store using mobile augmented reality before an order is placed.</p>
+<p>The project connected two areas of work: defining a straightforward model-viewer experience and establishing a repeatable process for producing highly optimised, web-ready display assets.</p>
+<div class="section-heading case-section-heading" id="the-problem"><h2>The problem</h2><span aria-hidden="true"></span></div>
+<p>B2B customers previously had to judge a display from product dimensions and static photographs. These communicate its appearance, but not how it will occupy a real retail environment. This is particularly important across compact counter displays, modular units and larger floor-standing displays, where footprint, height, visibility and surrounding space influence the purchasing decision.</p>
+<div class="section-heading case-section-heading" id="the-solution"><h2>The solution</h2><span aria-hidden="true"></span></div>
+<p>The visualiser turns those measurements into an experience customers can inspect spatially. Each display can be rotated and examined as an interactive 3D model in the browser, then placed on the shop floor through mobile AR at its correct real-world scale. This gives retailers a clearer way to assess a stand before committing to it.</p>
+<figure class="case-media case-transparent is-wide"><img src="../media/projects/gadjet-displays/case-study/display-range.AVIF" alt="A range of optimised GadJet and Goodiz retail-display models" loading="lazy" decoding="async"></figure>
+
+<div class="section-heading case-section-heading" id="building-the-display-models"><h2>Building the display models</h2><span aria-hidden="true"></span></div>
+<p>Each stand was recreated as a dedicated 3D asset with its overall dimensions and proportions kept accurate. Structural details, stocked products and branding were retained where they contributed to recognising and assessing the display.</p>
+<p>Accuracy was especially important for augmented reality. A model that looks convincing but uses the wrong dimensions would give customers a misleading impression of the space required in their store.</p>
+<div class="section-heading case-section-heading" id="optimising-for-the-web"><h2>Optimising for the web</h2><span aria-hidden="true"></span></div>
+<p>The display models needed to preserve their visual character while loading and responding smoothly inside a browser. The number of textures was kept deliberately low and the remaining texture maps were compressed using WebP to reduce the delivered file size.</p>
+<p>Repeated products and structural components were linked within each model so the same geometry could be reused across the stand instead of being stored repeatedly. This was particularly useful for stocked displays containing many instances of the same product.</p>
+<p>Separate augmented-reality assets were prepared for Android and iOS with higher-resolution textures, allowing customers to move closer to a display while retaining clear product and branding details. Lighting was ray traced and baked into the stand assets so the optimised web and AR models retain consistent light, shadow and material definition without requiring real-time ray tracing on the customer&#39;s device.</p>
+<p>Together, these decisions keep relatively detailed retail displays practical across desktop and mobile hardware while allowing the AR versions to withstand closer inspection.</p>
+<div class="section-heading case-section-heading" id="interactive-3d-viewer"><h2>Interactive 3D viewer</h2><span aria-hidden="true"></span></div>
+<p>On desktop, customers can rotate, zoom and pan around each display while viewing its dimensions, capacity and product information. Touch controls provide the same inspection workflow on mobile without requiring specialist software or a separate download.</p>
+<p>The viewer keeps the model and practical specification together, allowing visual assessment and product comparison to happen in one place.</p>
+<figure class="case-media case-video "><video controls playsinline preload="metadata" poster="../media/projects/gadjet-displays/case-study/website-recording-poster.avif" style="aspect-ratio: 320 / 207"><source src="../media/projects/gadjet-displays/case-study/website-recording.mp4"><p>Your browser cannot play this video. <a href="../media/projects/gadjet-displays/case-study/website-recording.mp4">Download it instead</a>.</p></video><figcaption>A walkthrough of the display catalogue and interactive 3D viewer.</figcaption></figure>
+
+<div class="section-heading case-section-heading" id="accurate-scale-augmented-reality"><h2>Accurate-scale augmented reality</h2><span aria-hidden="true"></span></div>
+<p>On a compatible mobile device, the selected stand can be opened in augmented reality and positioned directly on the shop floor. Because the model is prepared at accurate scale, customers can judge its footprint, height, visibility and relationship to surrounding fixtures before it arrives.</p>
+<p>The experience turns the 3D catalogue into a practical planning tool: instead of imagining a stand from measurements alone, retailers can preview it within the environment where it will actually be used. Reflective material details were retained so the glossy and foil-finished graphics continue to respond as the customer moves around the model.</p>
+<figure class="case-media case-video is-portrait"><video autoplay loop muted playsinline preload="metadata" poster="../media/projects/gadjet-displays/case-study/panning-glossy-ar-poster.avif" style="aspect-ratio: 4 / 5"><source src="../media/projects/gadjet-displays/case-study/panning-glossy-ar.mp4"><p>Your browser cannot play this video. <a href="../media/projects/gadjet-displays/case-study/panning-glossy-ar.mp4">Download it instead</a>.</p></video><figcaption>Glossy and foil-finished graphics responding to movement in mobile AR.</figcaption></figure>
+
+<p>Placing the augmented-reality model beside the corresponding physical stand also provided a direct check of its proportions and real-world scale.</p>
+<div class="case-image-set columns-2"><figure><img src="../media/projects/gadjet-displays/case-study/IMG_7492.AVIF" alt="Augmented-reality Goodiz display positioned beside its physical counterpart among retail product stands" loading="lazy" decoding="async"><figcaption>Testing the AR model within a working display environment</figcaption></figure><figure><img src="../media/projects/gadjet-displays/case-study/IMG_7503.AVIF" alt="Augmented-reality Goodiz display positioned directly beside the matching physical stand" loading="lazy" decoding="async"><figcaption>Comparing virtual and physical stands at matched scale</figcaption></figure></div>
+
+<div class="section-heading case-section-heading" id="outcome"><h2>Outcome</h2><span aria-hidden="true"></span></div>
+<p>The finished system gives B2B customers a consistent way to explore counter, modular and floor-standing display options before ordering. It combines product information, interactive 3D and accurate-scale mobile AR, helping retailers judge both the design and physical fit of a stand within their own store.</p>
+<p>Rather than using 3D solely as presentation imagery, the visualiser turns the display assets into functional decision-making tools. The shared modelling, optimisation, lighting and platform-preparation process also provides a repeatable route for adding future stands while maintaining consistent quality across desktop, Android and iOS.</p>
+</div>
+      </div>
+
+      <nav class="case-more page-shell" aria-label="More projects">
+        
+        <div class="section-heading"><h2>More work</h2><span aria-hidden="true"></span></div>
+        <div class="project-grid">
+          <div class="project-card">
+              <a href="../projects/gadjet-packaging.html" aria-label="View GadJet Packaging">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../media/projects/gadjet-packaging/thumb-720.avif" aria-hidden="true">
+                  <source src="../media/projects/gadjet-packaging/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../media/projects/gadjet-packaging/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass"><strong>GadJet Packaging</strong><time>2026</time></span>
+              </a>
+            </div><div class="project-card">
+              <a href="../projects/degree-show.html" aria-label="View Degree Show Exhibition">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../media/projects/degree-show/thumb-720.avif" aria-hidden="true">
+                  <source src="../media/projects/degree-show/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../media/projects/degree-show/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass"><strong>Degree Show Exhibition</strong><time>2025</time></span>
+              </a>
+            </div><div class="project-card">
+              <a href="../projects/justdesign-show.html" aria-label="View JustDesign.Show">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../media/projects/justdesign-show/thumb-720.avif" aria-hidden="true">
+                  <source src="../media/projects/justdesign-show/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../media/projects/justdesign-show/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass"><strong>JustDesign.Show</strong><time>2024</time></span>
+              </a>
+            </div>
+        </div>
+      </nav>
+    </main>
+
+    <footer class="site-footer">
+      <a class="button button-small" id="get-in-touch" href="mailto:jaisinghdhaliwal@outlook.com">Get in touch</a>
+      <div class="footer-links"><a href="../index.html">Work</a><a href="../create.html">Create</a><a href="../about.html">CV</a></div>
+      <img class="footer-mark" src="../logo/logo-01.svg" alt="Jai Singh Dhaliwal">
+    </footer>
+    <script src="../app.js" defer></script>
+    <script src="../project.js" defer></script>
+  </body>
+</html>
