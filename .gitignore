@@ -13,5 +13,8 @@
 /package-lock.json
 **/node_modules/
 
+# Editable logo source
+/logo/logo.ai
+
 # Temporary generated files
 /tmp/
