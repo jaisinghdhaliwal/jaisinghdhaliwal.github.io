@@ -325,6 +325,7 @@ body[data-page="cv"] { --nav-index: 2; }
 .page-title {
   margin: 0; font-size: clamp(48px, 7vw, 96px); line-height: 1.05; letter-spacing: -0.055em;
 }
+.create-intro > .page-title { letter-spacing: normal; }
 .hero-copy { width: min(470px, 100%); margin-top: 24px; }
 .hero-copy p { margin: 0 0 14px; }
 .contact-lines { display: flex; gap: 24px; align-items: center; margin-top: 26px; font-style: normal; }
