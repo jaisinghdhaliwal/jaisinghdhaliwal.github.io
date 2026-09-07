@@ -8,7 +8,41 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Jai / SD">
     <meta name="description" content="A multidisciplinary graphic designer working across branding, packaging, 3D and motion, bringing physical products into interactive digital experiences.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jai Singh Dhaliwal">
+    <meta property="og:title" content="Jai Singh Dhaliwal - Multidisciplinary Graphic Designer">
+    <meta property="og:description" content="A multidisciplinary graphic designer working across branding, packaging, 3D and motion, bringing physical products into interactive digital experiences.">
+    <meta property="og:url" content="https://jaisinghdhaliwal.github.io/">
+    <meta property="og:image" content="https://jaisinghdhaliwal.github.io/media/hero/showreel-thumb.webp">
+    <meta property="og:image:alt" content="A montage of Jai Singh Dhaliwal’s graphic design, packaging and 3D work">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Jai Singh Dhaliwal - Multidisciplinary Graphic Designer</title>
+    <link rel="canonical" href="https://jaisinghdhaliwal.github.io/">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://jaisinghdhaliwal.github.io/#website",
+            "url": "https://jaisinghdhaliwal.github.io/",
+            "name": "Jai Singh Dhaliwal - Multidisciplinary Graphic Designer",
+            "description": "A multidisciplinary graphic designer working across branding, packaging, 3D and motion, bringing physical products into interactive digital experiences.",
+            "inLanguage": "en-GB",
+            "author": { "@id": "https://jaisinghdhaliwal.github.io/#person" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://jaisinghdhaliwal.github.io/#person",
+            "name": "Jai Singh Dhaliwal",
+            "url": "https://jaisinghdhaliwal.github.io/",
+            "jobTitle": "Multidisciplinary Graphic Designer",
+            "sameAs": ["https://www.linkedin.com/in/jaidhaliwal/"],
+            "knowsAbout": ["Branding", "Packaging design", "Product visualisation", "3D design", "Motion design", "Web design", "Augmented reality"]
+          }
+        ]
+      }
+    </script>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="ios_pwa/icon.png">
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -136,7 +170,30 @@
           <span aria-hidden="true"></span>
         </header>
         <div class="project-grid" id="project-grid" aria-live="polite">
-          <p class="loading-copy">Loading selected work…</p>
+          <div class="project-card">
+            <a href="projects/gadjet-displays.html" aria-label="View GadJet Display Visualiser">
+              <img class="project-video" src="media/projects/gadjet-displays/thumb-720.avif" alt="GadJet Display Visualiser project preview" loading="lazy" decoding="async">
+              <span class="project-caption glass"><strong>GadJet Display Visualiser</strong><time>2026</time></span>
+            </a>
+          </div>
+          <div class="project-card">
+            <a href="projects/gadjet-packaging.html" aria-label="View GadJet Packaging">
+              <img class="project-video" src="media/projects/gadjet-packaging/thumb-720.avif" alt="GadJet Packaging project preview" loading="lazy" decoding="async">
+              <span class="project-caption glass"><strong>GadJet Packaging</strong><time>2026</time></span>
+            </a>
+          </div>
+          <div class="project-card">
+            <a href="projects/degree-show.html" aria-label="View Degree Show Exhibition">
+              <img class="project-video" src="media/projects/degree-show/thumb-720.avif" alt="Degree Show Exhibition project preview" loading="lazy" decoding="async">
+              <span class="project-caption glass"><strong>Degree Show Exhibition</strong><time>2025</time></span>
+            </a>
+          </div>
+          <div class="project-card">
+            <a href="projects/justdesign-show.html" aria-label="View JustDesign.Show">
+              <img class="project-video" src="media/projects/justdesign-show/thumb-720.avif" alt="JustDesign.Show project preview" loading="lazy" decoding="async">
+              <span class="project-caption glass"><strong>JustDesign.Show</strong><time>2024</time></span>
+            </a>
+          </div>
         </div>
       </section>
       <script>
@@ -419,7 +476,7 @@
               const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
               const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
               const projectMedia = project.video === false
-                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="" loading="lazy" decoding="async">`
+                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" loading="lazy" decoding="async">`
                 : `<video
                       class="project-video"
                       autoplay
