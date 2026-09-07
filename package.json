@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:projects": "node build-projects.mjs"
+    "build:projects": "node build-projects.mjs",
+    "dev": "node dev-server.mjs"
   },
   "dependencies": {
     "marked": "17.0.5"

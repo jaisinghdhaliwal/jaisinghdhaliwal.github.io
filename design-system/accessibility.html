@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Accessibility principles and practical requirements for the Design personal brand system.">
+  <title>Accessibility — Design</title>
+  <link rel="icon" href="../favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="accessibility">
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div data-manual-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="shell">
+        <p class="breadcrumbs"><a href="index.html">Design</a><i>/</i><span>Start here</span><i>/</i><span>Accessibility</span></p>
+        <h1>Accessible by default</h1>
+        <p class="lede">The portfolio should communicate Jai’s attention to detail to as many people as possible. Accessibility is a quality standard applied throughout colour, typography, motion, media and code.</p>
+      </div>
+    </section>
+
+    <div class="doc-layout">
+      <nav class="local-nav" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#baseline">Baseline</a>
+        <a href="#colour-type">Colour &amp; type</a>
+        <a href="#input">Keyboard &amp; touch</a>
+        <a href="#motion">Motion</a>
+        <a href="#media">Media</a>
+        <a href="#checklist">Release checklist</a>
+      </nav>
+
+      <article class="doc-content">
+        <section class="content-section" id="baseline" data-reveal>
+          <p class="section-kicker mono">01 / Baseline</p>
+          <h2>Design for different ways of seeing and moving.</h2>
+          <p>Every page must remain understandable with zoom, keyboard navigation, reduced motion, high-contrast preferences and media that has not loaded. Progressive enhancement should add polish rather than unlock the basic experience.</p>
+
+          <div class="rule">
+            <span class="rule-number">01</span>
+            <div>
+              <h3>Use meaningful structure</h3>
+              <p>Follow one logical heading order, use landmarks, label navigation regions and use buttons and links according to their real behaviour.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">02</span>
+            <div>
+              <h3>Keep content available</h3>
+              <p>Project names, country choices and core contact information remain visible without hovering, autoplay or JavaScript.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">03</span>
+            <div>
+              <h3>Test the real pages</h3>
+              <p>Automated checks are a starting point. Test keyboard use, screen-reader announcements, mobile zoom, slow media and reduced-motion behaviour manually.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="colour-type" data-reveal>
+          <p class="section-kicker mono">02 / Colour &amp; typography</p>
+          <h2>Brand colour never overrides legibility.</h2>
+          <p>The primary dark is the default text colour on paper and white. Coral is primarily a signal for selection, emphasis and large display moments—not a replacement for readable body text.</p>
+
+          <table class="spec-table">
+            <thead>
+              <tr><th scope="col">Combination</th><th scope="col">Use</th><th scope="col">Guidance</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Primary dark on paper</th><td>Body copy, headings and navigation</td><td>Preferred default.</td></tr>
+              <tr><th scope="row">Primary dark on white</th><td>Cards, captions and controls</td><td>Preferred raised-surface pairing.</td></tr>
+              <tr><th scope="row">White on primary dark</th><td>Footer and dark media overlays</td><td>Use at normal text sizes.</td></tr>
+              <tr><th scope="row">Coral on paper</th><td>Labels and larger headings</td><td>Verify the final size and weight; do not use for long copy.</td></tr>
+              <tr><th scope="row">Navy on coral</th><td>Buttons, selected pills and compact labels</td><td>This is the standard brand treatment; avoid white text on coral.</td></tr>
+              <tr><th scope="row">Text over media</th><td>Hero and video content</td><td>Use a real gradient or protected surface and test every frame.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="do-grid">
+            <div class="do-card">
+              <strong>Do</strong>
+              <p>Keep body copy at the shared Poppins size and allow text to reflow at 200% zoom without clipping or horizontal page scrolling.</p>
+            </div>
+            <div class="do-card avoid">
+              <strong>Avoid</strong>
+              <p>Do not use opacity alone to create secondary text, place fine coral text over photography or communicate selection through coral alone.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="input" data-reveal>
+          <p class="section-kicker mono">03 / Keyboard, pointer &amp; touch</p>
+          <h2>The same destination, however it is reached.</h2>
+          <p>Hover is an enhancement. Every hover interaction requires an equivalent focus and tap experience, and the order of controls must follow the visual reading order.</p>
+
+          <div class="component-grid">
+            <div class="component-card">
+              <h3>Keyboard</h3>
+              <ul>
+                <li>Show a visible focus indicator.</li>
+                <li>Keep focus out of closed menus.</li>
+                <li>Return focus when overlays close.</li>
+                <li>Support Escape for modal navigation.</li>
+              </ul>
+            </div>
+            <div class="component-card">
+              <h3>Touch</h3>
+              <ul>
+                <li>Provide comfortable, separated targets.</li>
+                <li>Keep the full three-item navigation visible.</li>
+                <li>Do not enlarge the navigation on touch hover.</li>
+                <li>Never require precise dragging to view content.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="motion" data-reveal>
+          <p class="section-kicker mono">04 / Motion</p>
+          <h2>Movement should orient, not interrupt.</h2>
+          <p>Page transitions, viewport reveals, the moving navigation pill and carousel motion all need a reduced-motion alternative.</p>
+
+          <div class="rule">
+            <span class="rule-number">01</span>
+            <div>
+              <h3>Respect the user preference</h3>
+              <p>When <code>prefers-reduced-motion</code> is enabled, remove travel, parallax and autoplay. Content appears immediately without losing information.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">02</span>
+            <div>
+              <h3>Pause continuing motion</h3>
+              <p>Photography carousels and showreels need a clear pause control whenever movement continues beyond a short transition.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">03</span>
+            <div>
+              <h3>Do not flash</h3>
+              <p>Avoid rapid brightness changes, especially when combining HDR project media, white pages and dark video frames.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="media" data-reveal>
+          <p class="section-kicker mono">05 / Images, video &amp; 3D</p>
+          <h2>Describe the work without duplicating it.</h2>
+          <p>Alternative text should communicate why an image matters in context. Decorative lighting textures and repeated logo marks can use empty alternative text.</p>
+
+          <table class="spec-table">
+            <tbody>
+              <tr><th scope="row">Project thumbnail</th><td>Name the project and describe the visual that differentiates it.</td></tr>
+              <tr><th scope="row">Photography</th><td>Describe subject, place and meaningful visual detail; avoid “image of”.</td></tr>
+              <tr><th scope="row">3D model</th><td>Identify the object and relevant material or reconstruction method.</td></tr>
+              <tr><th scope="row">Showreel</th><td>Provide a useful poster image and a short text summary of the work shown.</td></tr>
+              <tr><th scope="row">Autoplay video</th><td>Muted, inline, pausable and non-essential to understanding the introduction.</td></tr>
+              <tr><th scope="row">HDR media</th><td>Provide an SDR-compatible result and avoid extreme luminance changes between cards.</td></tr>
+            </tbody>
+          </table>
+
+          <div class="example soft">
+            <div class="example-title"><span>Alternative text example</span><span>Photography</span></div>
+            <p><strong>Useful:</strong> “Evening light catches the red roof of a Lausanne train beside Lake Geneva.”</p>
+            <p><strong>Not useful:</strong> “A beautiful photograph from my Switzerland trip.”</p>
+          </div>
+        </section>
+
+        <section class="content-section" id="checklist" data-reveal>
+          <p class="section-kicker mono">06 / Release checklist</p>
+          <h2>Check before publishing.</h2>
+          <ol>
+            <li>Navigate every interactive element using only the keyboard.</li>
+            <li>Confirm headings and landmarks describe the page structure.</li>
+            <li>Test at 200% browser zoom and at a narrow mobile viewport.</li>
+            <li>Verify text/background contrast at the actual rendered size.</li>
+            <li>Enable reduced motion and confirm all content remains available.</li>
+            <li>Pause autoplay media and confirm the control is labelled.</li>
+            <li>Disable images and check that alternative text remains useful.</li>
+            <li>Test project cards and navigation with touch as well as hover.</li>
+            <li>Check that focus is not hidden beneath fixed navigation.</li>
+            <li>Run automated checks, then complete a manual pass.</li>
+          </ol>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <div data-manual-footer></div>
+  <script src="app.js" defer></script>
+</body>
+</html>

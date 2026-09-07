@@ -27,6 +27,11 @@
       "url": "./index.html"
     },
     {
+      "name": "Create",
+      "short_name": "Create",
+      "url": "./create.html"
+    },
+    {
       "name": "Curriculum vitae",
       "short_name": "CV",
       "url": "./about.html"

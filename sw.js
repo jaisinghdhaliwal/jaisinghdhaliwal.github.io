@@ -1,4 +1,4 @@
-const CACHE_NAME = "jai-portfolio-v78";
+const CACHE_NAME = "jai-portfolio-v98";
 const OFFLINE_URL = "./offline.html";
 const APP_SHELL = [
   "./",
@@ -16,6 +16,8 @@ const APP_SHELL = [
   "./projects/justdesign-show.html",
   "./projects/gadjet-displays.html",
   "./logo/logo-01.svg",
+  "./logo/logo-name-white.svg",
+  "./favicon.ico",
   "./media/hero/showreel-thumb.avif",
   "./media/hero/showreel-thumb.webp",
   "./fonts/Poppins-400.woff2",

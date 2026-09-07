@@ -11,6 +11,57 @@ function updateActiveNavigation() {
 
 updateActiveNavigation();
 
+function setupNavigationLayoutTransition() {
+  const navigation = document.querySelector(".site-nav");
+  const mobile = window.matchMedia("(max-width: 640px)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!navigation || typeof navigation.animate !== "function") return;
+
+  let previousMobile = mobile.matches;
+  let previousBounds = navigation.getBoundingClientRect();
+  let resizeFrame;
+  let currentAnimation;
+
+  window.addEventListener("resize", () => {
+    window.cancelAnimationFrame(resizeFrame);
+    resizeFrame = window.requestAnimationFrame(() => {
+      const nextMobile = mobile.matches;
+      const nextBounds = navigation.getBoundingClientRect();
+
+      if (previousMobile !== nextMobile && !reducedMotion.matches) {
+        currentAnimation?.cancel();
+        navigation.style.willChange = "transform";
+
+        const animation = navigation.animate([
+          {
+            transformOrigin: "top left",
+            transform: `translate(${previousBounds.left - nextBounds.left}px, ${previousBounds.top - nextBounds.top}px) scale(${previousBounds.width / nextBounds.width}, ${previousBounds.height / nextBounds.height})`
+          },
+          { transformOrigin: "top left", transform: "none" }
+        ], {
+          duration: 520,
+          easing: "cubic-bezier(.22, 1, .36, 1)"
+        });
+
+        currentAnimation = animation;
+        animation.finished.catch(() => {}).finally(() => {
+          if (currentAnimation !== animation) return;
+          currentAnimation = null;
+          navigation.style.removeProperty("will-change");
+          previousBounds = navigation.getBoundingClientRect();
+        });
+      } else if (!currentAnimation) {
+        previousBounds = nextBounds;
+      }
+
+      previousMobile = nextMobile;
+    });
+  }, { passive: true });
+}
+
+setupNavigationLayoutTransition();
+
 function setupDragRails() {
   document.querySelectorAll(".drag-rail").forEach((rail) => {
     let dragging = false;
@@ -171,11 +222,66 @@ function setupScanCarousel() {
   update();
 }
 
-function setupComparisons() {
-  document.querySelectorAll("[data-compare]").forEach((comparison) => {
-    const input = comparison.querySelector('input[type="range"]');
-    input.addEventListener("input", () => {
-      comparison.style.setProperty("--position", `${input.value}%`);
+function setupSceneModes() {
+  document.querySelectorAll("[data-scene-modes]").forEach((viewer) => {
+    const stage = viewer.querySelector(".scene-mode-stage");
+    const wipe = viewer.querySelector(".scene-mode-wipe");
+    const label = viewer.querySelector(".scene-mode-label");
+    const images = [...viewer.querySelectorAll(".scene-mode-image")];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let current = Number(viewer.dataset.activeMode) || 0;
+    let switching = false;
+    let timer;
+
+    const setStageRatio = () => {
+      const image = images[0];
+      if (stage && image?.naturalWidth) stage.style.aspectRatio = `${image.naturalWidth} / ${image.naturalHeight}`;
+    };
+
+    if (images[0]?.complete) setStageRatio();
+    else images[0]?.addEventListener("load", setStageRatio, { once: true });
+
+    const selectMode = async (next) => {
+      if (next === current || next < 0 || next >= images.length || switching) return;
+      switching = true;
+      const previousImage = images[current];
+      const nextImage = images[next];
+
+      nextImage.hidden = false;
+      nextImage.classList.add("is-active");
+      nextImage.style.zIndex = "2";
+      label.textContent = nextImage.dataset.sceneLabel;
+
+      if (!reduceMotion.matches && typeof nextImage.animate === "function") {
+        const imageAnimation = nextImage.animate(
+          [{ clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0)" }],
+          { duration: 520, easing: "cubic-bezier(.22, 1, .36, 1)", fill: "both" }
+        );
+        const wipeAnimation = wipe.animate(
+          [{ left: "100%", opacity: 0 }, { opacity: 1, offset: .08 }, { left: "0%", opacity: 1, offset: .9 }, { opacity: 0 }],
+          { duration: 520, easing: "cubic-bezier(.22, 1, .36, 1)" }
+        );
+        await Promise.allSettled([imageAnimation.finished, wipeAnimation.finished]);
+      }
+
+      previousImage.hidden = true;
+      previousImage.classList.remove("is-active");
+      previousImage.style.removeProperty("z-index");
+      nextImage.style.removeProperty("z-index");
+      current = next;
+      viewer.dataset.activeMode = String(current);
+      switching = false;
+    };
+
+    const start = () => {
+      clearInterval(timer);
+      timer = setInterval(() => selectMode((current + 1) % images.length), 2000);
+    };
+
+    start();
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) clearInterval(timer);
+      else start();
     });
   });
 }
@@ -204,6 +310,7 @@ function setupCountryTabs() {
         return;
       }
 
+      const currentButton = buttons.find((item) => item.getAttribute("aria-selected") === "true");
       buttons.forEach((item) => {
         const selected = item === button;
         item.classList.toggle("is-active", selected);
@@ -214,7 +321,7 @@ function setupCountryTabs() {
 
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const canAnimate = currentPanel && typeof currentPanel.animate === "function" && !reduceMotion;
-      const direction = panels.indexOf(nextPanel) > panels.indexOf(currentPanel) ? 1 : -1;
+      const direction = buttons.indexOf(button) > buttons.indexOf(currentButton) ? 1 : -1;
       switching = true;
 
       if (canAnimate) {
@@ -270,11 +377,19 @@ function setupCountryTabs() {
   });
 }
 
-setupDragRails();
 setupScanCarousel();
-setupComparisons();
 setupCountryTabs();
 setupImageViewer();
+
+const startCreateCarousels = () => {
+  window.setTimeout(() => {
+    setupDragRails();
+    setupSceneModes();
+  }, 1500);
+};
+
+if (document.readyState === "complete") startCreateCarousels();
+else window.addEventListener("load", startCreateCarousels, { once: true });
 
 if ("serviceWorker" in navigator) {
   const workerPath = document.body.dataset.project ? "../sw.js" : "./sw.js";

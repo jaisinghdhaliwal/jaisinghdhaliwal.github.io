@@ -7,11 +7,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Jai / SD">
-    <meta name="description" content="The portfolio of graphic designer Jai Singh Dhaliwal.">
-    <title>Jai Singh Dhaliwal - Graphic Designer</title>
+    <meta name="description" content="A multidisciplinary graphic designer working across branding, packaging, 3D and motion, bringing physical products into interactive digital experiences.">
+    <title>Jai Singh Dhaliwal - Multidisciplinary Graphic Designer</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="ios_pwa/icon.png">
-    <link rel="icon" href="ios_pwa/icon.png" type="image/png">
+    <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="preload" href="media/hero/showreel-thumb.avif" as="image" type="image/avif" fetchpriority="high">
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="ios_pwa/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png">
@@ -73,11 +73,12 @@
       <nav class="site-nav glass" aria-label="Primary navigation">
         <span class="nav-active-pill" aria-hidden="true"></span>
         <a class="is-active" href="index.html" data-nav="work" aria-current="page">Work</a>
+        <a href="create.html" data-nav="create">Create</a>
         <a href="about.html" data-nav="cv">CV</a>
       </nav>
     </header>
 
-    <main id="main">
+    <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" style="background-color: #ffb255; background-image: linear-gradient(180deg, #f7d17f 0%, #f9dd8d 18%, #f8d783 31%, #f6c874 44%, #f3b364 60%, #f2a655 75%, #ea9d4d 100%);">
           <picture>
@@ -157,6 +158,55 @@
           }, { once: true });
         }
 
+        function setupNavigationLayoutTransition() {
+          const navigation = document.querySelector(".site-nav");
+          const mobile = window.matchMedia("(max-width: 640px)");
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+          if (!navigation || typeof navigation.animate !== "function") return;
+
+          let previousMobile = mobile.matches;
+          let previousBounds = navigation.getBoundingClientRect();
+          let resizeFrame;
+          let currentAnimation;
+
+          window.addEventListener("resize", () => {
+            window.cancelAnimationFrame(resizeFrame);
+            resizeFrame = window.requestAnimationFrame(() => {
+              const nextMobile = mobile.matches;
+              const nextBounds = navigation.getBoundingClientRect();
+
+              if (previousMobile !== nextMobile && !reducedMotion.matches) {
+                currentAnimation?.cancel();
+                navigation.style.willChange = "transform";
+
+                const animation = navigation.animate([
+                  {
+                    transformOrigin: "top left",
+                    transform: `translate(${previousBounds.left - nextBounds.left}px, ${previousBounds.top - nextBounds.top}px) scale(${previousBounds.width / nextBounds.width}, ${previousBounds.height / nextBounds.height})`
+                  },
+                  { transformOrigin: "top left", transform: "none" }
+                ], {
+                  duration: 520,
+                  easing: "cubic-bezier(.22, 1, .36, 1)"
+                });
+
+                currentAnimation = animation;
+                animation.finished.catch(() => {}).finally(() => {
+                  if (currentAnimation !== animation) return;
+                  currentAnimation = null;
+                  navigation.style.removeProperty("will-change");
+                  previousBounds = navigation.getBoundingClientRect();
+                });
+              } else if (!currentAnimation) {
+                previousBounds = nextBounds;
+              }
+
+              previousMobile = nextMobile;
+            });
+          }, { passive: true });
+        }
+
         function setupHeroFocusMode() {
           const hero = document.querySelector(".hero");
           const desktop = window.matchMedia("(min-width: 641px)");
@@ -195,6 +245,45 @@
           }, { passive: true });
           desktop.addEventListener("change", clearFocusMode);
           clearFocusMode();
+        }
+
+        function setupHeroLayoutTransition() {
+          const hero = document.querySelector(".hero");
+          const content = hero?.querySelector(".hero-content");
+          const mobile = window.matchMedia("(max-width: 640px)");
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+          if (!content || typeof content.animate !== "function") return;
+
+          let previousMobile = mobile.matches;
+          let previousPosition = content.getBoundingClientRect();
+          let resizeFrame;
+          let animation;
+
+          window.addEventListener("resize", () => {
+            window.cancelAnimationFrame(resizeFrame);
+            resizeFrame = window.requestAnimationFrame(() => {
+              const nextMobile = mobile.matches;
+              const nextPosition = content.getBoundingClientRect();
+
+              if (previousMobile !== nextMobile && !reducedMotion.matches) {
+                hero.classList.remove("is-focus-mode");
+                animation?.cancel();
+                animation = content.animate([
+                  {
+                    transform: `translate(${previousPosition.left - nextPosition.left}px, ${previousPosition.top - nextPosition.top}px)`
+                  },
+                  { transform: "translate(0, 0)" }
+                ], {
+                  duration: 480,
+                  easing: "cubic-bezier(.22, 1, .36, 1)"
+                });
+              }
+
+              previousMobile = nextMobile;
+              previousPosition = nextPosition;
+            });
+          }, { passive: true });
         }
 
         const escapeProjectHtml = (value = "") =>
@@ -257,6 +346,65 @@
           playVideos();
         }
 
+        function setupProjectLayoutTransition(grid) {
+          const cards = [...grid.querySelectorAll(".project-card")];
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+          if (!cards.length || reducedMotion.matches || typeof cards[0].animate !== "function") return;
+
+          const cardAnimations = new Map();
+          const columnCount = () => getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+          const measureCards = () => new Map(cards.map((card) => [card, {
+            left: card.offsetLeft,
+            top: card.offsetTop,
+            width: card.offsetWidth,
+            height: card.offsetHeight
+          }]));
+
+          let previousColumns = columnCount();
+          let previousPositions = measureCards();
+          let resizeFrame;
+
+          window.addEventListener("resize", () => {
+            window.cancelAnimationFrame(resizeFrame);
+            resizeFrame = window.requestAnimationFrame(() => {
+              const nextColumns = columnCount();
+              const nextPositions = measureCards();
+              const changesColumnCount = previousColumns !== nextColumns;
+
+              if (changesColumnCount) {
+                cards.forEach((card) => {
+                  const previous = previousPositions.get(card);
+                  const next = nextPositions.get(card);
+                  if (!previous || !next) return;
+
+                  cardAnimations.get(card)?.cancel();
+                  card.style.zIndex = "1";
+                  const animation = card.animate([
+                    {
+                      transformOrigin: "top left",
+                      transform: `translate(${previous.left - next.left}px, ${previous.top - next.top}px) scale(${previous.width / next.width}, ${previous.height / next.height})`
+                    },
+                    { transformOrigin: "top left", transform: "none" }
+                  ], {
+                    duration: 520,
+                    easing: "cubic-bezier(.22, 1, .36, 1)"
+                  });
+
+                  cardAnimations.set(card, animation);
+                  animation.finished.catch(() => {}).finally(() => {
+                    if (cardAnimations.get(card) !== animation) return;
+                    cardAnimations.delete(card);
+                    card.style.removeProperty("z-index");
+                  });
+                });
+              }
+
+              previousColumns = nextColumns;
+              previousPositions = nextPositions;
+            });
+          }, { passive: true });
+        }
+
         async function renderProjects() {
           const grid = document.querySelector("#project-grid");
 
@@ -303,6 +451,7 @@
             }).join("");
             setupProjectReveal(grid);
             setupProjectPlayback(grid);
+            setupProjectLayoutTransition(grid);
           } catch (error) {
             console.error(error);
             grid.innerHTML = `
@@ -315,7 +464,9 @@
         }
 
         setupHeroShowreel();
+        setupNavigationLayoutTransition();
         setupHeroFocusMode();
+        setupHeroLayoutTransition();
         renderProjects();
         if ("serviceWorker" in navigator) {
           window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
@@ -324,12 +475,27 @@
     </main>
 
     <footer class="site-footer">
-      <a class="button button-small" id="get-in-touch" href="mailto:jaisinghdhaliwal@outlook.com">Get in touch</a>
-      <div class="footer-links">
-        <a href="index.html">Work</a>
-        <a href="about.html">CV</a>
+      <div class="footer-inner">
+        <a class="footer-brand" href="index.html" aria-label="Jai Singh Dhaliwal - Work">
+          <img src="logo/logo-name-white.svg" alt="">
+        </a>
+        <nav class="footer-group" aria-label="Footer navigation">
+          <p class="footer-heading">Explore</p>
+          <a href="index.html">Work</a>
+          <a href="create.html">Create</a>
+          <a href="about.html">CV</a>
+          <a href="Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" download>Download CV PDF</a>
+        </nav>
+        <div class="footer-group">
+          <p class="footer-heading">Contact</p>
+          <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
+          <a href="tel:+447455794117">+44 7455 794117</a>
+          <a href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div class="footer-meta">
+          <span>&copy; 2026 Jai Singh Dhaliwal</span>
+        </div>
       </div>
-      <img class="footer-mark" src="logo/logo-01.svg" alt="Jai Singh Dhaliwal">
     </footer>
   </body>
 </html>

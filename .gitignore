@@ -1,0 +1,17 @@
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# Local project-page source and documentation
+/project-content/
+/PROJECT-PAGES.md
+
+# Local build and development tools
+/build-projects.mjs
+/dev-server.mjs
+/package.json
+/package-lock.json
+**/node_modules/
+
+# Temporary generated files
+/tmp/

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f6f3">
+    <meta name="description" content="Motion guidance for Jai Singh Dhaliwal’s personal brand and portfolio.">
+    <title>Motion — Design</title>
+    <link rel="icon" href="../favicon.ico" sizes="any">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body data-page="motion">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-manual-header></div>
+
+    <main id="main">
+      <header class="page-hero">
+        <div class="shell">
+          <p class="breadcrumbs"><a href="index.html">Design</a><i>/</i><span>Expression</span><i>/</i><span>Motion</span></p>
+          <h1>Motion</h1>
+          <p class="lede">Movement should reveal hierarchy, connect states and make spatial relationships easier to understand. It should never delay access to the work.</p>
+        </div>
+      </header>
+
+      <div class="doc-layout">
+        <nav class="local-nav" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#principles">Principles</a>
+          <a href="#timing">Timing</a>
+          <a href="#easing">Easing</a>
+          <a href="#patterns">Patterns</a>
+          <a href="#interaction">Interaction</a>
+          <a href="#reduced-motion">Reduced motion</a>
+        </nav>
+
+        <div class="doc-content">
+          <section class="content-section" id="principles" data-reveal>
+            <p class="section-kicker mono">01 / Principles</p>
+            <h2>Move to explain.</h2>
+            <p>The identity uses motion to show where something came from, what became active and which layer is in focus. Every animation needs a functional reason.</p>
+
+            <article class="rule">
+              <span class="rule-number">01</span>
+              <div><h3>Preserve continuity</h3><p>Shared elements such as the active navigation pill should travel between states while their labels remain stable.</p></div>
+            </article>
+            <article class="rule">
+              <span class="rule-number">02</span>
+              <div><h3>Reveal in context</h3><p>Project cards enter individually when they reach the viewport, not all at once when the page loads.</p></div>
+            </article>
+            <article class="rule">
+              <span class="rule-number">03</span>
+              <div><h3>Reward, do not obstruct</h3><p>Hover can add depth and scale, but no control or information may appear only after hover.</p></div>
+            </article>
+            <article class="rule">
+              <span class="rule-number">04</span>
+              <div><h3>Respect attention</h3><p>Autoplaying media is muted and calm. Continuous motion pauses when the page is hidden, focused for interaction or reduced motion is requested.</p></div>
+            </article>
+          </section>
+
+          <section class="content-section" id="timing" data-reveal>
+            <p class="section-kicker mono">02 / Timing</p>
+            <h2>A short, deliberate scale.</h2>
+            <p>Use the quickest duration that communicates the change clearly. Similar actions should feel related across pages.</p>
+
+            <div class="example">
+              <div class="example-title">Motion demonstration <button type="button" data-play-motion="#motion-demo-standard">Replay</button></div>
+              <div class="motion-track" id="motion-demo-standard" aria-hidden="true"><span class="motion-dot"></span></div>
+            </div>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Fast / 180ms</th><td>Button hover, colour response and small control feedback.</td></tr>
+                <tr><th scope="row">Standard / 280–300ms</th><td>Card elevation, navigation growth on fine pointers and component state changes.</td></tr>
+                <tr><th scope="row">Page / 420ms</th><td>Active navigation pill travel and cross-page entrance.</td></tr>
+                <tr><th scope="row">Media / 500ms</th><td>Showreel clip crossfade and image transitions.</td></tr>
+                <tr><th scope="row">Reveal / 620ms</th><td>Project card entrance when it reaches the viewport.</td></tr>
+                <tr><th scope="row">Expressive / 700ms</th><td>Hero focus-mode reduction and other intentional spatial transitions.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="content-section" id="easing" data-reveal>
+            <p class="section-kicker mono">03 / Easing</p>
+            <h2>Responsive at the start, calm at the end.</h2>
+            <p>Use easing that leaves quickly and settles smoothly. Avoid elastic or bouncy behaviour; it conflicts with the precise, minimal tone.</p>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Standard spatial</th><td><code>cubic-bezier(.2, .75, .25, 1)</code> for project cards, reveals and focus transitions.</td></tr>
+                <tr><th scope="row">Shared element</th><td><code>cubic-bezier(.2, .8, .2, 1)</code> for navigation, page entrance and interface layers.</td></tr>
+                <tr><th scope="row">Simple fade</th><td><code>ease</code> where opacity is the only property changing.</td></tr>
+                <tr><th scope="row">Avoid</th><td>Linear UI movement, spring overshoot, bounce and long decorative loops.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="content-section" id="patterns" data-reveal>
+            <p class="section-kicker mono">04 / Patterns</p>
+            <h2>Recognisable motion behaviours.</h2>
+
+            <div class="component-grid">
+              <article class="component-card">
+                <h3>Navigation continuity</h3>
+                <div class="demo-nav" aria-label="Navigation example"><span>Work</span><span class="active">Create</span><span>CV</span></div>
+                <p>The coral pill moves to the destination. All three labels remain visible and stationary throughout the page transition.</p>
+              </article>
+              <article class="component-card">
+                <h3>Project entrance</h3>
+                <p class="mono">Opacity 0 → 1</p>
+                <p class="mono">Translate Y 28px → 0</p>
+                <p class="mono">Scale .98 → 1</p>
+                <p>Trigger each card once at roughly 12% viewport intersection.</p>
+              </article>
+              <article class="component-card">
+                <h3>Project focus</h3>
+                <p>Lift the complete card by 7px, scale to 1.025 and strengthen its shadow over 280ms. Scale the image internally to 1.035 over 450ms.</p>
+              </article>
+              <article class="component-card">
+                <h3>Hero focus mode</h3>
+                <p>After four seconds of inactivity on desktop, reduce the full copy and retain a compact glass label. Scrolling, pointer movement or keyboard activity restores the introduction.</p>
+              </article>
+              <article class="component-card">
+                <h3>Showreel playback</h3>
+                <p>Play the combined showreel muted and inline, using matching H.264 and H.265 sources with a first-frame poster underneath.</p>
+              </article>
+              <article class="component-card">
+                <h3>Continuous photography</h3>
+                <p>Scroll steadily at a low speed, duplicate the sequence for a seamless loop and pause during direct manipulation.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="content-section" id="interaction" data-reveal>
+            <p class="section-kicker mono">05 / Interaction</p>
+            <h2>Adapt motion to the input.</h2>
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Fine pointer</th><td>Allow hover elevation, subtle image scale and the desktop navigation expansion.</td></tr>
+                <tr><th scope="row">Touch</th><td>Do not grow the bottom navigation or require hover to expose content.</td></tr>
+                <tr><th scope="row">Keyboard</th><td>Give focused interactive cards the same hierarchy as hover and keep a visible focus ring.</td></tr>
+                <tr><th scope="row">Dragging</th><td>Pause automatic rails while the user drags, then resume after a short delay.</td></tr>
+                <tr><th scope="row">Page visibility</th><td>Pause continuous movement when the document is hidden.</td></tr>
+              </tbody>
+            </table>
+
+            <div class="do-grid">
+              <article class="do-card"><strong>Do</strong><p>Animate transform and opacity wherever possible so movement stays smooth and does not reflow surrounding content.</p></article>
+              <article class="do-card avoid"><strong>Avoid</strong><p>Animating width, height or layout position when a transform can communicate the same spatial change.</p></article>
+            </div>
+          </section>
+
+          <section class="content-section" id="reduced-motion" data-reveal>
+            <p class="section-kicker mono">06 / Reduced motion</p>
+            <h2>The experience must remain complete without animation.</h2>
+            <p>When <code>prefers-reduced-motion: reduce</code> is active, smooth scrolling stops, transitions become effectively immediate, project cards remain visible and the showreel uses its poster image.</p>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Navigation</th><td>Move directly to the selected state without a travelling pill animation.</td></tr>
+                <tr><th scope="row">Projects</th><td>Render fully visible with no entrance translation or scale.</td></tr>
+                <tr><th scope="row">Showreel</th><td>Do not autoplay; retain the responsive poster as the complete visual.</td></tr>
+                <tr><th scope="row">Carousels</th><td>Disable automatic movement while preserving manual scrolling and controls.</td></tr>
+                <tr><th scope="row">Content</th><td>Never hide essential copy behind an animation or timed state.</td></tr>
+              </tbody>
+            </table>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div data-manual-footer></div>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "Design",
+    "version": "0.1.0",
+    "status": "evolving"
+  },
+  "color": {
+    "primaryDark": "#141A28",
+    "coral": "#F4513F",
+    "textOnCoral": "#141A28",
+    "coralSoft": "#FFF0ED",
+    "paper": "#F7F6F3",
+    "white": "#FFFFFF",
+    "cloud": "#ECEBEA"
+  },
+  "typography": {
+    "display": "Poppins",
+    "body": "Poppins",
+    "metadata": "Fira Code",
+    "displaySize": "clamp(48px, 7vw, 96px)",
+    "pageSize": "clamp(48px, 7vw, 96px)",
+    "sectionSize": "19px",
+    "cardSize": "19px",
+    "bodySize": "16px",
+    "labelSize": "19px",
+    "buttonSize": "14px",
+    "uiSize": "13px",
+    "metaSize": "12px"
+  },
+  "radius": {
+    "small": "13px",
+    "project": "18px",
+    "panel": "20px",
+    "large": "28px",
+    "pill": "999px"
+  },
+  "elevation": {
+    "glass": "0 8px 24px rgba(20,26,40,.14), inset 0 0 0 1px rgba(20,26,40,.06)",
+    "panel": "0 12px 30px rgba(20,26,40,.08)",
+    "project": "0 18px 38px rgba(20,26,40,.14), 0 3px 8px rgba(20,26,40,.12)",
+    "projectFocus": "0 30px 58px rgba(20,26,40,.24), 0 9px 18px rgba(20,26,40,.16)"
+  },
+  "motion": {
+    "fast": "180ms",
+    "component": "300ms",
+    "page": "420ms",
+    "reveal": "620ms",
+    "expressive": "700ms",
+    "easingStandard": "cubic-bezier(.2,.8,.2,1)"
+  }
+}

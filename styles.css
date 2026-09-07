@@ -26,8 +26,39 @@
   font-display: swap;
 }
 
+@property --hero-gradient-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 270deg;
+}
+
+@property --hero-fade-start {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 34%;
+}
+
+@property --hero-fade-soft {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 47%;
+}
+
+@property --hero-fade-mid {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 66%;
+}
+
+@property --hero-fade-solid {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 80%;
+}
+
 :root {
   --ink: #151923;
+  --navy: #141a28;
   --paper: #f7f6f3;
   --white: #fff;
   --coral: #f4513f;
@@ -35,7 +66,8 @@
   --line: rgba(17, 29, 56, 0.24);
   --shadow: 0 18px 38px rgba(15, 22, 37, 0.14), 0 3px 8px rgba(15, 22, 37, 0.12);
   --radius: 18px;
-  --label-size: 16px;
+  --label-size: 19px;
+  --button-size: 14px;
   --ui-size: 13px;
   --shell: min(1320px, calc(100% - 80px));
   --font-body: "Poppins", "Segoe UI", sans-serif;
@@ -61,15 +93,15 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button, input { font: inherit; }
-:is(.section-heading h2, .create-tagline, .country-tabs button, .scan-item figcaption,
+:is(.section-heading h2, .country-tabs button, .scan-item figcaption,
     .case-kicker, .case-facts dt, .case-local-nav strong, .case-local-nav a,
     .scene-copy h3, .cv-entry h3, .cv-date, .cv-side-block h3,
-    .skills-list dt, .certification-list time) {
+    .skills-list dt, .certification-list strong, .certification-list time) {
   font: 700 var(--label-size)/1.2 var(--font-mono);
   text-transform: uppercase;
 }
 .button {
-  font: 700 14px/1.2 var(--font-mono);
+  font: 700 var(--button-size)/1.2 var(--font-mono);
   text-transform: uppercase;
 }
 .scan-item figcaption, .skills-list dt, .certification-list time { color: var(--coral); }
@@ -86,6 +118,7 @@ button, input { font: inherit; }
   padding: 10px 14px; background: var(--white); transform: translateY(-160%);
 }
 .skip-link:focus { transform: translateY(0); }
+main:focus { outline: none; }
 
 /* ==========================================================================
    SHARED - site header, navigation and reusable controls
@@ -122,8 +155,8 @@ button, input { font: inherit; }
 }
 .wordmark img { width: 100%; }
 .site-nav {
-  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4px; align-items: center;
-  width: min(250px, 40vw); min-height: 52px; padding: 5px; border-radius: 999px;
+  position: relative; z-index: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; align-items: center;
+  width: min(350px, 50vw); min-height: 52px; padding: 5px; border-radius: 999px;
   view-transition-name: site-nav;
   box-shadow:
     0 8px 24px rgba(17, 29, 56, 0.14),
@@ -136,20 +169,22 @@ button, input { font: inherit; }
 }
 .nav-active-pill {
   position: absolute; z-index: 0; top: 5px; bottom: 5px; left: 5px;
-  width: calc((100% - 14px) / 2); border-radius: inherit; background: var(--coral);
+  width: calc((100% - 18px) / 3); border-radius: inherit; background: var(--coral);
   transform: translateX(calc(var(--nav-index, 0) * (100% + 4px)));
   view-transition-name: active-nav-pill;
 }
 body[data-page="work"] { --nav-index: 0; }
-body[data-page="cv"] { --nav-index: 1; }
+body[data-page="create"] { --nav-index: 1; }
+body[data-page="cv"] { --nav-index: 2; }
 .site-nav a {
   position: relative; z-index: 1; display: grid; place-items: center; min-width: 0; min-height: 40px; padding: 0 12px;
   border-radius: inherit; font: 700 var(--ui-size)/1 var(--font-mono); text-transform: uppercase;
   transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 .site-nav a[data-nav="work"] { view-transition-name: nav-work-label; }
+.site-nav a[data-nav="create"] { view-transition-name: nav-create-label; }
 .site-nav a[data-nav="cv"] { view-transition-name: nav-cv-label; }
-.site-nav a.is-active { color: var(--white); }
+.site-nav a.is-active { color: var(--navy); }
 .site-nav a:not(.is-active):is(:hover, :focus-visible) {
   background: rgba(255, 255, 255, 0.92);
 }
@@ -237,7 +272,7 @@ body[data-page="cv"] { --nav-index: 1; }
    ========================================================================== */
 
 .hero {
-  position: relative; min-height: 820px; display: grid; align-items: end; overflow: hidden;
+  position: relative; min-height: clamp(720px, calc(50vw + 370px), 820px); display: grid; align-items: end; overflow: hidden;
   background: var(--paper);
 }
 .hero-media, .hero-media img, .hero-video, .hero-shade { position: absolute; inset: 0; width: 100%; height: 100%; }
@@ -250,15 +285,32 @@ body[data-page="cv"] { --nav-index: 1; }
 .hero-video.is-active { opacity: 1; }
 .hero-shade {
   z-index: 2;
-  background: linear-gradient(
-    90deg,
-    var(--paper) 0%,
-    rgba(247, 246, 243, 0.97) 20%,
-    rgba(247, 246, 243, 0.76) 34%,
-    rgba(247, 246, 243, 0.16) 53%,
-    transparent 66%
-  );
+  background: none;
   transition: opacity 700ms ease;
+}
+.hero-shade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  --hero-gradient-angle: 270deg;
+  --hero-fade-start: 34%;
+  --hero-fade-soft: 47%;
+  --hero-fade-mid: 66%;
+  --hero-fade-solid: 80%;
+  background: linear-gradient(
+    var(--hero-gradient-angle),
+    transparent var(--hero-fade-start),
+    rgba(247, 246, 243, 0.16) var(--hero-fade-soft),
+    rgba(247, 246, 243, 0.76) var(--hero-fade-mid),
+    rgba(247, 246, 243, 0.97) var(--hero-fade-solid),
+    var(--paper) 100%
+  );
+  transition:
+    --hero-gradient-angle 480ms cubic-bezier(.22, 1, .36, 1),
+    --hero-fade-start 480ms cubic-bezier(.22, 1, .36, 1),
+    --hero-fade-soft 480ms cubic-bezier(.22, 1, .36, 1),
+    --hero-fade-mid 480ms cubic-bezier(.22, 1, .36, 1),
+    --hero-fade-solid 480ms cubic-bezier(.22, 1, .36, 1);
 }
 .hero-content {
   position: relative;
@@ -303,16 +355,14 @@ body[data-page="cv"] { --nav-index: 1; }
 .button:hover { transform: translateY(-2px); }
 body[data-page="work"] #linkedin,
 body[data-page="cv"] #download-cv,
-#view-ar, #get-in-touch, #try-again {
-  color: var(--white); border-color: var(--coral); background: var(--coral);
+#view-ar, #try-again {
+  color: var(--navy); border-color: var(--coral); background: var(--coral);
   box-shadow: 0 8px 22px rgba(244, 81, 63, 0.24);
 }
 body[data-page="work"] #download-cv,
 body[data-page="cv"] #linkedin {
   border-color: currentColor; background: rgba(255, 255, 255, 0.05);
 }
-.button-small { min-width: 130px; min-height: 42px; padding: 10px 18px; }
-
 @media (min-width: 641px) {
   .hero.is-focus-mode .hero-content {
     opacity: 0;
@@ -332,7 +382,7 @@ body[data-page="cv"] #linkedin {
 .section-heading { display: flex; align-items: center; gap: 22px; margin-bottom: 26px; }
 .section-heading h2 { flex: 0 1 auto; min-width: 0; margin: 0; color: var(--coral); }
 .section-heading span { flex: 1 1 28px; min-width: 28px; height: 1px; background: var(--ink); opacity: 0.7; }
-.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .project-card { min-width: 0; }
 @keyframes project-in {
   from { opacity: 0; transform: translateY(28px) scale(.98); }
@@ -396,26 +446,40 @@ body[data-page="cv"] #linkedin {
    ========================================================================== */
 
 .site-footer {
-  position: relative; z-index: 5; display: grid; grid-template-columns: auto 1fr auto;
-  align-items: center; gap: clamp(28px, 5vw, 80px);
-  width: 100%; margin: 0; padding: 48px max(40px, calc((100% - 1380px) / 2));
+  position: relative; z-index: 5; width: 100%; margin: 0;
   color: var(--paper); background: var(--ink);
 }
-.footer-links {
-  display: flex; justify-content: center; gap: clamp(24px, 4vw, 56px);
-  font: 700 12px/1.2 var(--font-mono); text-transform: uppercase;
+.footer-inner {
+  display: grid; grid-template-columns: minmax(280px, 1fr) auto auto;
+  column-gap: clamp(52px, 8vw, 120px); row-gap: 54px;
+  width: var(--shell); margin-inline: auto; padding-block: 64px 30px;
 }
-.footer-links a { transition: color 180ms ease; }
-.footer-links a:hover { color: var(--coral); }
-.footer-mark { justify-self: end; width: clamp(120px, 14vw, 180px); }
+.footer-brand { align-self: start; width: min(100%, 430px); }
+.footer-brand img { width: 100%; height: auto; }
+.footer-group { display: grid; align-content: start; justify-items: start; gap: 10px; }
+.footer-heading { margin: 0 0 8px; color: var(--coral); }
+.footer-heading, .footer-group a, .footer-meta {
+  font: 700 var(--button-size)/1.2 var(--font-mono); text-transform: uppercase;
+}
+.footer-group a { position: relative; padding-block: 2px; white-space: nowrap; }
+.footer-group a::after {
+  content: ""; position: absolute; right: 0; bottom: 0; left: 0; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: right;
+  transition: transform 180ms ease;
+}
+.footer-group a:is(:hover, :focus-visible)::after { transform: scaleX(1); transform-origin: left; }
+.footer-meta {
+  display: flex; grid-column: 1 / -1; justify-content: space-between; gap: 24px;
+  padding-top: 24px; border-top: 1px solid rgba(247, 246, 243, 0.25);
+  color: rgba(247, 246, 243, 0.7);
+}
 
 /* ==========================================================================
    CREATE PAGE - introduction, photography, scans and scenes
    ========================================================================== */
 
 .create-intro { padding-block: clamp(196px, calc(14vw + 100px), 290px) 0; }
-.create-tagline { margin: 18px 0 10px; color: var(--coral); }
-.create-intro > p:not(.create-tagline) { max-width: 500px; }
+.create-intro > p { max-width: 500px; }
 .create-section { padding-block: 72px 0; scroll-margin-top: 20px; }
 .create-section:last-of-type { padding-bottom: 72px; }
 .country-tabs { display: flex; gap: 70px; margin: 8px 0 42px; }
@@ -454,7 +518,7 @@ body[data-page="cv"] #linkedin {
 }
 .photo-rail {
   display: flex; gap: 18px; align-items: center; width: 100%; min-width: 0;
-  overflow-x: auto; padding: 30px 18px 58px;
+  overflow-x: auto; padding: 44px 18px;
   cursor: grab; scrollbar-width: none; overscroll-behavior-inline: contain; scroll-snap-type: x mandatory;
   touch-action: pan-y;
 }
@@ -499,37 +563,42 @@ body[data-page="cv"] #linkedin {
 .carousel-button { position: relative; z-index: 2; width: 44px; height: 44px; border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); background: white; cursor: pointer; }
 .scan-controls { display: flex; justify-content: center; gap: 50px; align-items: center; }
 .scan-controls p { display: flex; gap: 28px; font: 12px/1.3 var(--font-mono); text-transform: uppercase; }
-.scene { display: grid; grid-template-columns: 200px 1fr; gap: 34px; margin-bottom: 46px; }
+.scene { display: grid; grid-template-columns: 200px 1fr; gap: 34px; align-items: center; margin-bottom: 46px; }
 .scene-copy h3, .cv-entry h3 {
   margin: 0 0 12px;
 }
-:is(.place-copy p, .scene-copy p, .cv-entry p:not(.cv-date),
-    .cv-side-block p, .skills-list dd, .certification-list li) {
+:is(.place-copy p, .scene-copy p) {
   font-size: 14px; line-height: 1.5;
 }
+:is(.cv-entry p:not(.cv-date), .cv-side-block p, .skills-list dd, .certification-list li) {
+  font-size: 16px; line-height: 1.5;
+}
 .scene-copy p, .skills-list dd { margin: 0; }
-.comparison { position: relative; min-width: 0; aspect-ratio: 3.1 / 1; overflow: hidden; box-shadow: var(--shadow); background: #ddd; }
-.comparison-final, .comparison-clay img { width: 100%; height: 100%; object-fit: cover; }
-.comparison-clay {
-  position: absolute; inset: 0; width: 100%; overflow: hidden;
-  clip-path: inset(0 calc(100% - var(--position)) 0 0);
-  filter: grayscale(1) contrast(.7) brightness(1.16);
-  border-right: 2px solid white;
+.scene-modes { min-width: 0; }
+.scene-mode-stage {
+  position: relative; aspect-ratio: 85 / 36; overflow: hidden;
+  border-radius: var(--radius); background: #ddd; box-shadow: var(--shadow);
 }
-.comparison-clay img { max-width: none; }
-.comparison input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
-.comparison::after {
-  content: "↔"; position: absolute; left: var(--position); top: 50%; transform: translate(-50%, -50%);
-  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: white; box-shadow: 0 5px 18px rgba(0,0,0,.2); pointer-events: none;
+.scene-mode-image { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.scene-mode-image.is-active { z-index: 1; }
+.scene-mode-wipe {
+  position: absolute; z-index: 3; top: 0; bottom: 0; left: 0; width: 2px;
+  opacity: 0; background: rgba(255, 255, 255, .94); pointer-events: none;
+  box-shadow: 0 0 18px rgba(255, 255, 255, .6);
 }
-.comparison-label { position: absolute; bottom: 8px; padding: 4px 8px; color: white; background: rgba(0,0,0,.68); border-radius: 4px; font: 10px/1 var(--font-mono); text-transform: uppercase; }
-.comparison-label.clay { left: 8px; }.comparison-label.final { right: 8px; }
+.scene-mode-label {
+  position: absolute; z-index: 4; top: 14px; left: 14px; padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, .72); border-radius: 10px; color: var(--ink);
+  background: rgba(255, 255, 255, .78); box-shadow: var(--shadow);
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+  font: 700 var(--label-size)/1.2 var(--font-mono); text-transform: uppercase;
+}
 /* ==========================================================================
    ABOUT PAGE - profile and responsive web CV
    ========================================================================== */
 
 .about-page { min-height: 74vh; }
-.about-copy { max-width: 500px; }
+.about-intro > .about-copy { max-width: 720px; }
 .about-actions { display: flex; gap: 16px; margin-top: 28px; }
 .cv-section { padding-block: 72px 90px; scroll-margin-top: 110px; }
 .cv-grid {
@@ -543,6 +612,14 @@ body[data-page="cv"] #linkedin {
   padding-block: 20px;
 }
 .cv-date { margin: 0; color: var(--coral); }
+.cv-entry h3,
+.cv-entry > .cv-date,
+.cv-side-block h3,
+.skills-list dt,
+.certification-list strong,
+.certification-list time {
+  font: 700 var(--label-size)/1.5 var(--font-body);
+}
 .section-heading + .cv-entry { padding-top: 0; }
 .cv-block .cv-entry:last-child { padding-bottom: 0; }
 .cv-entry p:not(.cv-date) { margin: 10px 0 0; }
@@ -553,9 +630,11 @@ body[data-page="cv"] #linkedin {
   background: rgba(248, 248, 246, .64); box-shadow: 0 12px 30px rgba(17, 29, 56, .08);
 }
 .cv-side-block h3 {
-  margin: 28px 0 12px; color: var(--ink);
+  margin: 18px 0 5px; color: var(--ink);
 }
 .cv-side-block > .section-heading + h3 { margin-top: 0; }
+.cv-side-block h3 + p { margin-top: 0; }
+.cv-side-block h3 + p + p { margin-top: 18px; }
 .cv-side-block > p:last-child { margin-bottom: 0; }
 .skills-list { display: grid; gap: 18px; margin: 0; }
 .skills-list div { display: grid; gap: 5px; }
@@ -569,10 +648,12 @@ body[data-page="cv"] #linkedin {
    RESPONSIVE - shared, Work, Create and About adaptations
    ========================================================================== */
 
+@media (max-width: 1024px) {
+  .project-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media (max-width: 900px) {
-  :root { --shell: min(100% - 40px, 760px); }
-  .project-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; }
-  .hero { min-height: 720px; }
+  :root { --shell: min(calc(100% - 32px), 820px); }
   .photography-layout { grid-template-columns: 1fr; gap: 20px; }
   .place-copy {
     display: grid; grid-template-columns: minmax(140px, 170px) minmax(0, 1fr);
@@ -584,12 +665,21 @@ body[data-page="cv"] #linkedin {
   .scene { grid-template-columns: 1fr; gap: 14px; }
   .cv-grid { grid-template-columns: minmax(0, 1fr) minmax(240px, .7fr); gap: 34px; }
   .cv-entry { grid-template-columns: 126px minmax(0, 1fr); gap: 20px; }
+  .footer-inner {
+    grid-template-columns: 1fr; gap: 32px;
+    width: var(--shell); padding-block: 46px 30px;
+  }
+  .footer-brand { grid-column: auto; width: min(100%, 310px); }
+  .footer-meta {
+    display: grid; grid-column: auto; justify-content: start; gap: 7px;
+    padding-top: 20px;
+  }
 }
 
 @media (max-width: 640px) {
   :root { --shell: calc(100% - 32px); --radius: 14px; }
   body { padding-bottom: 0; }
-  .header-gradient-blur, .hero-focus-label, .contact-lines span, .footer-links { display: none; }
+  .header-gradient-blur, .hero-focus-label, .contact-lines span { display: none; }
   .site-header {
     inset: 0 0 auto;
     min-height: calc(64px + env(safe-area-inset-top));
@@ -617,15 +707,14 @@ body[data-page="cv"] #linkedin {
   .hero-shade {
     bottom: auto;
     height: calc(108vw + 2px);
-    background: linear-gradient(
-      180deg,
-      transparent 67%,
-      rgba(247, 246, 243, 0.14) 73%,
-      rgba(247, 246, 243, 0.68) 87%,
-      var(--paper) 98%,
-      var(--paper) 100%
-    );
     pointer-events: none;
+  }
+  .hero-shade::before {
+    --hero-gradient-angle: 180deg;
+    --hero-fade-start: 67%;
+    --hero-fade-soft: 73%;
+    --hero-fade-mid: 87%;
+    --hero-fade-solid: 98%;
   }
   .hero-content { margin-top: -52px; padding-block: 18px 14px; }
   .contact-lines { display: grid; gap: 2px; margin-top: 24px; }
@@ -638,12 +727,8 @@ body[data-page="cv"] #linkedin {
   .project-grid { grid-template-columns: 1fr; }
   .project-caption { left: 9px; right: 9px; bottom: 9px; min-height: 0; padding: 13px; border-radius: 12px; }
 
-  .site-footer {
-    grid-template-columns: 1fr auto; gap: 18px;
-    width: 100%; margin: 0;
-    padding: 32px 16px calc(96px + env(safe-area-inset-bottom));
-  }
-  .footer-mark { justify-self: end; width: 104px; }
+  .site-footer { width: 100%; margin: 0; }
+  .footer-inner { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
 
   .create-intro { padding: calc(220px + env(safe-area-inset-top)) 0 0; }
   .create-section { padding-block: 40px 0; }
@@ -672,7 +757,7 @@ body[data-page="cv"] #linkedin {
   .scan-controls { display: grid; gap: 16px; justify-items: center; }
   .scan-controls p { margin: 0; }
   .scene { margin-bottom: 32px; }
-  .comparison { aspect-ratio: 2 / 1; }
+  .scene-mode-stage { aspect-ratio: 2 / 1; }
   .about-actions { display: grid; }
   .cv-section { padding-block: 40px 50px; scroll-margin-top: 24px; }
   .cv-grid { grid-template-columns: 1fr; gap: 32px; }

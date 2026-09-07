@@ -1,15 +1,3 @@
-document.querySelectorAll("[data-youtube]").forEach((embed) => {
-  const button = embed.querySelector("button");
-  button?.addEventListener("click", () => {
-    const iframe = document.createElement("iframe");
-    iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(embed.dataset.youtube)}?autoplay=1`;
-    iframe.title = embed.dataset.title || "YouTube video";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-    iframe.allowFullscreen = true;
-    embed.replaceChildren(iframe);
-  }, { once: true });
-});
-
 document.querySelectorAll(".case-image-set img").forEach((image) => {
   const setRatio = () => image.closest("figure")?.style.setProperty("--media-ratio", image.naturalWidth / image.naturalHeight);
   if (image.complete && image.naturalWidth) setRatio();

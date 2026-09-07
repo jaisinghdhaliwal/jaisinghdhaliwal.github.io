@@ -11,7 +11,7 @@
     <title>Create - Jai Singh Dhaliwal</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="ios_pwa/icon.png">
-    <link rel="icon" href="ios_pwa/icon.png" type="image/png">
+    <link rel="icon" href="favicon.ico" sizes="any">
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="ios_pwa/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="ios_pwa/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png">
@@ -75,10 +75,9 @@
       </nav>
     </header>
 
-    <main id="main" class="create-page">
+    <main id="main" class="create-page" tabindex="-1">
       <section class="create-intro page-shell">
         <h1 class="page-title">Create</h1>
-        <p class="create-tagline">Things I capture, reconstruct and imagine.</p>
         <p>A personal archive of photographs, scanned objects and worlds built away from the desk.</p>
       </section>
 
@@ -89,28 +88,33 @@
         <div class="country-tabs" role="tablist" aria-label="Photography collections">
           <button class="is-active" id="tab-switzerland" type="button" role="tab" aria-selected="true" aria-controls="photos-switzerland" data-country="switzerland">Switzerland</button>
           <button id="tab-space" type="button" role="tab" aria-selected="false" aria-controls="photos-space" data-country="space" tabindex="-1">Space</button>
+          <button id="tab-italy" type="button" role="tab" aria-selected="false" aria-controls="photos-italy" data-country="italy" tabindex="-1">Italy</button>
         </div>
         <div class="photography-layout" id="photos-switzerland" role="tabpanel" aria-labelledby="tab-switzerland" data-country-panel="switzerland">
           <div class="place-copy">
-            <p>Quiet journeys through light, architecture and landscapes - noticing the details that usually go unnoticed.</p>
+            <p>Photos from a trip through Geneva, Lausanne and Bern, from the big views to smaller things I spotted along the way.</p>
             <img class="location-map" src="media/create/photography/switzerland.svg" alt="Map of Switzerland showing photographed locations">
           </div>
           <div>
             <div class="carousel-fade-shell">
               <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling Switzerland photography carousel">
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2314.JPG" aria-label="View Switzerland travel photograph larger"><img src="media/create/photography/switzerland/_DSC2314.JPG" alt="Switzerland travel photograph" loading="lazy" decoding="async"></button></figure>
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2330.JPG" aria-label="View architecture in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2330.JPG" alt="Architecture in Switzerland" loading="lazy" decoding="async"></button></figure>
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2410.JPG" aria-label="View Swiss landscape detail larger"><img src="media/create/photography/switzerland/_DSC2410.JPG" alt="Swiss landscape detail" loading="lazy" decoding="async"></button></figure>
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2420.JPG" aria-label="View street scene in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2420.JPG" alt="Street scene in Switzerland" loading="lazy" decoding="async"></button></figure>
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC2421.JPG" aria-label="View mountain view in Switzerland larger"><img src="media/create/photography/switzerland/_DSC2421.JPG" alt="Mountain view in Switzerland" loading="lazy" decoding="async"></button></figure>
-                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/_DSC1904.JPG" aria-label="View Swiss mountain photograph larger"><img src="media/create/photography/switzerland/_DSC1904.JPG" alt="Swiss mountain photograph" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/1.avif" aria-label="View Lausanne lakeside photograph larger"><img src="media/create/photography/switzerland/1.webp" alt="Lausanne sign beside the lake with flowers and mountains" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/2.avif" aria-label="View Lausanne road train photograph larger"><img src="media/create/photography/switzerland/2.webp" alt="A red and white road train passing a stone wall in Lausanne" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/3.avif" aria-label="View Lake Geneva viewpoint photograph larger"><img src="media/create/photography/switzerland/3.webp" alt="A person overlooking Lake Geneva and the mountains through leafy branches" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/4.avif" aria-label="View Bern cityscape photograph larger"><img src="media/create/photography/switzerland/4.webp" alt="Bern rooftops and cathedral surrounded by green hills" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/5.avif" aria-label="View pigeon in flight photograph larger"><img src="media/create/photography/switzerland/5.webp" alt="A pigeon landing beside flowers in a Swiss city" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/6.avif" aria-label="View Bern street photograph larger"><img src="media/create/photography/switzerland/6.webp" alt="Pedestrians crossing a tram-lined street in Bern" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/7.avif" aria-label="View Swiss rooftops panorama larger"><img src="media/create/photography/switzerland/7.webp" alt="A panoramic view across Swiss rooftops towards distant mountains" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/8.avif" aria-label="View church spire photograph larger"><img src="media/create/photography/switzerland/8.webp" alt="A pointed church spire against a clear blue sky" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/9.avif" aria-label="View Lausanne and the Alps photograph larger"><img src="media/create/photography/switzerland/9.webp" alt="Lausanne rooftops overlooking Lake Geneva and the Alps" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/switzerland/10.avif" aria-label="View Swiss street at sunset larger"><img src="media/create/photography/switzerland/10.webp" alt="Warm evening light falling across a quiet Swiss street" loading="lazy" decoding="async"></button></figure>
               </div>
             </div>
           </div>
         </div>
         <div class="photography-layout" id="photos-space" role="tabpanel" aria-labelledby="tab-space" data-country-panel="space" hidden>
           <div class="place-copy">
-            <p>Looking beyond the everyday through photographs of the Moon, starry skies, aurora and a solar eclipse.</p>
+            <p>A few things I have managed to catch in the sky, including the Moon, starry nights, the northern lights and a solar eclipse.</p>
           </div>
           <div>
             <div class="carousel-fade-shell">
@@ -121,6 +125,21 @@
                 <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/4.avif" aria-label="View aurora and stars larger"><img src="media/create/photography/space/4.webp" alt="Pink aurora and stars across the night sky" loading="lazy" decoding="async"></button></figure>
                 <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/5.avif" aria-label="View aurora above trees larger"><img src="media/create/photography/space/5.webp" alt="Pink aurora above trees and rooftops" loading="lazy" decoding="async"></button></figure>
                 <figure><button class="photo-open" type="button" data-full-image="media/create/photography/space/6.avif" aria-label="View partial solar eclipse larger"><img src="media/create/photography/space/6.webp" alt="A partial solar eclipse between clouds" loading="lazy" decoding="async"></button></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="photography-layout" id="photos-italy" role="tabpanel" aria-labelledby="tab-italy" data-country-panel="italy" hidden>
+          <div class="place-copy">
+            <p>A few photos from family trips to Italy, mostly mountain views, lakes and places where I stopped to take in the scenery.</p>
+          </div>
+          <div>
+            <div class="carousel-fade-shell">
+              <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling Italy photography carousel">
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/italy/1.avif" aria-label="View Italian mountain lake panorama larger"><img src="media/create/photography/italy/1.webp" alt="A panoramic view of an Italian mountain lake beneath scattered clouds" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/italy/2.avif" aria-label="View Italian lake and mountains photograph larger"><img src="media/create/photography/italy/2.webp" alt="Blue water surrounded by steep green mountains in northern Italy" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/italy/3.avif" aria-label="View Italian mountain road photograph larger"><img src="media/create/photography/italy/3.webp" alt="A road and campsite beneath rugged Italian mountains" loading="lazy" decoding="async"></button></figure>
+                <figure><button class="photo-open" type="button" data-full-image="media/create/photography/italy/4.avif" aria-label="View Italian lakeside village photograph larger"><img src="media/create/photography/italy/4.webp" alt="A lakeside village framed by turquoise water and green mountains" loading="lazy" decoding="async"></button></figure>
               </div>
             </div>
           </div>
@@ -157,38 +176,23 @@
         </div>
       </section>
 
-      <section class="create-section page-shell" id="built" aria-labelledby="built-title" hidden>
+      <section class="create-section page-shell" id="built" aria-labelledby="built-title">
         <header class="section-heading">
           <h2 id="built-title">Built - Blender scenes</h2><span></span>
         </header>
         <div class="scene">
           <div class="scene-copy">
             <h3>Just Design - Virtual Exhibition</h3>
-            <p>A virtual university exhibition showcasing student work in graphic design.</p>
+            <p>The same exhibition scene shown through Workbench, Blender and its real-time Fortnite implementation.</p>
           </div>
-          <div class="comparison" data-compare style="--position: 52%">
-            <img class="comparison-final" src="media/create/scenes/just-design-final.AVIF" alt="Final rendered virtual exhibition">
-            <div class="comparison-clay">
-              <img src="media/create/scenes/just-design-final.AVIF" alt="">
+          <div class="scene-modes" data-scene-modes data-active-mode="0">
+            <div class="scene-mode-stage" aria-label="Automatically changing views of the JUST DESIGN virtual exhibition">
+              <img class="scene-mode-image is-active" src="media/create/scenes/just-design-workbench.AVIF" alt="JUST DESIGN virtual exhibition shown in Blender Workbench mode" data-scene-label="Workbench">
+              <img class="scene-mode-image" src="media/create/scenes/just-design-blender.AVIF" alt="JUST DESIGN virtual exhibition rendered in Blender" data-scene-label="Blender" hidden>
+              <img class="scene-mode-image" src="media/create/scenes/just-design-fortnite.AVIF" alt="JUST DESIGN virtual exhibition running in Fortnite" data-scene-label="Fortnite" hidden>
+              <span class="scene-mode-wipe" aria-hidden="true"></span>
+              <span class="scene-mode-label">Workbench</span>
             </div>
-            <input type="range" min="0" max="100" value="52" aria-label="Compare clay and final exhibition renders">
-            <span class="comparison-label clay">Clay</span>
-            <span class="comparison-label final">Final</span>
-          </div>
-        </div>
-        <div class="scene">
-          <div class="scene-copy">
-            <h3>Anime-style environment</h3>
-            <p>A stylised environment exploring colour, atmosphere and world-building.</p>
-          </div>
-          <div class="comparison" data-compare style="--position: 48%">
-            <img class="comparison-final" src="media/create/scenes/anime-environment-final.webp" alt="Final stylised environment render">
-            <div class="comparison-clay">
-              <img src="media/create/scenes/anime-environment-final.webp" alt="">
-            </div>
-            <input type="range" min="0" max="100" value="48" aria-label="Compare clay and final environment renders">
-            <span class="comparison-label clay">Clay</span>
-            <span class="comparison-label final">Final</span>
           </div>
         </div>
       </section>
@@ -201,9 +205,27 @@
     </dialog>
 
     <footer class="site-footer">
-      <a class="button button-small" id="get-in-touch" href="mailto:jaisinghdhaliwal@outlook.com">Get in touch</a>
-      <div class="footer-links"><a href="index.html">Work</a><a href="create.html">Create</a><a href="about.html">CV</a></div>
-      <img class="footer-mark" src="logo/logo-01.svg" alt="Jai Singh Dhaliwal">
+      <div class="footer-inner">
+        <a class="footer-brand" href="index.html" aria-label="Jai Singh Dhaliwal - Work">
+          <img src="logo/logo-name-white.svg" alt="">
+        </a>
+        <nav class="footer-group" aria-label="Footer navigation">
+          <p class="footer-heading">Explore</p>
+          <a href="index.html">Work</a>
+          <a href="create.html">Create</a>
+          <a href="about.html">CV</a>
+          <a href="Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" download>Download CV PDF</a>
+        </nav>
+        <div class="footer-group">
+          <p class="footer-heading">Contact</p>
+          <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
+          <a href="tel:+447455794117">+44 7455 794117</a>
+          <a href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
+        </div>
+        <div class="footer-meta">
+          <span>&copy; 2026 Jai Singh Dhaliwal</span>
+        </div>
+      </div>
     </footer>
   </body>
 </html>
