@@ -9,15 +9,21 @@
     <link rel="icon" href="/favicon.ico" sizes="any">
     <link rel="stylesheet" href="/styles.css">
   </head>
-  <body>
+  <body class="error-page">
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
+      <div class="header-gradient-blur" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <a class="wordmark" href="/" aria-label="Jai Singh Dhaliwal, home"><img src="/logo/logo-01.svg" alt=""></a>
     </header>
-    <main id="main" class="create-page">
-      <section class="create-intro page-shell">
-        <h1 class="page-title">Page not found</h1>
-        <p>The page may have moved or the address may be incorrect.</p>
-        <a class="button" id="linkedin" href="/">Return to selected work</a>
+    <main id="main" class="error-main" tabindex="-1">
+      <section class="error-content page-shell">
+        <p class="error-number" aria-hidden="true">404</p>
+        <div class="error-message">
+          <p class="error-label">Wrong turn</p>
+          <h1 class="page-title">Page not found</h1>
+          <p class="error-copy">The page may have moved, or the address might be incorrect.</p>
+          <a class="button" id="error-home" href="/">Go to homepage</a>
+        </div>
       </section>
     </main>
   </body>

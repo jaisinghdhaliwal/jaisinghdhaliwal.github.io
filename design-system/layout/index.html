@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, follow">
+  <meta name="description" content="Responsive layout, spacing and composition guidance for the Jai Singh Dhaliwal personal brand.">
+  <title>Layout &amp; Spacing — Design</title>
+  <link rel="icon" href="../../favicon.ico" sizes="any">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="layout">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div data-manual-header></div>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="shell">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="../">Design</a><i>/</i><span>Foundations</span><i>/</i><span>Layout &amp; spacing</span>
+        </nav>
+        <h1>Structured space.<br>Flexible content.</h1>
+        <p class="lede">A shared shell, readable measure and fluid spacing keep the identity consistent from a narrow phone to a wide desktop—without maintaining separate designs for every device.</p>
+      </div>
+    </section>
+
+    <div class="doc-layout">
+      <nav class="local-nav" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#principles">Principles</a>
+        <a href="#shell">Page shell</a>
+        <a href="#grid">Grid</a>
+        <a href="#spacing">Spacing</a>
+        <a href="#responsive">Responsive behaviour</a>
+        <a href="#composition">Composition</a>
+      </nav>
+
+      <div class="doc-content">
+        <section class="content-section" id="principles" data-reveal>
+          <p class="section-kicker mono">01 / Principles</p>
+          <h2>Use constraints to create calm.</h2>
+          <p>The layout system is intentionally small. A consistent outer shell, a maximum reading measure and a limited spacing rhythm do most of the work.</p>
+
+          <div class="rule">
+            <span class="rule-number">01</span>
+            <div>
+              <h3>Fluid before fixed</h3>
+              <p>Use flexible tracks, percentages, minmax() and clamp() so a component can adapt across the full width range.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">02</span>
+            <div>
+              <h3>Break only when structure changes</h3>
+              <p>A breakpoint should alter hierarchy or composition—not compensate for arbitrary fixed widths.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">03</span>
+            <div>
+              <h3>Share behaviour across modes</h3>
+              <p>Desktop, tablet and mobile should use the same component rules wherever possible. Media queries refine the layout rather than replace it.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">04</span>
+            <div>
+              <h3>Let imagery choose its crop</h3>
+              <p>Keep the intended focal point visible and use intrinsic aspect ratios where the format does not require a standardised tile.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="shell" data-reveal>
+          <p class="section-kicker mono">02 / Page shell</p>
+          <h2>One outer edge anchors every page.</h2>
+          <p>The shell centres content and protects it from both narrow viewports and excessively long line lengths. Full-bleed media may leave the shell, but its labels and aligned edges should reconnect to it.</p>
+
+          <div class="example">
+            <div class="example-title">
+              <span>Current shell</span>
+            </div>
+            <table class="spec-table">
+              <tbody>
+                <tr>
+                  <th scope="row">Wide</th>
+                  <td>min(1320px, 100% - 80px): up to 1320px with 40px side gutters.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Compact</th>
+                  <td>Below 1040px: up to 1180px with 24px side gutters.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Small</th>
+                  <td>Below 800px: 100% − 32px, giving a 16px gutter on each side.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Reading measure</th>
+                  <td>760px maximum for paragraphs, lists and other continuous copy.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Header height</th>
+                  <td>76px by default; 68px below 800px.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="content-section" id="grid" data-reveal>
+          <p class="section-kicker mono">03 / Grid</p>
+          <h2>Use the smallest grid that explains the content.</h2>
+          <p>Columns are a compositional tool, not a requirement. Start with the content relationship and choose the simplest grid that makes it understandable.</p>
+
+          <table class="spec-table">
+            <tbody>
+              <tr>
+                <th scope="row">Documentation</th>
+                <td>220px local-navigation rail plus one flexible content column. The gap scales from 52px to 112px.</td>
+              </tr>
+              <tr>
+                <th scope="row">Portfolio work</th>
+                <td>Three equal project columns on wide desktop, reducing only when a card can no longer preserve its content and target size.</td>
+              </tr>
+              <tr>
+                <th scope="row">Comparisons</th>
+                <td>Two equal columns for do/avoid guidance, component states and paired applications.</td>
+              </tr>
+              <tr>
+                <th scope="row">Editorial imagery</th>
+                <td>A twelve-column composition allows mixed image widths while retaining common alignment points.</td>
+              </tr>
+              <tr>
+                <th scope="row">Reading pages</th>
+                <td>Use one main text column. Do not add columns merely to fill an empty desktop viewport.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="do-grid">
+            <article class="do-card">
+              <strong>Do</strong>
+              <h3>Align related edges</h3>
+              <p>Headings, body copy, images and controls should share a small number of strong vertical lines.</p>
+            </article>
+            <article class="do-card avoid">
+              <strong>Avoid</strong>
+              <h3>Forcing every module into twelve columns</h3>
+              <p>The grid should simplify the page. A two-column relationship does not need twelve separate calculations.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="content-section" id="spacing" data-reveal>
+          <p class="section-kicker mono">04 / Spacing</p>
+          <h2>A limited rhythm creates hierarchy.</h2>
+          <p>The working set below reflects values already present in the interface. Use the nearest shared value before introducing a new one.</p>
+
+          <div class="token-list">
+            <div class="token-row">
+              <code>8px</code>
+              <span>Tight inline gaps, local navigation items and metadata separation.</span>
+              <button type="button" data-copy="8px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>12px</code>
+              <span>Label-to-content gaps and compact control spacing.</span>
+              <button type="button" data-copy="12px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>16px</code>
+              <span>Small-screen gutters, card internals and standard grid gaps.</span>
+              <button type="button" data-copy="16px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>24px</code>
+              <span>Default card padding and heading-to-copy relationships.</span>
+              <button type="button" data-copy="24px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>32px</code>
+              <span>Section internals, larger card padding and compact composition gaps.</span>
+              <button type="button" data-copy="32px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>48px</code>
+              <span>Major group separation and compact page gutters.</span>
+              <button type="button" data-copy="48px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>64px</code>
+              <span>Mobile section separation and document content entry.</span>
+              <button type="button" data-copy="64px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>72px</code>
+              <span>Default separation between adjacent documentation sections.</span>
+              <button type="button" data-copy="72px">Copy</button>
+            </div>
+            <div class="token-row">
+              <code>88–120px</code>
+              <span>Large section endings, page padding and major desktop transitions.</span>
+              <button type="button" data-copy="clamp(88px, 9vw, 120px)">Copy</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="responsive" data-reveal>
+          <p class="section-kicker mono">05 / Responsive behaviour</p>
+          <h2>Three thresholds, one continuous system.</h2>
+          <p>Breakpoints describe meaningful changes in composition. Values between them remain fluid, so intermediate widths should never feel like an unsupported “middle ground”.</p>
+
+          <table class="spec-table">
+            <thead>
+              <tr>
+                <th scope="col">Threshold</th>
+                <th scope="col">Purpose</th>
+                <th scope="col">Typical change</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1040px</th>
+                <td>Compact / tablet</td>
+                <td>Reduce gutters, simplify dense grids and stack wide hero compositions where needed.</td>
+              </tr>
+              <tr>
+                <th scope="row">800px</th>
+                <td>Small / touch-first</td>
+                <td>Move local navigation into a horizontal sticky rail, stack document columns and reduce header height.</td>
+              </tr>
+              <tr>
+                <th scope="row">560px</th>
+                <td>Narrow refinement</td>
+                <td>Collapse paired cards and complex grids to one column and simplify secondary branding text.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="rule">
+            <span class="rule-number">01</span>
+            <div>
+              <h3>Preserve the reading order</h3>
+              <p>CSS reflow must not create a different logical or keyboard order from the document.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">02</span>
+            <div>
+              <h3>Keep touch targets generous</h3>
+              <p>Controls should remain comfortably operable when the visual layout becomes denser. Do not shrink navigation simply to preserve a desktop row.</p>
+            </div>
+          </div>
+          <div class="rule">
+            <span class="rule-number">03</span>
+            <div>
+              <h3>Test intermediate widths</h3>
+              <p>Check the full resize range, especially around long headings, location diagrams, carousels and fixed navigation.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section" id="composition" data-reveal>
+          <p class="section-kicker mono">06 / Composition</p>
+          <h2>Whitespace is an active part of the identity.</h2>
+
+          <div class="do-grid">
+            <article class="do-card">
+              <strong>Do</strong>
+              <h3>Keep a strong visual entry point</h3>
+              <p>Each viewport should make the title, current section or primary piece of work immediately understandable.</p>
+            </article>
+            <article class="do-card avoid">
+              <strong>Avoid</strong>
+              <h3>Filling empty areas by default</h3>
+              <p>Open space supports the minimal identity and separates interface chrome from colourful work.</p>
+            </article>
+            <article class="do-card">
+              <strong>Do</strong>
+              <h3>Use overlap with a reason</h3>
+              <p>Glass captions may overlap imagery when they identify it, but the image should retain enough unobstructed space to remain the focus.</p>
+            </article>
+            <article class="do-card avoid">
+              <strong>Avoid</strong>
+              <h3>Absolute positioning core content</h3>
+              <p>Text and controls should participate in normal layout so they reflow reliably and remain accessible.</p>
+            </article>
+            <article class="do-card">
+              <strong>Do</strong>
+              <h3>Let modules share tokens</h3>
+              <p>Project cards, CV panels and documentation examples should use the same radii, shadows and gaps where their hierarchy matches.</p>
+            </article>
+            <article class="do-card avoid">
+              <strong>Avoid</strong>
+              <h3>Duplicating breakpoint rules</h3>
+              <p>If width clamping or a shared grid can solve the behaviour once, do not maintain separate tablet and mobile declarations.</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div data-manual-footer></div>
+  <script src="../app.js" defer></script>
+</body>
+</html>

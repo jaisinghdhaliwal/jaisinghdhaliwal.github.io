@@ -392,6 +392,6 @@ if (document.readyState === "complete") startCreateCarousels();
 else window.addEventListener("load", startCreateCarousels, { once: true });
 
 if ("serviceWorker" in navigator) {
-  const workerPath = document.body.dataset.project ? "../sw.js" : "./sw.js";
+  const workerPath = new URL("sw.js", document.currentScript.src);
   window.addEventListener("load", () => navigator.serviceWorker.register(workerPath));
 }

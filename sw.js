@@ -1,20 +1,19 @@
-const CACHE_NAME = "jai-portfolio-v98";
-const OFFLINE_URL = "./offline.html";
+const CACHE_NAME = "jai-portfolio-v100";
+const OFFLINE_URL = "./offline/";
 const APP_SHELL = [
   "./",
-  "./index.html",
-  "./create.html",
-  "./about.html",
+  "./create/",
+  "./about/",
   OFFLINE_URL,
   "./styles.css",
   "./app.js",
   "./projects.json",
   "./project.css",
   "./project.js",
-  "./projects/degree-show.html",
-  "./projects/gadjet-packaging.html",
-  "./projects/justdesign-show.html",
-  "./projects/gadjet-displays.html",
+  "./projects/degree-show/",
+  "./projects/gadjet-packaging/",
+  "./projects/justdesign-show/",
+  "./projects/gadjet-displays/",
   "./logo/logo-01.svg",
   "./logo/logo-name-white.svg",
   "./favicon.ico",

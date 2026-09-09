@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#f7f6f3">
+    <meta name="description" content="Material, glass and elevation guidance for Jai Singh Dhaliwal’s personal brand.">
+    <title>Material &amp; depth — Design</title>
+    <link rel="icon" href="../../favicon.ico" sizes="any">
+    <link rel="stylesheet" href="../../styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../app.js" defer></script>
+  </head>
+  <body data-page="material">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div data-manual-header></div>
+
+    <main id="main">
+      <header class="page-hero">
+        <div class="shell">
+          <p class="breadcrumbs"><a href="../">Design</a><i>/</i><span>Expression</span><i>/</i><span>Material &amp; depth</span></p>
+          <h1>Material &amp; depth</h1>
+          <p class="lede">Glass, light and shadow connect the identity to Jai’s interest in reflections and rendering. They should make hierarchy tangible, not make every surface compete.</p>
+        </div>
+      </header>
+
+      <div class="doc-layout">
+        <nav class="local-nav" aria-label="On this page">
+          <strong>On this page</strong>
+          <a href="#principle">Principle</a>
+          <a href="#glass">Glass</a>
+          <a href="#elevation">Elevation</a>
+          <a href="#corners">Corners</a>
+          <a href="#application">Application</a>
+          <a href="#misuse">Misuse</a>
+        </nav>
+
+        <div class="doc-content">
+          <section class="content-section" id="principle" data-reveal>
+            <p class="section-kicker mono">01 / Principle</p>
+            <h2>Depth with restraint.</h2>
+            <p>Material effects communicate layering: a caption rests above a project, navigation floats above a page and a CV panel groups secondary information. If an effect does not explain that relationship, remove it.</p>
+
+            <article class="rule">
+              <span class="rule-number">01</span>
+              <div><h3>One dominant raised layer</h3><p>A view should have a clear surface hierarchy. Do not stack several equally blurred panels inside one another.</p></div>
+            </article>
+            <article class="rule">
+              <span class="rule-number">02</span>
+              <div><h3>Light edges, dark shadows</h3><p>Near-white borders describe the lit edge. A low-opacity tint of the primary dark creates the shadow and keeps depth connected to the palette.</p></div>
+            </article>
+            <article class="rule">
+              <span class="rule-number">03</span>
+              <div><h3>Content remains opaque enough</h3><p>Blur may soften what sits behind a panel, but primary-dark text must stay crisp and readable on every image.</p></div>
+            </article>
+          </section>
+
+          <section class="content-section" id="glass" data-reveal>
+            <p class="section-kicker mono">02 / Glass</p>
+            <h2>A functional frosted surface.</h2>
+            <p>The standard glass recipe is warm, almost neutral and only slightly translucent. It is not a glossy decorative object.</p>
+
+            <div class="example">
+              <div class="example-title">Standard glass recipe</div>
+              <div class="component-grid">
+                <article class="component-card">
+                  <h3>Surface</h3>
+                  <p><code>rgba(248, 248, 246, .76)</code></p>
+                  <p>Use warm near-white so the panel belongs on the paper background.</p>
+                </article>
+                <article class="component-card">
+                  <h3>Optics</h3>
+                  <p><code>blur(24px) saturate(1.25)</code></p>
+                  <p>Blur establishes separation. Mild saturation prevents the content beneath from becoming muddy.</p>
+                </article>
+                <article class="component-card">
+                  <h3>Lit edge</h3>
+                  <p><code>1px solid rgba(255, 255, 255, .88)</code></p>
+                  <p>The border should be visible as a highlight, not as a grey outline.</p>
+                </article>
+                <article class="component-card">
+                  <h3>Content</h3>
+                  <p><code>#141A28</code></p>
+                  <p>Use the primary dark for all text and icons. Avoid translucent or coral body copy over imagery.</p>
+                </article>
+              </div>
+            </div>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Use for</th><td>Navigation, project captions and compact secondary panels.</td></tr>
+                <tr><th scope="row">Avoid for</th><td>Long article backgrounds, every section on a page, or effects baked into the master logo.</td></tr>
+                <tr><th scope="row">Fallback</th><td>When backdrop blur is unavailable, retain an opaque warm-white surface, border and shadow.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="content-section" id="elevation" data-reveal>
+            <p class="section-kicker mono">03 / Elevation</p>
+            <h2>Three levels are enough.</h2>
+            <p>Use elevation consistently so people can infer which surfaces are structural, interactive or temporarily prominent.</p>
+
+            <div class="elevation-grid" aria-label="Three elevation levels">
+              <article class="elevation-card"><p class="mono">Level 0</p><h3>Resting</h3><p>Border only. Use for static grouping and cards that are not interactive.</p></article>
+              <article class="elevation-card"><p class="mono">Level 1</p><h3>Raised</h3><p>Use for glass navigation, captions and sidebar panels.</p></article>
+              <article class="elevation-card"><p class="mono">Level 2</p><h3>Focused</h3><p>Use temporarily for a hovered project or the most important floating control.</p></article>
+            </div>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Level 0</th><td>1px structural line with no shadow.</td></tr>
+                <tr><th scope="row">Level 1</th><td><code>0 8px 24px rgba(17,29,56,.14)</code>, plus a subtle inset hairline.</td></tr>
+                <tr><th scope="row">Level 2</th><td><code>0 18px 38px rgba(15,22,37,.14)</code> and <code>0 3px 8px rgba(15,22,37,.12)</code>.</td></tr>
+                <tr><th scope="row">Project focus</th><td><code>0 30px 58px rgba(15,22,37,.24)</code> and <code>0 9px 18px rgba(15,22,37,.16)</code>. Use only during hover or keyboard focus.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="content-section" id="corners" data-reveal>
+            <p class="section-kicker mono">04 / Corners</p>
+            <h2>Soft geometry, not bubbles.</h2>
+            <p>Rounded corners connect interface controls with the continuous geometry of the J/SD mark. The radius follows the size and purpose of the surface.</p>
+
+            <table class="spec-table">
+              <tbody>
+                <tr><th scope="row">Small / 10–13px</th><td>Compact controls, project captions and close-fitting panels.</td></tr>
+                <tr><th scope="row">Medium / 18–20px</th><td>Project cards, CV panels and standard content cards.</td></tr>
+                <tr><th scope="row">Large / 22–28px</th><td>Footer and large glass surfaces.</td></tr>
+                <tr><th scope="row">Pill / 999px</th><td>Navigation, segmented controls, status and compact actions only.</td></tr>
+                <tr><th scope="row">Mobile</th><td>Reduce the base project radius from 18px to 14px so cards do not feel inflated on narrow screens.</td></tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="content-section" id="application" data-reveal>
+            <p class="section-kicker mono">05 / Application</p>
+            <h2>Put the effect where layers meet.</h2>
+
+            <div class="component-grid">
+              <article class="component-card">
+                <h3>Project caption</h3>
+                <div class="demo-project" role="img" aria-label="Project card with a frosted caption">
+                  <div class="demo-caption">GadJet Display Visualiser <span>2026</span></div>
+                </div>
+                <p>The image owns the tile. Glass is limited to the inset title and year.</p>
+              </article>
+              <article class="component-card">
+                <h3>Navigation</h3>
+                <div class="demo-nav" aria-label="Example portfolio navigation"><span class="active">Work</span><span>Create</span><span>CV</span></div>
+                <p>The outer frosted pill establishes elevation; a flat coral pill communicates the current page.</p>
+              </article>
+            </div>
+
+            <article class="application-card">
+              <div class="application-visual media-visual"><img src="../../media/create/scenes/just-design-blender.AVIF" alt="Rendered Just Design virtual exhibition scene"></div>
+              <div class="application-copy"><h3>Let the work demonstrate material</h3><p>Reflections, ray-traced light and rendered surfaces belong in project imagery. Interface effects should support those interests rather than imitate them everywhere.</p></div>
+            </article>
+          </section>
+
+          <section class="content-section" id="misuse" data-reveal>
+            <p class="section-kicker mono">06 / Misuse</p>
+            <h2>Keep glass believable.</h2>
+            <div class="do-grid">
+              <article class="do-card"><strong>Do</strong><p>Use one clear panel, a light border, primary-dark copy and a shadow proportional to its elevation.</p></article>
+              <article class="do-card avoid"><strong>Avoid</strong><p>Lens distortions, thick glowing borders, rainbow reflections, excessive transparency and multiple floating blobs.</p></article>
+              <article class="do-card"><strong>Do</strong><p>Increase shadow and scale together on interactive project cards, with a smooth transition.</p></article>
+              <article class="do-card avoid"><strong>Avoid</strong><p>Applying hover growth to touch navigation or using motion that shifts surrounding layout.</p></article>
+              <article class="do-card"><strong>Do</strong><p>Keep the supplied logo artwork flat and unchanged.</p></article>
+              <article class="do-card avoid"><strong>Avoid</strong><p>Baking glass, gradients, reflections or shadows into logo artwork.</p></article>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div data-manual-footer></div>
+  </body>
+</html>

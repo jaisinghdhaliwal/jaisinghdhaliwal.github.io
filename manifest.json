@@ -4,7 +4,7 @@
   "short_name": "Jai / SD",
   "description": "A multidisciplinary graphic designer working across branding, packaging, 3D and motion, bringing physical products into interactive digital experiences.",
   "lang": "en-GB",
-  "start_url": "./index.html",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
@@ -24,17 +24,17 @@
     {
       "name": "Selected work",
       "short_name": "Work",
-      "url": "./index.html"
+      "url": "./"
     },
     {
       "name": "Create",
       "short_name": "Create",
-      "url": "./create.html"
+      "url": "./create/"
     },
     {
       "name": "Curriculum vitae",
       "short_name": "CV",
-      "url": "./about.html"
+      "url": "./about/"
     }
   ]
 }

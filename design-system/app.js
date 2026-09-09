@@ -1,36 +1,41 @@
+const designRoot = new URL("./", document.currentScript.src);
+const siteRoot = new URL("../", designRoot);
+const designUrl = (path = "") => new URL(path, designRoot).href;
+const siteUrl = (path = "") => new URL(path, siteRoot).href;
+
 const NAV_GROUPS = [
   {
     title: "Start here",
     links: [
-      ["index.html", "Overview", "overview"],
-      ["principles.html", "Principles", "principles"],
-      ["accessibility.html", "Accessibility", "accessibility"]
+      ["", "Overview", "overview"],
+      ["principles/", "Principles", "principles"],
+      ["accessibility/", "Accessibility", "accessibility"]
     ]
   },
   {
     title: "Foundations",
     links: [
-      ["logo.html", "Logo", "logo"],
-      ["colour.html", "Colour", "colour"],
-      ["typography.html", "Typography", "typography"],
-      ["layout.html", "Layout & spacing", "layout"]
+      ["logo/", "Logo", "logo"],
+      ["colour/", "Colour", "colour"],
+      ["typography/", "Typography", "typography"],
+      ["layout/", "Layout & spacing", "layout"]
     ]
   },
   {
     title: "Expression",
     links: [
-      ["imagery.html", "Imagery", "imagery"],
-      ["material.html", "Material & depth", "material"],
-      ["motion.html", "Motion", "motion"],
-      ["voice.html", "Voice & content", "voice"]
+      ["imagery/", "Imagery", "imagery"],
+      ["material/", "Material & depth", "material"],
+      ["motion/", "Motion", "motion"],
+      ["voice/", "Voice & content", "voice"]
     ]
   },
   {
     title: "System",
     links: [
-      ["components.html", "Components", "components"],
-      ["applications.html", "Applications", "applications"],
-      ["resources.html", "Resources", "resources"]
+      ["components/", "Components", "components"],
+      ["applications/", "Applications", "applications"],
+      ["resources/", "Resources", "resources"]
     ]
   }
 ];
@@ -40,7 +45,7 @@ function linkList(groups, currentPage) {
     <section class="menu-group">
       <h3>${group.title}</h3>
       ${group.links.map(([href, label, id]) => `
-        <a href="${href}"${id === currentPage ? ' aria-current="page"' : ""}>${label}</a>
+        <a href="${designUrl(href)}"${id === currentPage ? ' aria-current="page"' : ""}>${label}</a>
       `).join("")}
     </section>
   `).join("");
@@ -63,8 +68,8 @@ function mountChrome() {
             <span class="menu-icon" aria-hidden="true"><span></span></span>
             <span class="mono">Menu</span>
           </button>
-          <a class="manual-brand" href="index.html" aria-label="Design manual home">
-            <img class="manual-brand-mark" src="../logo/logo-01.svg" alt="">
+          <a class="manual-brand" href="${designUrl()}" aria-label="Design manual home">
+            <img class="manual-brand-mark" src="${siteUrl("logo/logo-01.svg")}" alt="">
           </a>
         </div>
       </header>
@@ -81,21 +86,21 @@ function mountChrome() {
     footerTarget.innerHTML = `
       <footer class="site-footer">
         <div class="footer-inner">
-          <a class="footer-brand" href="../index.html" aria-label="Jai Singh Dhaliwal - Work">
-            <img src="../logo/logo-name-white.svg" alt="">
+          <a class="footer-brand" href="${siteUrl()}" aria-label="Jai Singh Dhaliwal - Work">
+            <img src="${siteUrl("logo/logo-name-white.svg")}" alt="">
           </a>
           <nav class="footer-group" aria-label="Footer navigation">
             <p class="footer-heading">Explore</p>
-            <a href="../index.html">Work</a>
-            <a href="../create.html">Create</a>
-            <a href="../about.html">CV</a>
-            <a href="../Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" download>Download CV PDF</a>
+            <a href="${siteUrl()}">Work</a>
+            <a href="${siteUrl("create/")}">Create</a>
+            <a href="${siteUrl("about/")}">CV</a>
+            <a href="${siteUrl("Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf")}" download>Download CV PDF</a>
           </nav>
           <div class="footer-group">
             <p class="footer-heading">Design</p>
-            <a href="index.html">Overview</a>
-            <a href="principles.html">Principles</a>
-            <a href="resources.html">Resources</a>
+            <a href="${designUrl()}">Overview</a>
+            <a href="${designUrl("principles/")}">Principles</a>
+            <a href="${designUrl("resources/")}">Resources</a>
           </div>
           <div class="footer-meta">
             <span>&copy; <span data-year></span> Jai Singh Dhaliwal</span>
