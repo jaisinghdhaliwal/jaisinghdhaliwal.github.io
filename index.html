@@ -102,7 +102,7 @@
         <span></span><span></span><span></span><span></span>
       </div>
       <a class="wordmark" href="./" aria-label="Jai Singh Dhaliwal, home">
-        <img src="logo/logo-01.svg" alt="">
+        <img src="logo/logo-01.svg" alt="" width="480" height="240">
       </a>
       <nav class="site-nav glass" aria-label="Primary navigation">
         <span class="nav-active-pill" aria-hidden="true"></span>
@@ -172,25 +172,25 @@
         <div class="project-grid" id="project-grid" aria-live="polite">
           <div class="project-card">
             <a href="projects/gadjet-displays/" aria-label="View GadJet Display Visualiser">
-              <img class="project-video" src="media/projects/gadjet-displays/thumb-720.avif" alt="GadJet Display Visualiser project preview" loading="lazy" decoding="async">
+              <img class="project-video" src="media/projects/gadjet-displays/thumb-720.avif" alt="GadJet Display Visualiser project preview" width="720" height="900" loading="lazy" decoding="async">
               <span class="project-caption glass"><strong>GadJet Display Visualiser</strong><time>2026</time></span>
             </a>
           </div>
           <div class="project-card">
             <a href="projects/gadjet-packaging/" aria-label="View GadJet Packaging">
-              <img class="project-video" src="media/projects/gadjet-packaging/thumb-720.avif" alt="GadJet Packaging project preview" loading="lazy" decoding="async">
+              <img class="project-video" src="media/projects/gadjet-packaging/thumb-720.avif" alt="GadJet Packaging project preview" width="720" height="900" loading="lazy" decoding="async">
               <span class="project-caption glass"><strong>GadJet Packaging</strong><time>2026</time></span>
             </a>
           </div>
           <div class="project-card">
             <a href="projects/degree-show/" aria-label="View Degree Show Exhibition">
-              <img class="project-video" src="media/projects/degree-show/thumb-720.avif" alt="Degree Show Exhibition project preview" loading="lazy" decoding="async">
+              <img class="project-video" src="media/projects/degree-show/thumb-720.avif" alt="Degree Show Exhibition project preview" width="720" height="900" loading="lazy" decoding="async">
               <span class="project-caption glass"><strong>Degree Show Exhibition</strong><time>2025</time></span>
             </a>
           </div>
           <div class="project-card">
             <a href="projects/justdesign-show/" aria-label="View JustDesign.Show">
-              <img class="project-video" src="media/projects/justdesign-show/thumb-720.avif" alt="JustDesign.Show project preview" loading="lazy" decoding="async">
+              <img class="project-video" src="media/projects/justdesign-show/thumb-720.avif" alt="JustDesign.Show project preview" width="720" height="900" loading="lazy" decoding="async">
               <span class="project-caption glass"><strong>JustDesign.Show</strong><time>2024</time></span>
             </a>
           </div>
@@ -213,55 +213,6 @@
               document.addEventListener("pointerdown", () => video.play(), { once: true });
             });
           }, { once: true });
-        }
-
-        function setupNavigationLayoutTransition() {
-          const navigation = document.querySelector(".site-nav");
-          const mobile = window.matchMedia("(max-width: 640px)");
-          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-          if (!navigation || typeof navigation.animate !== "function") return;
-
-          let previousMobile = mobile.matches;
-          let previousBounds = navigation.getBoundingClientRect();
-          let resizeFrame;
-          let currentAnimation;
-
-          window.addEventListener("resize", () => {
-            window.cancelAnimationFrame(resizeFrame);
-            resizeFrame = window.requestAnimationFrame(() => {
-              const nextMobile = mobile.matches;
-              const nextBounds = navigation.getBoundingClientRect();
-
-              if (previousMobile !== nextMobile && !reducedMotion.matches) {
-                currentAnimation?.cancel();
-                navigation.style.willChange = "transform";
-
-                const animation = navigation.animate([
-                  {
-                    transformOrigin: "top left",
-                    transform: `translate(${previousBounds.left - nextBounds.left}px, ${previousBounds.top - nextBounds.top}px) scale(${previousBounds.width / nextBounds.width}, ${previousBounds.height / nextBounds.height})`
-                  },
-                  { transformOrigin: "top left", transform: "none" }
-                ], {
-                  duration: 520,
-                  easing: "cubic-bezier(.22, 1, .36, 1)"
-                });
-
-                currentAnimation = animation;
-                animation.finished.catch(() => {}).finally(() => {
-                  if (currentAnimation !== animation) return;
-                  currentAnimation = null;
-                  navigation.style.removeProperty("will-change");
-                  previousBounds = navigation.getBoundingClientRect();
-                });
-              } else if (!currentAnimation) {
-                previousBounds = nextBounds;
-              }
-
-              previousMobile = nextMobile;
-            });
-          }, { passive: true });
         }
 
         function setupHeroFocusMode() {
@@ -302,45 +253,6 @@
           }, { passive: true });
           desktop.addEventListener("change", clearFocusMode);
           clearFocusMode();
-        }
-
-        function setupHeroLayoutTransition() {
-          const hero = document.querySelector(".hero");
-          const content = hero?.querySelector(".hero-content");
-          const mobile = window.matchMedia("(max-width: 640px)");
-          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-          if (!content || typeof content.animate !== "function") return;
-
-          let previousMobile = mobile.matches;
-          let previousPosition = content.getBoundingClientRect();
-          let resizeFrame;
-          let animation;
-
-          window.addEventListener("resize", () => {
-            window.cancelAnimationFrame(resizeFrame);
-            resizeFrame = window.requestAnimationFrame(() => {
-              const nextMobile = mobile.matches;
-              const nextPosition = content.getBoundingClientRect();
-
-              if (previousMobile !== nextMobile && !reducedMotion.matches) {
-                hero.classList.remove("is-focus-mode");
-                animation?.cancel();
-                animation = content.animate([
-                  {
-                    transform: `translate(${previousPosition.left - nextPosition.left}px, ${previousPosition.top - nextPosition.top}px)`
-                  },
-                  { transform: "translate(0, 0)" }
-                ], {
-                  duration: 480,
-                  easing: "cubic-bezier(.22, 1, .36, 1)"
-                });
-              }
-
-              previousMobile = nextMobile;
-              previousPosition = nextPosition;
-            });
-          }, { passive: true });
         }
 
         const escapeProjectHtml = (value = "") =>
@@ -403,65 +315,6 @@
           playVideos();
         }
 
-        function setupProjectLayoutTransition(grid) {
-          const cards = [...grid.querySelectorAll(".project-card")];
-          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-          if (!cards.length || reducedMotion.matches || typeof cards[0].animate !== "function") return;
-
-          const cardAnimations = new Map();
-          const columnCount = () => getComputedStyle(grid).gridTemplateColumns.split(" ").length;
-          const measureCards = () => new Map(cards.map((card) => [card, {
-            left: card.offsetLeft,
-            top: card.offsetTop,
-            width: card.offsetWidth,
-            height: card.offsetHeight
-          }]));
-
-          let previousColumns = columnCount();
-          let previousPositions = measureCards();
-          let resizeFrame;
-
-          window.addEventListener("resize", () => {
-            window.cancelAnimationFrame(resizeFrame);
-            resizeFrame = window.requestAnimationFrame(() => {
-              const nextColumns = columnCount();
-              const nextPositions = measureCards();
-              const changesColumnCount = previousColumns !== nextColumns;
-
-              if (changesColumnCount) {
-                cards.forEach((card) => {
-                  const previous = previousPositions.get(card);
-                  const next = nextPositions.get(card);
-                  if (!previous || !next) return;
-
-                  cardAnimations.get(card)?.cancel();
-                  card.style.zIndex = "1";
-                  const animation = card.animate([
-                    {
-                      transformOrigin: "top left",
-                      transform: `translate(${previous.left - next.left}px, ${previous.top - next.top}px) scale(${previous.width / next.width}, ${previous.height / next.height})`
-                    },
-                    { transformOrigin: "top left", transform: "none" }
-                  ], {
-                    duration: 520,
-                    easing: "cubic-bezier(.22, 1, .36, 1)"
-                  });
-
-                  cardAnimations.set(card, animation);
-                  animation.finished.catch(() => {}).finally(() => {
-                    if (cardAnimations.get(card) !== animation) return;
-                    cardAnimations.delete(card);
-                    card.style.removeProperty("z-index");
-                  });
-                });
-              }
-
-              previousColumns = nextColumns;
-              previousPositions = nextPositions;
-            });
-          }, { passive: true });
-        }
-
         async function renderProjects() {
           const grid = document.querySelector("#project-grid");
 
@@ -476,7 +329,7 @@
               const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
               const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
               const projectMedia = project.video === false
-                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" loading="lazy" decoding="async">`
+                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" width="720" height="900" loading="lazy" decoding="async">`
                 : `<video
                       class="project-video"
                       autoplay
@@ -508,7 +361,6 @@
             }).join("");
             setupProjectReveal(grid);
             setupProjectPlayback(grid);
-            setupProjectLayoutTransition(grid);
           } catch (error) {
             console.error(error);
             grid.innerHTML = `
@@ -521,9 +373,7 @@
         }
 
         setupHeroShowreel();
-        setupNavigationLayoutTransition();
         setupHeroFocusMode();
-        setupHeroLayoutTransition();
         renderProjects();
         if ("serviceWorker" in navigator) {
           window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
@@ -534,7 +384,7 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <a class="footer-brand" href="./" aria-label="Jai Singh Dhaliwal - Work">
-          <img src="logo/logo-name-white.svg" alt="">
+          <img src="logo/logo-name-white.svg" alt="" width="2261" height="240">
         </a>
         <nav class="footer-group" aria-label="Footer navigation">
           <p class="footer-heading">Explore</p>

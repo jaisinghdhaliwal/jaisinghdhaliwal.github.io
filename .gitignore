@@ -3,6 +3,7 @@
 **/.DS_Store
 
 # Local project-page source and documentation
+/_source/
 /project-content/
 /PROJECT-PAGES.md
 

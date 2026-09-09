@@ -11,57 +11,6 @@ function updateActiveNavigation() {
 
 updateActiveNavigation();
 
-function setupNavigationLayoutTransition() {
-  const navigation = document.querySelector(".site-nav");
-  const mobile = window.matchMedia("(max-width: 640px)");
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  if (!navigation || typeof navigation.animate !== "function") return;
-
-  let previousMobile = mobile.matches;
-  let previousBounds = navigation.getBoundingClientRect();
-  let resizeFrame;
-  let currentAnimation;
-
-  window.addEventListener("resize", () => {
-    window.cancelAnimationFrame(resizeFrame);
-    resizeFrame = window.requestAnimationFrame(() => {
-      const nextMobile = mobile.matches;
-      const nextBounds = navigation.getBoundingClientRect();
-
-      if (previousMobile !== nextMobile && !reducedMotion.matches) {
-        currentAnimation?.cancel();
-        navigation.style.willChange = "transform";
-
-        const animation = navigation.animate([
-          {
-            transformOrigin: "top left",
-            transform: `translate(${previousBounds.left - nextBounds.left}px, ${previousBounds.top - nextBounds.top}px) scale(${previousBounds.width / nextBounds.width}, ${previousBounds.height / nextBounds.height})`
-          },
-          { transformOrigin: "top left", transform: "none" }
-        ], {
-          duration: 520,
-          easing: "cubic-bezier(.22, 1, .36, 1)"
-        });
-
-        currentAnimation = animation;
-        animation.finished.catch(() => {}).finally(() => {
-          if (currentAnimation !== animation) return;
-          currentAnimation = null;
-          navigation.style.removeProperty("will-change");
-          previousBounds = navigation.getBoundingClientRect();
-        });
-      } else if (!currentAnimation) {
-        previousBounds = nextBounds;
-      }
-
-      previousMobile = nextMobile;
-    });
-  }, { passive: true });
-}
-
-setupNavigationLayoutTransition();
-
 function setupDragRails() {
   document.querySelectorAll(".drag-rail").forEach((rail) => {
     let dragging = false;
