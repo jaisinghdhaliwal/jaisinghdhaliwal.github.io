@@ -154,7 +154,7 @@ function setupCopyButtons() {
 }
 
 function setupLocalNav() {
-  const nav = document.querySelector(".local-nav");
+  const nav = document.querySelector(".case-local-nav");
   if (!nav) return;
   const links = [...nav.querySelectorAll("a[href^='#']")];
   const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
@@ -165,7 +165,12 @@ function setupLocalNav() {
       .filter((entry) => entry.isIntersecting)
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
     if (!visible) return;
-    links.forEach((link) => link.classList.toggle("is-active", link.hash === `#${visible.target.id}`));
+    links.forEach((link) => {
+      const active = link.hash === `#${visible.target.id}`;
+      link.classList.toggle("is-active", active);
+      if (active) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
   }, { rootMargin: "-18% 0px -65% 0px", threshold: [0, .2, .5, 1] });
   sections.forEach((section) => observer.observe(section));
 }

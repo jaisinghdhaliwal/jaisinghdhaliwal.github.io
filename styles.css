@@ -104,6 +104,24 @@ button, input { font: inherit; }
   font: 700 var(--button-size)/1.2 var(--font-mono);
   text-transform: uppercase;
 }
+
+/* Shared project and documentation section navigation */
+.case-local-nav {
+  --case-nav-top: clamp(156px, 16vw, 208px);
+  position: sticky; top: var(--case-nav-top); align-self: start;
+  max-height: calc(100vh - var(--case-nav-top) - 28px); overflow-y: auto;
+}
+.case-local-nav strong {
+  display: block; margin-bottom: 18px; color: var(--coral);
+}
+.case-local-nav a {
+  display: block; padding: 9px 0 9px 14px; color: var(--ink); opacity: .68;
+  border-left: 2px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease, opacity 160ms ease;
+}
+.case-local-nav a:hover,
+.case-local-nav a:focus-visible,
+.case-local-nav a.is-active { color: var(--ink); border-color: var(--coral); opacity: 1; }
 .scan-item figcaption, .skills-list dt, .certification-list time { color: var(--coral); }
 .page-shell { width: var(--shell); margin-inline: auto; }
 .glass {
@@ -711,6 +729,7 @@ body[data-page="cv"] #linkedin {
 @media (max-width: 640px) {
   :root { --shell: calc(100% - 32px); --radius: 14px; }
   body { padding-bottom: 0; }
+  .case-local-nav { display: none; }
   .header-gradient-blur, .hero-focus-label, .contact-lines span { display: none; }
   .site-header {
     inset: 0 0 auto;
