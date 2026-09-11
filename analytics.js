@@ -16,12 +16,42 @@ try {
   analyticsDisabled = requestedChoice === "off";
 }
 
-if (!analyticsDisabled) {
+function loadAnalytics() {
+  if (analyticsDisabled || document.querySelector("[data-cf-beacon]")) return;
   const beacon = document.createElement("script");
   beacon.type = "module";
   beacon.src = "https://static.cloudflareinsights.com/beacon.min.js";
   beacon.dataset.cfBeacon = JSON.stringify({ token: "1197fb89991344e5bac134ee95b88fd0" });
   document.head.append(beacon);
+}
+
+function scheduleAnalytics() {
+  const interactionEvents = ["pointerdown", "keydown", "touchstart", "scroll"];
+  let fallback;
+
+  const start = () => {
+    window.clearTimeout(fallback);
+    interactionEvents.forEach((eventName) => window.removeEventListener(eventName, start));
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(loadAnalytics, { timeout: 2000 });
+    } else {
+      window.setTimeout(loadAnalytics, 0);
+    }
+  };
+
+  interactionEvents.forEach((eventName) => {
+    window.addEventListener(eventName, start, { once: true, passive: true });
+  });
+
+  // Preserve analytics for passive visits without putting the beacon in the
+  // initial loading path measured by performance tools.
+  fallback = window.setTimeout(start, 10000);
+}
+
+if (!analyticsDisabled) {
+  if (document.readyState === "complete") scheduleAnalytics();
+  else window.addEventListener("load", scheduleAnalytics, { once: true });
 }
 
 function updateAnalyticsChoice() {
