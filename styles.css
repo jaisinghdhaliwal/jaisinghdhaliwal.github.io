@@ -455,7 +455,8 @@ body[data-page="cv"] #linkedin {
   column-gap: clamp(52px, 8vw, 120px); row-gap: 54px;
   width: var(--shell); margin-inline: auto; padding-block: 64px 30px;
 }
-.footer-brand { align-self: start; width: min(100%, 430px); }
+.footer-brand-block { display: grid; align-self: start; justify-items: start; gap: 22px; }
+.footer-brand { width: min(100%, 430px); }
 .footer-brand img { width: 100%; height: auto; }
 .footer-group { display: grid; align-content: start; justify-items: start; gap: 10px; }
 .footer-heading { margin: 0 0 8px; color: var(--coral); }
@@ -474,6 +475,11 @@ body[data-page="cv"] #linkedin {
   padding-top: 24px; border-top: 1px solid rgba(247, 246, 243, 0.25);
   color: rgba(247, 246, 243, 0.7);
 }
+.footer-analytics {
+  max-width: 48ch; margin: 0; color: var(--paper);
+  font: 400 12px/1.55 var(--font-body); text-transform: none;
+}
+.footer-analytics a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ==========================================================================
    CREATE PAGE - introduction, photography, scans and scenes

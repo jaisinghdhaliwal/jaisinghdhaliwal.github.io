@@ -34,6 +34,7 @@ const NAV_GROUPS = [
     title: "System",
     links: [
       ["components/", "Components", "components"],
+      ["performance/", "Performance", "performance"],
       ["applications/", "Applications", "applications"],
       ["resources/", "Resources", "resources"]
     ]
@@ -86,24 +87,27 @@ function mountChrome() {
     footerTarget.innerHTML = `
       <footer class="site-footer">
         <div class="footer-inner">
-          <a class="footer-brand" href="${siteUrl()}" aria-label="Jai Singh Dhaliwal - Work">
-            <img src="${siteUrl("logo/logo-name-white.svg")}" alt="">
-          </a>
+          <div class="footer-brand-block">
+            <a class="footer-brand" href="${siteUrl()}" aria-label="Jai Singh Dhaliwal - Work">
+              <img src="${siteUrl("logo/logo-name-white.svg")}" alt="" width="2261" height="240">
+            </a>
+            <p class="footer-analytics">Privacy-first <a href="https://www.cloudflare.com/web-analytics/" rel="noreferrer">Cloudflare Web Analytics</a> measures anonymous page views and performance without cookies or personal data. <a href="?analytics=off" data-analytics-choice>Opt out of analytics</a>; this preference is saved only in your browser.</p>
+          </div>
           <nav class="footer-group" aria-label="Footer navigation">
             <p class="footer-heading">Explore</p>
             <a href="${siteUrl()}">Work</a>
             <a href="${siteUrl("create/")}">Create</a>
             <a href="${siteUrl("about/")}">CV</a>
-            <a href="${siteUrl("Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf")}" download>Download CV PDF</a>
+            <a href="${siteUrl("Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf")}" target="_blank" rel="noreferrer">Download CV PDF</a>
           </nav>
           <div class="footer-group">
-            <p class="footer-heading">Design</p>
-            <a href="${designUrl()}">Overview</a>
-            <a href="${designUrl("principles/")}">Principles</a>
-            <a href="${designUrl("resources/")}">Resources</a>
+            <p class="footer-heading">Contact</p>
+            <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
+            <a href="tel:+447455794117">+44 7455 794117</a>
+            <a href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
           </div>
           <div class="footer-meta">
-            <span>&copy; <span data-year></span> Jai Singh Dhaliwal</span>
+            <span>&copy; 2026 Jai Singh Dhaliwal</span>
           </div>
         </div>
       </footer>
