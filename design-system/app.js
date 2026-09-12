@@ -69,12 +69,12 @@ function mountChrome() {
             <span class="menu-icon" aria-hidden="true"><span></span></span>
             <span class="mono">Menu</span>
           </button>
-          <a class="manual-brand" href="${designUrl()}" aria-label="Design manual home">
+          <a class="manual-brand" href="${designUrl()}" aria-label="Design system home">
             <img class="manual-brand-mark" src="${siteUrl("logo/logo-01.svg")}" alt="">
           </a>
         </div>
       </header>
-      <nav class="global-menu" id="global-menu" aria-label="Design manual navigation">
+      <nav class="global-menu" id="global-menu" aria-label="Design system navigation">
         <div class="global-menu-inner">
           <h2 class="menu-title">Navigation.</h2>
           <div class="menu-columns">${linkList(NAV_GROUPS, page)}</div>

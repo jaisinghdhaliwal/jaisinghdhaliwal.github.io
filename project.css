@@ -61,8 +61,8 @@
 .case-image-set figcaption { margin-top: 14px; color: var(--coral); }
 .case-placeholder {
   display: grid; place-content: center; gap: 8px; min-height: min(56vw, 680px); padding: 32px;
-  border: 1px dashed color-mix(in srgb, var(--coral) 55%, var(--ink)); border-radius: var(--radius);
-  color: var(--ink); text-align: center;
+  border: 1px dashed color-mix(in srgb, var(--coral) 55%, var(--navy)); border-radius: var(--radius);
+  color: var(--navy); text-align: center;
   background: linear-gradient(135deg, var(--coral-soft), var(--paper));
 }
 .case-placeholder span { color: var(--coral); font: 700 var(--label-size)/1.2 var(--font-mono); text-transform: uppercase; }

@@ -57,7 +57,6 @@
 }
 
 :root {
-  --ink: #151923;
   --navy: #141a28;
   --paper: #f7f6f3;
   --white: #fff;
@@ -83,7 +82,7 @@ html {
 }
 body {
   margin: 0;
-  color: var(--ink);
+  color: var(--navy);
   background: var(--paper);
   font-family: var(--font-body);
   font-size: 16px;
@@ -115,13 +114,13 @@ button, input { font: inherit; }
   display: block; margin-bottom: 18px; color: var(--coral);
 }
 .case-local-nav a {
-  display: block; padding: 9px 0 9px 14px; color: var(--ink); opacity: .68;
+  display: block; padding: 9px 0 9px 14px; color: var(--navy); opacity: .68;
   border-left: 2px solid transparent;
   transition: color 160ms ease, border-color 160ms ease, opacity 160ms ease;
 }
 .case-local-nav a:hover,
 .case-local-nav a:focus-visible,
-.case-local-nav a.is-active { color: var(--ink); border-color: var(--coral); opacity: 1; }
+.case-local-nav a.is-active { color: var(--navy); border-color: var(--coral); opacity: 1; }
 .scan-item figcaption, .skills-list dt, .certification-list time { color: var(--coral); }
 .page-shell { width: var(--shell); margin-inline: auto; }
 .glass {
@@ -408,7 +407,7 @@ body[data-page="cv"] #linkedin {
 .work-section { padding-block: 26px 72px; }
 .section-heading { display: flex; align-items: center; gap: 22px; margin-bottom: 26px; }
 .section-heading h2 { flex: 0 1 auto; min-width: 0; margin: 0; color: var(--coral); }
-.section-heading span { flex: 1 1 28px; min-width: 28px; height: 1px; background: var(--ink); opacity: 0.7; }
+.section-heading span { flex: 1 1 28px; min-width: 28px; height: 1px; background: var(--navy); }
 .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .project-card { min-width: 0; }
 @keyframes project-in {
@@ -474,7 +473,7 @@ body[data-page="cv"] #linkedin {
 
 .site-footer {
   position: relative; z-index: 5; width: 100%; margin: 0;
-  color: var(--paper); background: var(--ink);
+  color: var(--paper); background: var(--navy);
 }
 .footer-inner {
   display: grid; grid-template-columns: minmax(280px, 1fr) auto auto;
@@ -542,7 +541,7 @@ body[data-page="cv"] #linkedin {
 .create-section:last-of-type { padding-bottom: 72px; }
 .country-tabs { display: flex; gap: 70px; margin: 8px 0 42px; }
 .country-tabs button {
-  padding: 10px 0; border: 0; border-bottom: 2px solid transparent; color: var(--ink);
+  padding: 10px 0; border: 0; border-bottom: 2px solid transparent; color: var(--navy);
   background: transparent; white-space: nowrap; cursor: pointer;
   transition: color 300ms ease, border-color 300ms ease, transform 300ms cubic-bezier(.22, 1, .36, 1);
 }
@@ -609,7 +608,7 @@ body[data-page="cv"] #linkedin {
   position: absolute; z-index: 1;
   top: max(18px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right));
   padding: 10px 14px; border: 1px solid rgba(255, 255, 255, .75); border-radius: 999px;
-  color: var(--ink); background: rgba(255, 255, 255, .9); cursor: pointer;
+  color: var(--navy); background: rgba(255, 255, 255, .9); cursor: pointer;
   font: 700 var(--ui-size)/1.2 var(--font-mono); text-transform: uppercase;
 }
 .scan-section { background: var(--coral-soft); }
@@ -646,7 +645,7 @@ body[data-page="cv"] #linkedin {
 }
 .scene-mode-label {
   position: absolute; z-index: 4; top: 14px; left: 14px; padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, .72); border-radius: 10px; color: var(--ink);
+  border: 1px solid rgba(255, 255, 255, .72); border-radius: 10px; color: var(--navy);
   background: rgba(255, 255, 255, .78); box-shadow: var(--shadow);
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   font: 700 var(--label-size)/1.2 var(--font-mono); text-transform: uppercase;
@@ -688,7 +687,7 @@ body[data-page="cv"] #linkedin {
   background: rgba(248, 248, 246, .64); box-shadow: 0 12px 30px rgba(17, 29, 56, .08);
 }
 .cv-side-block h3 {
-  margin: 18px 0 5px; color: var(--ink);
+  margin: 18px 0 5px; color: var(--navy);
 }
 .cv-side-block > .section-heading + h3 { margin-top: 0; }
 .cv-side-block h3 + p { margin-top: 0; }
@@ -696,7 +695,7 @@ body[data-page="cv"] #linkedin {
 .cv-side-block > p:last-child { margin-bottom: 0; }
 .skills-list { display: grid; gap: 18px; margin: 0; }
 .skills-list div { display: grid; gap: 5px; }
-.skills-list dt { color: var(--ink); }
+.skills-list dt { color: var(--navy); }
 .certification-list { display: grid; gap: 15px; margin: 0; padding: 0; list-style: none; }
 .certification-list li {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px;
