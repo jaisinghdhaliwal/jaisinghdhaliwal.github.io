@@ -11,6 +11,122 @@ function updateActiveNavigation() {
 
 updateActiveNavigation();
 
+function setupButtonMotion() {
+  const preference = matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
+  if (!preference.matches) return;
+  const items = [...document.querySelectorAll("[data-button-motion]")]
+    .map((button) => ({
+      button,
+      label: button.querySelector(".button-label"),
+      box: null,
+      x: 0, y: 0,
+      velocityX: 0, velocityY: 0,
+      targetX: 0, targetY: 0
+    }))
+    .filter((item) => item.label);
+  if (!items.length) return;
+
+  let pointer;
+  let frame = 0;
+  let previousTime = 0;
+  let geometryChanged = true;
+
+  const requestFrame = () => {
+    if (!frame) frame = requestAnimationFrame(animate);
+  };
+  const setTargets = () => {
+    items.forEach((item) => {
+      const box = item.box;
+      item.targetX = 0;
+      item.targetY = 0;
+      if (!pointer || !box.width || !box.height) return;
+      const x = pointer.x - box.left - box.width / 2;
+      const y = pointer.y - box.top - box.height / 2;
+      const distance = Math.hypot(
+        Math.max(0, Math.abs(x) - box.width / 2),
+        Math.max(0, Math.abs(y) - box.height / 2)
+      );
+      const influence = Math.max(0, 1 - distance / 300);
+      item.targetX = Math.max(-1, Math.min(1, x / (box.width / 2))) * 18 * influence;
+      item.targetY = Math.max(-1, Math.min(1, y / (box.height / 2))) * 7 * influence;
+    });
+  };
+  function animate(time) {
+    frame = 0;
+    const elapsed = previousTime ? Math.min((time - previousTime) / 1000, 1 / 30) : 1 / 60;
+    previousTime = time;
+    if (geometryChanged) {
+      items.forEach((item) => { item.box = item.button.getBoundingClientRect(); });
+      geometryChanged = false;
+    }
+    setTargets();
+
+    let moving = false;
+    items.forEach((item) => {
+      const returning = item.targetX === 0 && item.targetY === 0;
+      const stiffness = returning ? 190 : 280;
+      const damping = returning ? 18 : 30;
+      item.velocityX += ((item.targetX - item.x) * stiffness - item.velocityX * damping) * elapsed;
+      item.velocityY += ((item.targetY - item.y) * stiffness - item.velocityY * damping) * elapsed;
+      item.x += item.velocityX * elapsed;
+      item.y += item.velocityY * elapsed;
+
+      if (Math.abs(item.targetX - item.x) + Math.abs(item.targetY - item.y) + Math.abs(item.velocityX) + Math.abs(item.velocityY) < .04) {
+        item.x = item.targetX;
+        item.y = item.targetY;
+        item.velocityX = 0;
+        item.velocityY = 0;
+      } else {
+        moving = true;
+      }
+      item.label.style.transform = item.x || item.y
+        ? `translate(${item.x.toFixed(2)}px, ${item.y.toFixed(2)}px)`
+        : "";
+    });
+
+    if (moving) requestFrame();
+    else previousTime = 0;
+  }
+  const move = (event) => {
+    if (event.pointerType !== "mouse" || !preference.matches) return;
+    pointer = { x: event.clientX, y: event.clientY };
+    requestFrame();
+  };
+  const reset = () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    previousTime = 0;
+    pointer = undefined;
+    items.forEach((item) => {
+      item.x = item.y = item.velocityX = item.velocityY = item.targetX = item.targetY = 0;
+      item.label.style.transform = "";
+    });
+  };
+
+  document.addEventListener("pointermove", move, { passive: true });
+  document.documentElement.addEventListener("pointerleave", () => {
+    pointer = undefined;
+    requestFrame();
+  });
+  document.addEventListener("scroll", () => {
+    geometryChanged = true;
+    if (pointer) requestFrame();
+  }, { capture: true, passive: true });
+  window.addEventListener("resize", () => {
+    geometryChanged = true;
+    if (pointer) requestFrame();
+  }, { passive: true });
+  window.addEventListener("blur", reset);
+  window.addEventListener("pagehide", reset);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) reset();
+  });
+  document.addEventListener("keydown", reset);
+  preference.addEventListener("change", reset);
+}
+
+setupButtonMotion();
+
 function setupDragRails() {
   document.querySelectorAll(".drag-rail").forEach((rail) => {
     let dragging = false;

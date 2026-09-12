@@ -372,6 +372,14 @@ body[data-page="cv"] { --nav-index: 2; }
   transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 .button:hover { transform: translateY(-2px); }
+.button[data-button-motion] { transform: none; }
+.button-label {
+  display: inline-block;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .button-label { transform: none !important; }
+}
 body[data-page="work"] #linkedin,
 body[data-page="cv"] #download-cv,
 #view-ar, #try-again {
@@ -726,6 +734,15 @@ body[data-page="cv"] #linkedin {
   }
 }
 
+@media (max-width: 800px) {
+  .cv-section { padding-block: 40px 50px; scroll-margin-top: 24px; }
+  .cv-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cv-block + .cv-block { margin-top: 24px; }
+  .cv-entry { grid-template-columns: 1fr; gap: 8px; padding-block: 18px; }
+  .cv-sidebar { gap: 24px; margin-top: 0; }
+  .cv-side-block { padding: 22px; border-radius: 18px; }
+}
+
 @media (max-width: 640px) {
   :root { --shell: calc(100% - 32px); --radius: 14px; }
   body { padding-bottom: 0; }
@@ -817,12 +834,6 @@ body[data-page="cv"] #linkedin {
   .scene { margin-bottom: 32px; }
   .scene-mode-stage { aspect-ratio: 2 / 1; }
   .about-actions { display: grid; }
-  .cv-section { padding-block: 40px 50px; scroll-margin-top: 24px; }
-  .cv-grid { grid-template-columns: 1fr; gap: 32px; }
-  .cv-block + .cv-block { margin-top: 24px; }
-  .cv-entry { grid-template-columns: 1fr; gap: 8px; padding-block: 18px; }
-  .cv-sidebar { gap: 24px; margin-top: 0; }
-  .cv-side-block { padding: 22px; border-radius: 18px; }
 }
 
 @media (max-width: 640px) and (display-mode: standalone) {
