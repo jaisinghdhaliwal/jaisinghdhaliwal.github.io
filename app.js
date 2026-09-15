@@ -369,6 +369,7 @@ function setupSceneModes() {
     const wipe = viewer.querySelector(".scene-mode-wipe");
     const label = viewer.querySelector(".scene-mode-label");
     const images = [...viewer.querySelectorAll(".scene-mode-image")];
+    if (viewer.closest('.case-body') && images.length === 3 && images[0]?.dataset.sceneLabel === 'Workbench') return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let current = Number(viewer.dataset.activeMode) || 0;
     let switching = false;
