@@ -11,24 +11,6 @@ function updateActiveNavigation() {
 
 updateActiveNavigation();
 
-function keepActiveNavigationOnPage() {
-  const normalisePath = (path) => path.replace(/index\.html$/, "").replace(/\/+$/, "") || "/";
-  document.querySelectorAll(".site-nav a.is-active").forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const destination = new URL(link.href, location.href);
-      if (destination.origin !== location.origin || normalisePath(destination.pathname) !== normalisePath(location.pathname)) return;
-      event.preventDefault();
-      if (window.scrollY <= 1) return;
-      window.scrollTo({
-        top: 0,
-        behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
-      });
-    });
-  });
-}
-
-keepActiveNavigationOnPage();
-
 function setupButtonMotion() {
   const preference = matchMedia("(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)");
   if (!preference.matches) return;
@@ -155,11 +137,10 @@ function setupDragRails() {
     let resumeTimer;
 
     rail.addEventListener("pointerdown", (event) => {
-      paused = true;
-      clearTimeout(resumeTimer);
-      if (event.pointerType !== "mouse") return;
       dragging = true;
       moved = false;
+      paused = true;
+      clearTimeout(resumeTimer);
       startX = event.clientX;
       startScroll = rail.scrollLeft;
       rail.classList.add("is-dragging");
@@ -212,8 +193,6 @@ function setupDragRails() {
 
       let loopWidth = 0;
       let previousTime = 0;
-      let animationFrame = 0;
-      let visible = false;
 
       const measure = () => {
         const firstOriginal = rail.children[0];
@@ -227,11 +206,6 @@ function setupDragRails() {
       };
 
       const animate = (time) => {
-        animationFrame = 0;
-        if (!visible) {
-          previousTime = 0;
-          return;
-        }
         if (!previousTime) previousTime = time;
         const elapsed = Math.min(time - previousTime, 50);
         previousTime = time;
@@ -240,31 +214,15 @@ function setupDragRails() {
           rail.scrollLeft += elapsed * 0.075;
           normaliseScroll();
         }
-        animationFrame = requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
       };
 
-      const startAnimation = () => {
-        if (!animationFrame) animationFrame = requestAnimationFrame(animate);
-      };
-      const observeVisibility = new IntersectionObserver(([entry]) => {
-        visible = entry.isIntersecting && !rail.closest("[hidden]");
-        if (visible) {
-          measure();
-          startAnimation();
-        }
-      });
-      observeVisibility.observe(rail);
       requestAnimationFrame(() => {
         measure();
+        requestAnimationFrame(animate);
       });
       window.addEventListener("resize", measure);
       rail.addEventListener("scrollend", normaliseScroll);
-      if ("ResizeObserver" in window) {
-        const sizeObserver = new ResizeObserver(measure);
-        originals.forEach((item) => sizeObserver.observe(item));
-      } else {
-        originals.forEach((item) => item.querySelector("img")?.addEventListener("load", measure));
-      }
     }
   });
 }
@@ -273,18 +231,7 @@ function setupImageViewer() {
   const viewer = document.querySelector("[data-image-viewer]");
   if (!viewer) return;
   const viewerImage = viewer.querySelector("[data-viewer-image]");
-  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
   let request = 0;
-
-  const fitImage = (width = viewerImage.naturalWidth, height = viewerImage.naturalHeight) => {
-    if (!width || !height) return;
-    const style = getComputedStyle(viewer);
-    const availableWidth = viewer.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
-    const availableHeight = viewer.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
-    const scale = Math.min(availableWidth / width, availableHeight / height);
-    viewerImage.style.width = `${Math.floor(width * scale)}px`;
-    viewerImage.style.height = `${Math.floor(height * scale)}px`;
-  };
 
   document.addEventListener("click", async (event) => {
     const trigger = event.target.closest("[data-full-image]");
@@ -293,34 +240,16 @@ function setupImageViewer() {
     const thumbnail = trigger.querySelector("img");
     const fullSource = trigger.dataset.fullImage;
     const currentRequest = ++request;
-    const start = thumbnail.getBoundingClientRect();
 
     viewerImage.src = thumbnail.currentSrc || thumbnail.src;
     viewerImage.alt = thumbnail.alt;
     viewer.showModal();
-    fitImage(thumbnail.naturalWidth, thumbnail.naturalHeight);
-
-    if (!reduceMotion.matches) {
-      requestAnimationFrame(() => {
-        if (!viewer.open || request !== currentRequest) return;
-        const end = viewerImage.getBoundingClientRect();
-        const offsetX = start.left + start.width / 2 - end.left - end.width / 2;
-        const offsetY = start.top + start.height / 2 - end.top - end.height / 2;
-        viewerImage.animate([
-          { transform: `translate(${offsetX}px, ${offsetY}px) scale(${start.width / end.width}, ${start.height / end.height})` },
-          { transform: "translate(0) scale(1)" }
-        ], { duration: 440, easing: "cubic-bezier(.16, 1, .3, 1)" });
-      });
-    }
 
     const fullImage = new Image();
     fullImage.src = fullSource;
     try {
       await fullImage.decode();
-      if (viewer.open && request === currentRequest) {
-        viewerImage.src = fullSource;
-        fitImage(fullImage.naturalWidth, fullImage.naturalHeight);
-      }
+      if (viewer.open && request === currentRequest) viewerImage.src = fullSource;
     } catch {
       // Retain the visible thumbnail if the larger file cannot be decoded.
     }
@@ -333,12 +262,7 @@ function setupImageViewer() {
   viewer.addEventListener("close", () => {
     request++;
     viewerImage.removeAttribute("src");
-    viewerImage.style.removeProperty("width");
-    viewerImage.style.removeProperty("height");
   });
-  window.addEventListener("resize", () => {
-    if (viewer.open) fitImage();
-  }, { passive: true });
 }
 
 function setupScanCarousel() {
