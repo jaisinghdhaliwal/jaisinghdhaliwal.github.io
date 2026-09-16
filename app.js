@@ -1,5 +1,49 @@
 const page = document.body.dataset.page;
 
+// One delegated controller also handles dynamically inserted More work tiles.
+(() => {
+  const enabled = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+  let card, link, bounds, frame = 0, x = 0, y = 0;
+  function reset() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    if (link) {
+      link.style.removeProperty('--tilt-x');
+      link.style.removeProperty('--tilt-y');
+      link.classList.remove('is-tilting');
+    }
+    card = link = bounds = null;
+  }
+  document.addEventListener('pointerover', event => {
+    if (!enabled.matches || event.pointerType === 'touch') return;
+    const next = event.target.closest('.project-card');
+    if (!next || next === card) return;
+    reset();
+    card = next;
+    link = card.querySelector('a');
+    if (!link) { reset(); return; }
+    bounds = card.getBoundingClientRect();
+    link.classList.add('is-tilting');
+  }, {passive: true});
+  document.addEventListener('pointermove', event => {
+    if (!link) return;
+    x = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
+    y = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+    if (!frame) frame = requestAnimationFrame(() => {
+      frame = 0;
+      link.style.setProperty('--tilt-x', `${-y * 6}deg`);
+      link.style.setProperty('--tilt-y', `${x * 6}deg`);
+    });
+  }, {passive: true});
+  document.addEventListener('pointerout', event => {
+    if (card && !card.contains(event.relatedTarget)) reset();
+  }, {passive: true});
+  addEventListener('scroll', reset, {passive: true});
+  addEventListener('resize', reset, {passive: true});
+  addEventListener('blur', reset);
+  enabled.addEventListener('change', reset);
+})();
+
 function updateActiveNavigation() {
   document.querySelectorAll("[data-nav]").forEach((link) => {
     const active = link.dataset.nav === page;
