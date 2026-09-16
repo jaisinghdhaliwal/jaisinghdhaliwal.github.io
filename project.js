@@ -54,12 +54,12 @@ document.querySelectorAll('.case-body > .scene-modes').forEach(viewer => {
 });
 
 
-// Group consecutive physical/virtual comparisons without duplicating their media.
+// Shared scroll gallery: exhibition comparisons and explicitly marked photo cards.
 const comparisonCards = [...document.querySelectorAll('.case-body > .scene-modes')]
   .filter(card =>
     card.querySelector('.scene-mode-stage')
       ?.getAttribute('aria-label')
-      ?.startsWith('Physical and Fortnite')
+      ?.startsWith('Physical and Fortnite') || card.hasAttribute('data-scroll-gallery-card')
   );
 
 if (comparisonCards.length > 1) {
@@ -68,7 +68,7 @@ if (comparisonCards.length > 1) {
   gallery.className = 'comparison-gallery';
   gallery.setAttribute(
     'aria-label',
-    'Physical exhibition and Fortnite comparisons'
+    comparisonCards[0].dataset.galleryLabel || 'Physical exhibition and Fortnite comparisons'
   );
 
   gallery.innerHTML = `
@@ -77,15 +77,15 @@ if (comparisonCards.length > 1) {
         class="comparison-viewport"
         tabindex="0"
         role="region"
-        aria-label="Exhibition comparisons"
+        aria-label="Project image gallery"
       >
         <div class="comparison-track"></div>
       </div>
 
       <div class="comparison-controls">
         <span class="comparison-count"></span>
-        <button type="button" aria-label="Previous comparison">←</button>
-        <button type="button" aria-label="Next comparison">→</button>
+        <button type="button" aria-label="Previous image">←</button>
+        <button type="button" aria-label="Next image">→</button>
       </div>
     </div>
   `;
@@ -255,10 +255,182 @@ document.querySelectorAll(".case-image-set img").forEach((image) => {
 });
 
 
+// Scrub transparent image sequences while their full-screen stage is pinned.
+document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
+  const image = sequence.querySelector("img");
+  const count = Number(sequence.dataset.frameCount);
+  const path = sequence.dataset.framePath;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!image || !count || !path || reduced.matches) return;
+
+  const frames = new Array(count);
+  frames[0] = image;
+
+  let start = 0;
+  let travel = 1;
+  let current = 0;
+  let wanted = 0;
+  let animationFrame = 0;
+  let preloading = false;
+
+  const source = (index) =>
+    path.replace("{frame}", String(index + 1).padStart(4, "0"));
+
+  function load(index) {
+    if (index < 0 || index >= count || frames[index]) return frames[index];
+
+    const frame = new Image();
+    frame.src = source(index);
+    frames[index] = frame;
+    return frame;
+  }
+
+  function show(index) {
+    wanted = index;
+    const frame = load(index);
+
+    if (frame.complete) {
+      image.src = frame.src;
+      current = index;
+      return;
+    }
+
+    frame.addEventListener("load", () => {
+      if (wanted === index) {
+        image.src = frame.src;
+        current = index;
+      }
+    }, { once: true });
+  }
+
+  function draw() {
+    animationFrame = 0;
+    const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
+    const next = Math.round(progress * (count - 1));
+
+    if (next !== current) show(next);
+    load(next - 1);
+    load(next + 1);
+  }
+
+  function schedule() {
+    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+  }
+
+  function measure() {
+    start = sequence.getBoundingClientRect().top + scrollY;
+    travel = Math.max(1, sequence.offsetHeight - innerHeight);
+    draw();
+  }
+
+  function preload() {
+    if (preloading) return;
+    preloading = true;
+
+    let index = 1;
+    const batch = () => {
+      const end = Math.min(count, index + 8);
+      while (index < end) load(index++);
+      if (index < count) setTimeout(batch, 80);
+    };
+    batch();
+  }
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      preload();
+      observer.disconnect();
+    }, { rootMargin: "100% 0px" });
+    observer.observe(sequence);
+  } else {
+    window.addEventListener("load", preload, { once: true });
+  }
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure, { once: true });
+  new ResizeObserver(measure).observe(sequence);
+  measure();
+});
+
+
+// Uncover the packaging family with a feathered left-to-right scroll reveal.
+document.querySelectorAll(".case-family-reveal img").forEach((image) => {
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  let animationFrame = 0;
+
+  function draw() {
+    animationFrame = 0;
+
+    if (reduced.matches) {
+      image.style.setProperty("--family-reveal", "112%");
+      return;
+    }
+
+    const rect = image.getBoundingClientRect();
+    const progress = Math.max(
+      0,
+      Math.min(1, (innerHeight - rect.top) / (innerHeight * .72))
+    );
+
+    image.style.setProperty("--family-reveal", `${progress * 112}%`);
+  }
+
+  function schedule() {
+    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", schedule);
+  image.addEventListener("load", draw, { once: true });
+  reduced.addEventListener("change", draw);
+  draw();
+});
+
+
+// Keep the manual copy visible while its panoramic photograph pans across.
+document.querySelectorAll(".case-manual-pan").forEach((section) => {
+  const image = section.querySelector("img");
+  const sticky = section.querySelector(".case-manual-pan-sticky");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!image || !sticky || reduced.matches) return;
+
+  let start = 0;
+  let travel = 1;
+  let animationFrame = 0;
+
+  function draw() {
+    animationFrame = 0;
+    const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
+    image.style.setProperty("--manual-pan", `${progress * 100}%`);
+  }
+
+  function schedule() {
+    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+  }
+
+  function measure() {
+    start = section.getBoundingClientRect().top + scrollY;
+    travel = Math.max(1, section.offsetHeight - sticky.offsetHeight);
+    draw();
+  }
+
+  window.addEventListener("scroll", schedule, { passive: true });
+  window.addEventListener("resize", measure);
+  window.addEventListener("load", measure, { once: true });
+  new ResizeObserver(measure).observe(section);
+  measure();
+});
+
+
 const caseNav = document.querySelector(".case-local-nav");
 
 if (caseNav) {
   const caseLayout = caseNav.closest(".case-layout");
+  const caseBody = caseLayout?.querySelector(".case-body");
   let collapseTimer;
 
   const collapseNav = () => {
@@ -285,6 +457,29 @@ if (caseNav) {
     entranceObserver.observe(caseLayout);
   } else {
     collapseNav();
+  }
+
+  if (caseBody && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    document.addEventListener("pointermove", (event) => {
+      if (!caseNav.classList.contains("is-collapsed")) return;
+
+      const activationEdge = caseBody.getBoundingClientRect().left - 14;
+      const inGutter = event.clientX < activationEdge;
+      const expanded = caseNav.classList.contains("is-expanded");
+
+      if (!expanded) {
+        if (inGutter) caseNav.classList.add("is-expanded");
+        return;
+      }
+
+      if (!inGutter && !caseNav.matches(":hover")) {
+        caseNav.classList.remove("is-expanded");
+      }
+    }, { passive: true });
+
+    document.addEventListener("pointerleave", () => {
+      caseNav.classList.remove("is-expanded");
+    });
   }
 
   const links = [...caseNav.querySelectorAll("a[href^='#']")];
