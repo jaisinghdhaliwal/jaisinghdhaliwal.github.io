@@ -11,4 +11,8 @@
 .is-scroll-stand .stand-sticky {position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;}
 .is-scroll-stand .stand-stage {height:84svh;min-height:0;flex:0 0 84svh;}
 .is-scroll-stand .stand-hint {margin:0;padding:12px 16px;}
+@media(min-width:1025px){
+  .is-scroll-stand .stand-sticky {box-sizing:border-box;padding-top:80px;}
+  .is-scroll-stand .stand-stage {height:calc(84svh - 80px);flex-basis:calc(84svh - 80px);}
+}
 @media(max-width:640px){.stand-stage{height:72svh;min-height:380px}}
