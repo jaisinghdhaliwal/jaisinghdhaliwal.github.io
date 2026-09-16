@@ -7,4 +7,8 @@
 .stand-hint {text-align:center;line-height:1.6;margin:0 0 24px;}
 .stand-status {text-align:center;}.stand-status:empty{display:none}
 .stand-experience [hidden] {display:none!important;}
+.stand-experience.is-scroll-stand {height:280svh;}
+.is-scroll-stand .stand-sticky {position:sticky;top:0;height:100svh;display:flex;flex-direction:column;justify-content:center;}
+.is-scroll-stand .stand-stage {height:84svh;min-height:0;flex:0 0 84svh;}
+.is-scroll-stand .stand-hint {margin:0;padding:12px 16px;}
 @media(max-width:640px){.stand-stage{height:72svh;min-height:380px}}
