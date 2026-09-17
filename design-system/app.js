@@ -70,7 +70,7 @@ function mountChrome() {
             <span class="mono">Menu</span>
           </button>
           <a class="manual-brand" href="${designUrl()}" aria-label="Design system home">
-            <img class="manual-brand-mark" src="${siteUrl("logo/logo-01.svg")}" alt="">
+            <img class="manual-brand-mark" src="${siteUrl("logo/logo_wide.svg")}" alt="">
           </a>
         </div>
       </header>
@@ -89,7 +89,7 @@ function mountChrome() {
         <div class="footer-inner">
           <div class="footer-brand-block">
             <a class="footer-brand" href="${siteUrl()}" aria-label="Jai Singh Dhaliwal - Work">
-              <img src="${siteUrl("logo/logo-name-white.svg")}" alt="" width="2261" height="240">
+              <img src="${siteUrl("logo/logo_name_white.svg")}" alt="" width="2261" height="240">
             </a>
             <p class="footer-analytics">Privacy-first <a href="https://www.cloudflare.com/web-analytics/" rel="noreferrer">Cloudflare Web Analytics</a> measures anonymous page views and performance without cookies or personal data. <a href="?analytics=off" data-analytics-choice>Opt out of analytics</a>; this preference is saved only in your browser.</p>
           </div>
