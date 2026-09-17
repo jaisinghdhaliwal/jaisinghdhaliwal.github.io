@@ -18,7 +18,7 @@
 .case-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .case-website {
   color: var(--navy); border-color: var(--coral); background: var(--coral);
-  box-shadow: 0 8px 22px rgba(244, 81, 63, .24);
+  box-shadow: 0 8px 22px rgba(249, 66, 58, .24);
 }
 .case-facts {
   display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px;

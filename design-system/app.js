@@ -374,7 +374,7 @@ function setupContrastChecker() {
     sizeRange.value = 19;
     weightField.value = "700";
     sampleField.value = "Selected work";
-    setColours("#141A28", "#F4513F");
+    setColours("#131E29", "#F9423A");
   });
 
   document.querySelectorAll("[data-contrast-preset]").forEach((preset) => {

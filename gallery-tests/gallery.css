@@ -38,7 +38,7 @@
 .reference {font-size:14px;margin-top:50px}
 .lab-end p {line-height:1.6}
 .lab-viewer {border:0;padding:30px;background:var(--navy);color:var(--paper);max-width:96vw;max-height:96svh;border-radius:18px}
-.lab-viewer::backdrop {background:#141a28ed}
+.lab-viewer::backdrop {background:#131E29ed}
 .lab-viewer img {width:auto;height:78svh;max-width:85vw;object-fit:contain;margin:auto}
 .lab-viewer button {position:absolute;right:12px;top:8px;font-size:32px;background:var(--navy);color:white;border:0;cursor:pointer}
 .lab-viewer p {margin:12px 0 0}

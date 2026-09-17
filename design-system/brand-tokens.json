@@ -5,9 +5,9 @@
     "status": "evolving"
   },
   "color": {
-    "primaryDark": "#141A28",
-    "coral": "#F4513F",
-    "textOnCoral": "#141A28",
+    "primaryDark": "#131E29",
+    "coral": "#F9423A",
+    "textOnCoral": "#131E29",
     "coralSoft": "#FFF0ED",
     "paper": "#F7F6F3",
     "white": "#FFFFFF",
@@ -35,10 +35,10 @@
     "pill": "999px"
   },
   "elevation": {
-    "glass": "0 8px 24px rgba(20,26,40,.14), inset 0 0 0 1px rgba(20,26,40,.06)",
-    "panel": "0 12px 30px rgba(20,26,40,.08)",
-    "project": "0 18px 38px rgba(20,26,40,.14), 0 3px 8px rgba(20,26,40,.12)",
-    "projectFocus": "0 30px 58px rgba(20,26,40,.24), 0 9px 18px rgba(20,26,40,.16)"
+    "glass": "0 8px 24px rgba(19, 30, 41,.14), inset 0 0 0 1px rgba(19, 30, 41,.06)",
+    "panel": "0 12px 30px rgba(19, 30, 41,.08)",
+    "project": "0 18px 38px rgba(19, 30, 41,.14), 0 3px 8px rgba(19, 30, 41,.12)",
+    "projectFocus": "0 30px 58px rgba(19, 30, 41,.24), 0 9px 18px rgba(19, 30, 41,.16)"
   },
   "motion": {
     "fast": "180ms",
