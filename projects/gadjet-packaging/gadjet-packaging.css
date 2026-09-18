@@ -1,0 +1,36 @@
+/* GadJet Packaging - page-specific scan layout */
+body[data-project="gadjet-packaging"] .case-scan-stats { --scan-columns: 4; }
+body[data-project="gadjet-packaging"] .case-process-strip { --process-columns: 4; }
+
+body[data-project="gadjet-packaging"] .case-range-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 38px 0;
+  border-block: 1px solid var(--line);
+}
+body[data-project="gadjet-packaging"] .case-range-grid > div { padding: 24px clamp(14px, 2vw, 28px); }
+body[data-project="gadjet-packaging"] .case-range-grid > div:first-child { padding-left: 0; }
+body[data-project="gadjet-packaging"] .case-range-grid > div + div { border-left: 1px solid var(--line); }
+body[data-project="gadjet-packaging"] .case-range-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--coral);
+  font: 700 var(--label-size)/1.2 var(--font-mono);
+  text-transform: uppercase;
+}
+body[data-project="gadjet-packaging"] .case-range-grid span { display: block; font: 400 16px/1.5 var(--font-body); }
+
+@media (max-width: 760px) {
+  body[data-project="gadjet-packaging"] .case-scan-stats { --scan-columns: 2; }
+  body[data-project="gadjet-packaging"] .case-scan-stats > div + div { border-top: 0; }
+  body[data-project="gadjet-packaging"] .case-scan-stats > div:nth-child(odd) { padding-left: 0; border-left: 0; }
+  body[data-project="gadjet-packaging"] .case-scan-stats > div:nth-child(n + 3) { border-top: 1px solid var(--line); }
+  body[data-project="gadjet-packaging"] .case-range-grid { grid-template-columns: 1fr; }
+  body[data-project="gadjet-packaging"] .case-range-grid > div { padding-inline: 0; }
+  body[data-project="gadjet-packaging"] .case-range-grid > div + div { border-top: 1px solid var(--line); border-left: 0; }
+}
+@media (max-width: 460px) {
+  body[data-project="gadjet-packaging"] .case-scan-stats { --scan-columns: 1; }
+  body[data-project="gadjet-packaging"] .case-scan-stats > div { padding-inline: 0; }
+  body[data-project="gadjet-packaging"] .case-scan-stats > div + div { border-top: 1px solid var(--line); border-left: 0; }
+}

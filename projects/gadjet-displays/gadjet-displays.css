@@ -1,0 +1,3 @@
+/* GadJet Display Visualiser - page-specific scan layout */
+body[data-project="gadjet-displays"] .case-scan-stats { --scan-columns: 3; }
+body[data-project="gadjet-displays"] .case-process-strip { --process-columns: 4; }

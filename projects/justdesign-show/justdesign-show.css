@@ -1,0 +1,27 @@
+/* JustDesign.Show - page-specific scan layout */
+body[data-project="justdesign-show"] .case-process-strip { --process-columns: 5; }
+
+body[data-project="justdesign-show"] .case-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 38px 0;
+  border-block: 1px solid var(--line);
+}
+body[data-project="justdesign-show"] .case-audience-grid > div { padding: 24px clamp(0px, 2vw, 30px); }
+body[data-project="justdesign-show"] .case-audience-grid > div:first-child { padding-left: 0; }
+body[data-project="justdesign-show"] .case-audience-grid > div + div { border-left: 1px solid var(--line); }
+body[data-project="justdesign-show"] .case-audience-grid strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--coral);
+  font: 700 var(--label-size)/1.2 var(--font-mono);
+  text-transform: uppercase;
+}
+body[data-project="justdesign-show"] .case-audience-grid span { display: block; line-height: 1.5; }
+
+@media (max-width: 640px) {
+  body[data-project="justdesign-show"] .case-audience-grid { grid-template-columns: 1fr; }
+  body[data-project="justdesign-show"] .case-audience-grid > div { padding-inline: 0; }
+  body[data-project="justdesign-show"] .case-audience-grid > div + div { border-top: 1px solid var(--line); border-left: 0; }
+}
