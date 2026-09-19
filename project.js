@@ -4,7 +4,6 @@ document.querySelectorAll('.case-body > .scene-modes').forEach(viewer => {
   if (images.length !== 3 || images[0].dataset.sceneLabel !== 'Workbench') return;
 
   viewer.classList.add('scene-scroll');
-
   const stage = viewer.querySelector('.scene-mode-stage');
   const label = viewer.querySelector('.scene-mode-label');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -21,7 +20,6 @@ document.querySelectorAll('.case-body > .scene-modes').forEach(viewer => {
     if (reduced.matches) return;
 
     const progress = Math.max(0, Math.min(2, (scrollY - start) / travel * 2));
-
     stage.style.setProperty('--scene-pan', `${progress * 50}%`);
     images[1].style.clipPath = `inset(0 0 0 ${(1 - Math.min(1, progress)) * 100}%)`;
     images[2].style.clipPath = `inset(0 0 0 ${(1 - Math.max(0, progress - 1)) * 100}%)`;
@@ -53,7 +51,6 @@ document.querySelectorAll('.case-body > .scene-modes').forEach(viewer => {
   measure();
 });
 
-
 // Shared scroll gallery: exhibition comparisons and explicitly marked photo cards.
 const comparisonCards = [...document.querySelectorAll('.case-body > .scene-modes')]
   .filter(card =>
@@ -64,7 +61,6 @@ const comparisonCards = [...document.querySelectorAll('.case-body > .scene-modes
 
 if (comparisonCards.length > 1) {
   const gallery = document.createElement('section');
-
   gallery.className = 'comparison-gallery';
   gallery.setAttribute(
     'aria-label',
@@ -81,7 +77,6 @@ if (comparisonCards.length > 1) {
       >
         <div class="comparison-track"></div>
       </div>
-
       <div class="comparison-controls">
         <span class="comparison-count"></span>
         <button type="button" aria-label="Previous image">←</button>
@@ -254,7 +249,6 @@ document.querySelectorAll(".case-image-set img").forEach((image) => {
   }
 });
 
-
 // Scrub transparent image sequences while their full-screen stage is pinned.
 document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
   const image = sequence.querySelector("img");
@@ -288,6 +282,7 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 
   function show(index) {
     wanted = index;
+
     const frame = load(index);
 
     if (frame.complete) {
@@ -306,10 +301,12 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 
   function draw() {
     animationFrame = 0;
+
     const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
     const next = Math.round(progress * (count - 1));
 
     if (next !== current) show(next);
+
     load(next - 1);
     load(next + 1);
   }
@@ -326,23 +323,30 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 
   function preload() {
     if (preloading) return;
+
     preloading = true;
 
     let index = 1;
+
     const batch = () => {
       const end = Math.min(count, index + 8);
+
       while (index < end) load(index++);
+
       if (index < count) setTimeout(batch, 80);
     };
+
     batch();
   }
 
   if ("IntersectionObserver" in window) {
     const observer = new IntersectionObserver(([entry]) => {
       if (!entry.isIntersecting) return;
+
       preload();
       observer.disconnect();
     }, { rootMargin: "100% 0px" });
+
     observer.observe(sequence);
   } else {
     window.addEventListener("load", preload, { once: true });
@@ -351,7 +355,9 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", measure);
   window.addEventListener("load", measure, { once: true });
+
   new ResizeObserver(measure).observe(sequence);
+
   measure();
 });
 
@@ -359,6 +365,7 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 // Uncover the packaging family with a feathered left-to-right scroll reveal.
 document.querySelectorAll(".case-family-reveal img").forEach((image) => {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
   let animationFrame = 0;
 
   function draw() {
@@ -370,6 +377,7 @@ document.querySelectorAll(".case-family-reveal img").forEach((image) => {
     }
 
     const rect = image.getBoundingClientRect();
+
     const progress = Math.max(
       0,
       Math.min(1, (innerHeight - rect.top) / (innerHeight * .72))
@@ -384,11 +392,13 @@ document.querySelectorAll(".case-family-reveal img").forEach((image) => {
 
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", schedule);
+
   image.addEventListener("load", draw, { once: true });
+
   reduced.addEventListener("change", draw);
+
   draw();
 });
-
 
 // Keep the manual copy visible while its panoramic photograph pans across.
 document.querySelectorAll(".case-manual-pan").forEach((section) => {
@@ -404,7 +414,9 @@ document.querySelectorAll(".case-manual-pan").forEach((section) => {
 
   function draw() {
     animationFrame = 0;
+
     const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
+
     image.style.setProperty("--manual-pan", `${progress * 100}%`);
   }
 
@@ -415,13 +427,16 @@ document.querySelectorAll(".case-manual-pan").forEach((section) => {
   function measure() {
     start = section.getBoundingClientRect().top + scrollY;
     travel = Math.max(1, section.offsetHeight - sticky.offsetHeight);
+
     draw();
   }
 
   window.addEventListener("scroll", schedule, { passive: true });
   window.addEventListener("resize", measure);
   window.addEventListener("load", measure, { once: true });
+
   new ResizeObserver(measure).observe(section);
+
   measure();
 });
 
@@ -431,6 +446,7 @@ const caseNav = document.querySelector(".case-local-nav");
 if (caseNav) {
   const caseLayout = caseNav.closest(".case-layout");
   const caseBody = caseLayout?.querySelector(".case-body");
+
   let collapseTimer;
 
   const collapseNav = () => {
@@ -448,6 +464,7 @@ if (caseNav) {
 
       caseNav.classList.remove("is-collapsed");
       collapseNav();
+
       entranceObserver.disconnect();
     }, {
       rootMargin: "0px 0px -35%",
@@ -493,6 +510,117 @@ if (caseNav) {
     label.append(...link.childNodes);
     link.append(label);
   });
+
+  // On phones, reuse this same navigation as a compact top-right menu.
+  const mobileNavQuery = matchMedia("(max-width: 640px)");
+  const siteHeader = document.querySelector(".site-header");
+
+  let mobileNavButton = null;
+
+  if (siteHeader) {
+    if (!caseNav.id) caseNav.id = "case-section-nav";
+
+    mobileNavButton = document.createElement("button");
+    mobileNavButton.type = "button";
+    mobileNavButton.className = "case-mobile-nav-toggle glass";
+    mobileNavButton.setAttribute("aria-controls", caseNav.id);
+    mobileNavButton.setAttribute("aria-expanded", "false");
+    mobileNavButton.setAttribute("aria-label", "Open section navigation");
+
+    mobileNavButton.innerHTML = `
+      <span class="case-mobile-nav-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+    `;
+
+    siteHeader.append(mobileNavButton);
+    caseNav.classList.add("has-mobile-toggle");
+
+    const positionMobileNav = () => {
+      if (!mobileNavQuery.matches) return;
+
+      const rect = mobileNavButton.getBoundingClientRect();
+
+      caseNav.style.setProperty(
+        "--case-mobile-nav-top",
+        `${Math.round(rect.bottom + 10)}px`
+      );
+
+      caseNav.style.setProperty(
+        "--case-mobile-nav-right",
+        `${Math.max(16, Math.round(innerWidth - rect.right))}px`
+      );
+    };
+
+    const setMobileNav = (open, returnFocus = false) => {
+      const shouldOpen = Boolean(open && mobileNavQuery.matches);
+
+      caseNav.classList.toggle("is-mobile-open", shouldOpen);
+
+      mobileNavButton.setAttribute(
+        "aria-expanded",
+        String(shouldOpen)
+      );
+
+      mobileNavButton.setAttribute(
+        "aria-label",
+        shouldOpen
+          ? "Close section navigation"
+          : "Open section navigation"
+      );
+
+      if (shouldOpen) positionMobileNav();
+
+      if (!shouldOpen && returnFocus) {
+        mobileNavButton.focus();
+      }
+    };
+
+    mobileNavButton.addEventListener("click", () => {
+      setMobileNav(!caseNav.classList.contains("is-mobile-open"));
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => setMobileNav(false));
+    });
+
+    document.addEventListener("pointerdown", (event) => {
+      if (!caseNav.classList.contains("is-mobile-open")) return;
+
+      if (
+        caseNav.contains(event.target) ||
+        mobileNavButton.contains(event.target)
+      ) return;
+
+      setMobileNav(false);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (
+        event.key !== "Escape" ||
+        !caseNav.classList.contains("is-mobile-open")
+      ) return;
+
+      setMobileNav(false, true);
+    });
+
+    window.addEventListener("resize", () => {
+      if (!mobileNavQuery.matches) {
+        setMobileNav(false);
+        return;
+      }
+
+      if (caseNav.classList.contains("is-mobile-open")) {
+        positionMobileNav();
+      }
+    });
+
+    mobileNavQuery.addEventListener("change", (event) => {
+      if (!event.matches) setMobileNav(false);
+    });
+  }
 
   const sections = links
     .map((link) => document.querySelector(link.hash))
