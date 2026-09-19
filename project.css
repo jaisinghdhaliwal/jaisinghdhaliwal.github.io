@@ -1,5 +1,4 @@
 /* Generated project pages - content modules shared by every case study */
-
 .case-study { overflow-x: clip; }
 .case-hero {
   position: relative; z-index: 6; min-height: 100vh;
@@ -29,7 +28,6 @@
 .case-facts div + div { border-left: 1px solid var(--line); }
 .case-facts dt { color: var(--coral); }
 .case-facts dd { margin: 8px 0 0; font-size: 16px; line-height: 1.5; }
-
 .case-layout {
   display: grid; grid-template-columns: minmax(0, 1fr);
   padding-bottom: clamp(90px, 12vw, 180px);
@@ -47,7 +45,6 @@
 
   /* Pull sidebar towards the viewport edge */
   margin-left: calc(20px - max(40px, 50vw - 660px));
-
   overflow: visible;
 }
 .case-local-nav::before {
@@ -362,7 +359,6 @@
   .scene-scroll .scene-mode-image { position: relative; height: auto; clip-path: none !important; }
   .scene-scroll .scene-mode-label { display: none; }
 }
-
 .case-more { padding-bottom: clamp(80px, 10vw, 140px); }
 .comparison-gallery {
   --comparison-inset: max(32px, calc((100vw - 900px) / 2));
@@ -384,7 +380,6 @@
 .comparison-viewport::-webkit-scrollbar {
   display: none;
 }
-
 .comparison-track {
   position: relative;
   display: flex;
@@ -408,7 +403,6 @@
   aspect-ratio: auto;
   margin: 0;
 }
-
 .comparison-track .scene-mode-image {
   width: 100%;
   height: 100%;
@@ -428,7 +422,6 @@
 .comparison-count {
   margin-right: 12px;
 }
-
 .comparison-controls button {
   width: 46px;
   height: 46px;
@@ -452,7 +445,6 @@
   flex-direction: column;
   justify-content: center;
 }
-
 .comparison-gallery.is-scroll-driven .comparison-viewport {
   overflow: clip;
 }
@@ -468,7 +460,6 @@
   .case-facts div + div { border: 0; }
   .case-local-nav { display: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
   .case-local-nav,
   .case-local-nav::before,
@@ -495,7 +486,6 @@
   .case-body {
     width: 100%;
   }
-
   .case-body .case-section-heading {
     margin-top: 40px;
     scroll-margin-top: 24px;
@@ -521,7 +511,6 @@
   .scene-scroll .scene-mode-stage {
     height: 100svh;
   }
-
   .scene-scroll .scene-mode-image {
     top: 50%;
     bottom: auto;
@@ -541,7 +530,6 @@
   .case-body figcaption {
     padding-inline: 16px;
   }
-
   .case-gallery,
   .case-gallery.columns-3,
   .case-image-set {
@@ -550,5 +538,138 @@
     width: 100%;
     margin-inline: 0;
     transform: none;
+  }
+}
+
+/* Shared motion language for skim-friendly case-study information. */
+@keyframes case-skim-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes case-skim-number {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes case-skim-highlight {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .case-scan-stats,
+    .case-process-strip,
+    .case-range-grid,
+    .case-audience-grid {
+      view-timeline: --case-skim block;
+    }
+
+    .case-scan-stats > div,
+    .case-process-strip > li,
+    .case-range-grid > div,
+    .case-audience-grid > div {
+      --skim-entry: 8%;
+      --skim-cover: 26%;
+      opacity: 0;
+      transform: translateY(14px);
+      animation: case-skim-rise 1ms linear forwards;
+      animation-timeline: --case-skim;
+      animation-range: entry var(--skim-entry) cover var(--skim-cover);
+    }
+
+    .case-scan-stats > :nth-child(2),
+    .case-process-strip > :nth-child(2),
+    .case-range-grid > :nth-child(2),
+    .case-audience-grid > :nth-child(2) {
+      --skim-entry: 13%;
+      --skim-cover: 31%;
+    }
+
+    .case-scan-stats > :nth-child(3),
+    .case-process-strip > :nth-child(3),
+    .case-range-grid > :nth-child(3),
+    .case-audience-grid > :nth-child(3) {
+      --skim-entry: 18%;
+      --skim-cover: 36%;
+    }
+
+    .case-scan-stats > :nth-child(4),
+    .case-process-strip > :nth-child(4),
+    .case-range-grid > :nth-child(4),
+    .case-audience-grid > :nth-child(4) {
+      --skim-entry: 23%;
+      --skim-cover: 41%;
+    }
+
+    .case-process-strip > :nth-child(5) {
+      --skim-entry: 28%;
+      --skim-cover: 46%;
+    }
+
+    .case-scan-stats strong,
+    .case-stat-callout strong,
+    .case-data-callout strong {
+      animation: case-skim-number 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 30%;
+    }
+
+    .case-stat-callout,
+    .case-data-callout {
+      animation: case-skim-rise 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 28%;
+    }
+
+    .case-takeaway {
+      animation: case-skim-rise 1ms linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 28%;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) and (min-width: 641px) {
+    .case-process-strip {
+      position: relative;
+    }
+
+    .case-process-strip::before {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      height: 2px;
+      pointer-events: none;
+      background: var(--coral);
+      transform: scaleX(0);
+      transform-origin: left center;
+      animation: case-skim-highlight 1ms linear forwards;
+      animation-timeline: --case-skim;
+      animation-range: entry 12% cover 42%;
+    }
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-process-strip > li {
+    transition: background-color 180ms ease;
+  }
+
+  .case-process-strip > li:hover {
+    background: color-mix(in srgb, var(--coral) 8%, transparent);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (min-width: 641px) {
+  .case-process-strip > li:not(:last-child)::after {
+    transition: transform 180ms cubic-bezier(.2, .8, .2, 1);
+  }
+
+  .case-process-strip > li:hover::after {
+    transform: translateX(3px);
   }
 }

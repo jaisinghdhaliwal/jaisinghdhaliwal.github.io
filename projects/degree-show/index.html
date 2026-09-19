@@ -82,70 +82,12 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../project.css">
     <style>
-      body[data-project="degree-show"] .case-takeaway {
-        background-image: linear-gradient(90deg, var(--coral-soft), rgba(255, 240, 237, 0));
-        background-repeat: no-repeat;
-        background-position: left center;
-        background-size: 100% 100%;
-      }
-
       body[data-project="degree-show"] .case-outcome-takeaway {
         margin-bottom: 0;
       }
 
       body[data-project="degree-show"] .case-body .case-outcome-actions {
         margin: 24px 0 38px;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        html.has-skim-motion body[data-project="degree-show"] .case-takeaway.case-skim-reveal {
-          opacity: 0;
-          transform: translateY(16px);
-          background-size: 0% 100%;
-          transition:
-            opacity 650ms ease,
-            transform 650ms cubic-bezier(.2, .8, .2, 1),
-            background-size 850ms cubic-bezier(.2, .8, .2, 1);
-        }
-
-        html.has-skim-motion body[data-project="degree-show"] .case-takeaway.case-skim-reveal.is-visible {
-          opacity: 1;
-          transform: translateY(0);
-          background-size: 100% 100%;
-        }
-
-        html.has-skim-motion body[data-project="degree-show"] .case-process-strip.case-skim-reveal > li {
-          opacity: 0;
-          transform: translateY(10px);
-          transition:
-            opacity 520ms ease,
-            transform 520ms cubic-bezier(.2, .8, .2, 1),
-            background-color 220ms ease;
-          transition-delay: calc(var(--skim-index, 0) * 90ms);
-        }
-
-        html.has-skim-motion body[data-project="degree-show"] .case-process-strip.case-skim-reveal.is-visible > li {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        body[data-project="degree-show"] .case-process-strip > li {
-          transition: background-color 220ms ease;
-        }
-
-        body[data-project="degree-show"] .case-process-strip > li:hover {
-          background: var(--coral-soft);
-        }
-
-        body[data-project="degree-show"] .case-process-strip > li:not(:last-child)::after {
-          transition: transform 220ms cubic-bezier(.2, .8, .2, 1);
-        }
-
-        body[data-project="degree-show"] .case-process-strip > li:not(:last-child):hover::after {
-          transform: translateX(3px);
-        }
       }
     </style>
   </head>
@@ -275,47 +217,7 @@ Developed independently after the physical show closed, the finished environment
         </div>
       </div>
     </footer>
-    <script>
-      (() => {
-        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-        const targets = [...document.querySelectorAll(
-          ".case-body .case-takeaway, .case-body .case-process-strip"
-        )];
 
-        if (
-          !targets.length ||
-          reducedMotion.matches ||
-          !("IntersectionObserver" in window)
-        ) {
-          return;
-        }
-
-        document.documentElement.classList.add("has-skim-motion");
-
-        targets.forEach((target) => {
-          target.classList.add("case-skim-reveal");
-
-          if (target.matches(".case-process-strip")) {
-            [...target.children].forEach((step, index) => {
-              step.style.setProperty("--skim-index", index);
-            });
-          }
-        });
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          });
-        }, {
-          rootMargin: "0px 0px -8% 0px",
-          threshold: 0.15
-        });
-
-        targets.forEach((target) => observer.observe(target));
-      })();
-    </script>
     <script src="../../app.js" defer></script>
     <script src="../../project.js" defer></script>
 <script type="module" src="/analytics.js"></script>
