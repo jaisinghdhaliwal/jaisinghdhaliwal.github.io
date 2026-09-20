@@ -339,7 +339,8 @@
         </model-viewer>
         <div class="model-viewer-meta">
           <strong id="model-viewer-title" data-model-title>3D model</strong>
-          <span>Drag to rotate · scroll or pinch to zoom</span>
+          <span class="model-viewer-instructions model-viewer-instructions-desktop">Drag to rotate · scroll or pinch to zoom</span>
+          <span class="model-viewer-instructions model-viewer-instructions-mobile">Drag to rotate · pinch to zoom</span>
         </div>
       </div>
     </dialog>
@@ -388,7 +389,20 @@
           viewer.setAttribute("poster", trigger.dataset.poster);
           viewer.setAttribute("src", trigger.dataset.model);
 
-          if (!dialog.open) dialog.showModal();
+          if (!dialog.open) {
+            const scrollY = window.scrollY;
+            dialog.dataset.scrollY = String(scrollY);
+
+            document.documentElement.classList.add("model-dialog-open");
+            document.body.classList.add("model-dialog-open");
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = "0";
+            document.body.style.right = "0";
+            document.body.style.width = "100%";
+
+            dialog.showModal();
+          }
         });
 
         close.addEventListener("click", () => dialog.close());
@@ -398,6 +412,19 @@
         });
 
         dialog.addEventListener("close", () => {
+          const scrollY = Number(dialog.dataset.scrollY || 0);
+
+          document.documentElement.classList.remove("model-dialog-open");
+          document.body.classList.remove("model-dialog-open");
+          document.body.style.position = "";
+          document.body.style.top = "";
+          document.body.style.left = "";
+          document.body.style.right = "";
+          document.body.style.width = "";
+
+          window.scrollTo(0, scrollY);
+          delete dialog.dataset.scrollY;
+
           viewer.removeAttribute("src");
           viewer.removeAttribute("poster");
           viewer.removeAttribute("alt");

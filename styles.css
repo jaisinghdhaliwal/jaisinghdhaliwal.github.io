@@ -709,6 +709,11 @@ body[data-page="cv"] #linkedin {
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
+html.model-dialog-open,
+body.model-dialog-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
 .model-viewer-panel {
   position: relative;
   width: 100%;
@@ -753,7 +758,7 @@ body[data-page="cv"] #linkedin {
   gap: 16px;
   align-items: center;
   min-height: 52px;
-  padding: 11px 14px;
+  padding: 11px 136px 11px 14px;
   border: 1px solid rgba(255, 255, 255, .88);
   border-radius: 13px;
   background: rgba(248, 248, 246, .76);
@@ -771,18 +776,19 @@ body[data-page="cv"] #linkedin {
   font: 700 var(--ui-size)/1.2 var(--font-mono);
   text-transform: uppercase;
 }
-.model-viewer-meta span {
+.model-viewer-instructions {
   flex: 0 0 auto;
   font: 700 10px/1.25 var(--font-mono);
   text-transform: uppercase;
   opacity: .68;
 }
+.model-viewer-instructions-mobile { display: none; }
 .model-ar-button {
   position: absolute;
-  right: 14px;
-  bottom: 76px;
-  min-width: 0;
-  min-height: 44px;
+  right: 10px;
+  bottom: 10px;
+  min-width: 112px;
+  min-height: 52px;
   padding: 10px 16px;
   color: var(--navy);
   border-color: var(--coral);
@@ -964,14 +970,14 @@ body[data-page="cv"] #linkedin {
   #error-home { width: 100%; }
   .work-section { padding-block: 10px 30px; }
   .section-heading { gap: 14px; margin-bottom: 24px; }
-  :is(.create-section, .cv-block, .cv-side-section) .section-heading { margin-bottom: 26px; }
+  :is(.cv-block, .cv-side-section) .section-heading { margin-bottom: 26px; }
   .project-grid { grid-template-columns: 1fr; }
   .project-caption { left: 9px; right: 9px; bottom: 9px; min-height: 0; padding: 13px; border-radius: 12px; }
 
   .site-footer { width: 100%; margin: 0; }
   .footer-inner { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
   .create-intro { padding: calc(220px + env(safe-area-inset-top)) 0 0; }
-  .create-section { padding-block: 10px 0; }
+  .create-section { padding-block: 24px 0; }
   .create-section:last-of-type { padding-bottom: 30px; }
   .country-tabs {
     width: calc(100% + 32px); margin: 0 -16px 24px; padding: 0 50% 4px; gap: 38px;
@@ -992,7 +998,7 @@ body[data-page="cv"] #linkedin {
   .photo-rail { padding-inline: 16px; }
   .scan-rail {
     gap: 6px;
-    padding: 4px 4px 14px;
+    padding: 18px 4px 36px;
   }
   .scan-thumb {
     width: clamp(165px, 48vw, 215px);
@@ -1009,7 +1015,7 @@ body[data-page="cv"] #linkedin {
   }
   .model-viewer-meta {
     left: 8px;
-    right: 8px;
+    right: 118px;
     bottom: 8px;
     display: grid;
     gap: 3px;
@@ -1020,12 +1026,17 @@ body[data-page="cv"] #linkedin {
   .model-viewer-meta strong {
     font-size: var(--ui-size);
   }
-  .model-viewer-meta span {
+  .model-viewer-instructions {
     font-size: 9px;
   }
+  .model-viewer-instructions-desktop { display: none; }
+  .model-viewer-instructions-mobile { display: inline; }
   .model-ar-button {
-    right: 12px;
-    bottom: 76px;
+    right: 8px;
+    bottom: 8px;
+    min-width: 102px;
+    min-height: 58px;
+    padding-inline: 12px;
   }
   .scene { margin-bottom: 32px; }
   .scene-mode-stage { aspect-ratio: 2 / 1; }
