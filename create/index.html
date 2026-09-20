@@ -82,6 +82,7 @@
     <link rel="apple-touch-startup-image" media="screen and (device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="../ios_pwa/10.2__iPad_portrait.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)" href="../ios_pwa/12.9__iPad_Pro_landscape.png">
     <script src="../app.js" defer></script>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
   </head>
   <body data-page="create">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -98,13 +99,11 @@
         <a href="../about/" data-nav="cv">CV</a>
       </nav>
     </header>
-
     <main id="main" class="create-page" tabindex="-1">
       <section class="create-intro page-shell">
         <h1 class="page-title">Create</h1>
         <p>A personal archive of photographs, scanned objects and worlds built away from the desk.</p>
       </section>
-
       <section class="create-section page-shell" id="captured" aria-labelledby="captured-title">
         <header class="section-heading">
           <h2 id="captured-title">Captured - Photography</h2><span></span>
@@ -170,33 +169,128 @@
         </div>
       </section>
 
-      <section class="create-section scan-section" id="scanned" aria-labelledby="scanned-title" hidden>
+      <section class="create-section scan-section" id="scanned" aria-labelledby="scanned-title">
         <div class="page-shell">
           <header class="section-heading">
             <h2 id="scanned-title">Scanned - Photogrammetry + AR</h2><span></span>
           </header>
-          <div class="scan-carousel" data-carousel>
-            <button class="carousel-button previous" type="button" aria-label="Previous scan">←</button>
-            <div class="scan-track">
-              <figure class="scan-item is-active">
-                <img src="../media/create/scans/reflective-form.webp" alt="Reflective 3D form study">
-                <figcaption>Reflective form</figcaption>
+        </div>
+
+        <div class="scan-marquee-shell">
+          <div class="scan-rail drag-rail" data-scan-auto-scroll tabindex="0" aria-label="Automatically scrolling photogrammetry objects. Select an object to explore it in 3D.">
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/ASDA-Extra-Special-Muffin.glb"
+                  data-poster="../media/create/scans/ASDA-Extra-Special-Muffin.webp"
+                  data-model-name="ASDA Extra Special Muffin"
+                  aria-label="Explore ASDA Extra Special Muffin in 3D">
+                  <img src="../media/create/scans/ASDA-Extra-Special-Muffin.webp" alt="Photogrammetry reconstruction of an ASDA Extra Special muffin" loading="lazy" decoding="async">
+                  <figcaption>ASDA Extra Special Muffin</figcaption>
+                </button>
               </figure>
-              <figure class="scan-item">
-                <img src="../media/create/scans/scanned-object-2.webp" alt="Scanned identity object">
-                <figcaption>Scanned object</figcaption>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Birthday-Cake.glb"
+                  data-poster="../media/create/scans/Birthday-Cake.webp"
+                  data-model-name="Birthday Cake"
+                  aria-label="Explore Birthday Cake in 3D">
+                  <img src="../media/create/scans/Birthday-Cake.webp" alt="Photogrammetry reconstruction of a birthday cake" loading="lazy" decoding="async">
+                  <figcaption>Birthday Cake</figcaption>
+                </button>
               </figure>
-              <figure class="scan-item">
-                <img src="../media/create/scans/scanned-object-3.webp" alt="Stylised environment study">
-                <figcaption>Environment study</figcaption>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Cat-Tin.glb"
+                  data-poster="../media/create/scans/Cat-Tin.webp"
+                  data-model-name="Cat Tin"
+                  aria-label="Explore Cat Tin in 3D">
+                  <img src="../media/create/scans/Cat-Tin.webp" alt="Photogrammetry reconstruction of a cat tin" loading="lazy" decoding="async">
+                  <figcaption>Cat Tin</figcaption>
+                </button>
               </figure>
-            </div>
-            <button class="carousel-button next" type="button" aria-label="Next scan">→</button>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Cone.glb"
+                  data-poster="../media/create/scans/Cone.webp"
+                  data-model-name="Cone"
+                  aria-label="Explore Cone in 3D">
+                  <img src="../media/create/scans/Cone.webp" alt="Photogrammetry reconstruction of a cone" loading="lazy" decoding="async">
+                  <figcaption>Cone</figcaption>
+                </button>
+              </figure>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Degree-Show-Table.glb"
+                  data-poster="../media/create/scans/Degree-Show-Table.webp"
+                  data-model-name="Degree Show Table"
+                  aria-label="Explore Degree Show Table in 3D">
+                  <img src="../media/create/scans/Degree-Show-Table.webp" alt="Photogrammetry reconstruction of a Degree Show table" loading="lazy" decoding="async">
+                  <figcaption>Degree Show Table</figcaption>
+                </button>
+              </figure>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Fake-Plant.glb"
+                  data-poster="../media/create/scans/Fake-Plant.webp"
+                  data-model-name="Fake Plant"
+                  aria-label="Explore Fake Plant in 3D">
+                  <img src="../media/create/scans/Fake-Plant.webp" alt="Photogrammetry reconstruction of a fake plant" loading="lazy" decoding="async">
+                  <figcaption>Fake Plant</figcaption>
+                </button>
+              </figure>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Garden-Fork.glb"
+                  data-poster="../media/create/scans/Garden-Fork.webp"
+                  data-model-name="Garden Fork"
+                  aria-label="Explore Garden Fork in 3D">
+                  <img src="../media/create/scans/Garden-Fork.webp" alt="Photogrammetry reconstruction of a garden fork" loading="lazy" decoding="async">
+                  <figcaption>Garden Fork</figcaption>
+                </button>
+              </figure>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Sofa.glb"
+                  data-poster="../media/create/scans/Sofa.webp"
+                  data-model-name="Sofa"
+                  aria-label="Explore Sofa in 3D">
+                  <img src="../media/create/scans/Sofa.webp" alt="Photogrammetry reconstruction of a sofa" loading="lazy" decoding="async">
+                  <figcaption>Sofa</figcaption>
+                </button>
+              </figure>
+              <figure class="scan-thumb">
+                <button
+                  class="scan-open"
+                  type="button"
+                  data-model="../media/create/scans/Table.glb"
+                  data-poster="../media/create/scans/Table.webp"
+                  data-model-name="Table"
+                  aria-label="Explore Table in 3D">
+                  <img src="../media/create/scans/Table.webp" alt="Photogrammetry reconstruction of a table" loading="lazy" decoding="async">
+                  <figcaption>Table</figcaption>
+                </button>
+              </figure>
           </div>
-          <div class="scan-controls">
-            <p><strong id="scan-position">01 / 03</strong> Drag to rotate</p>
-            <a class="button" id="view-ar" href="#" aria-label="View selected 3D model in augmented reality" data-button-motion><span class="button-label">View in AR</span></a>
-          </div>
+        </div>
+
+        <div class="page-shell">
+          <p class="scan-hint">Select an object to explore it in 3D. Compatible mobile devices can also place the model in augmented reality.</p>
         </div>
       </section>
 
@@ -220,14 +314,35 @@
           </div>
         </div>
       </section>
-
     </main>
 
     <dialog class="image-viewer" data-image-viewer aria-label="Expanded photograph">
       <button class="image-viewer-close" type="button" data-close-viewer aria-label="Close image viewer">Close</button>
       <img data-viewer-image alt="">
     </dialog>
-
+    <dialog class="model-viewer-dialog" data-model-dialog aria-labelledby="model-viewer-title">
+      <div class="model-viewer-panel">
+        <button class="model-viewer-close" type="button" data-close-model aria-label="Close 3D model viewer">Close</button>
+        <model-viewer
+          data-model-viewer
+          camera-controls
+          touch-action="pan-y"
+          ar
+          ar-modes="webxr scene-viewer quick-look"
+          shadow-intensity="0.8"
+          shadow-softness="0.8"
+          environment-image="neutral"
+          interaction-prompt="auto">
+          <button class="model-ar-button button" slot="ar-button" type="button">
+            <span class="button-label">View in AR</span>
+          </button>
+        </model-viewer>
+        <div class="model-viewer-meta">
+          <strong id="model-viewer-title" data-model-title>3D model</strong>
+          <span>Drag to rotate · scroll or pinch to zoom</span>
+        </div>
+      </div>
+    </dialog>
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand-block">
@@ -254,6 +369,142 @@
         </div>
       </div>
     </footer>
+    <script>
+      (() => {
+        const dialog = document.querySelector("[data-model-dialog]");
+        const viewer = dialog?.querySelector("[data-model-viewer]");
+        const title = dialog?.querySelector("[data-model-title]");
+        const close = dialog?.querySelector("[data-close-model]");
+
+        if (!dialog || !viewer || !title || !close) return;
+
+        document.addEventListener("click", (event) => {
+          const trigger = event.target.closest(".scan-open");
+          if (!trigger) return;
+
+          const name = trigger.dataset.modelName || "3D model";
+          title.textContent = name;
+          viewer.setAttribute("alt", `Interactive 3D model of ${name}`);
+          viewer.setAttribute("poster", trigger.dataset.poster);
+          viewer.setAttribute("src", trigger.dataset.model);
+
+          if (!dialog.open) dialog.showModal();
+        });
+
+        close.addEventListener("click", () => dialog.close());
+
+        dialog.addEventListener("click", (event) => {
+          if (event.target === dialog) dialog.close();
+        });
+
+        dialog.addEventListener("close", () => {
+          viewer.removeAttribute("src");
+          viewer.removeAttribute("poster");
+          viewer.removeAttribute("alt");
+          title.textContent = "3D model";
+        });
+
+        const rail = document.querySelector("[data-scan-auto-scroll]");
+        if (!rail) return;
+
+        const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+        const originals = [...rail.children];
+        const speed = 0.045; // px per millisecond; photography remains at 0.075
+        let loopWidth = 0;
+        let previousTime = 0;
+        let animationFrame = 0;
+        let visible = false;
+        let paused = false;
+        let resumeTimer;
+
+        originals.forEach((item) => {
+          const clone = item.cloneNode(true);
+          clone.setAttribute("aria-hidden", "true");
+          clone.querySelectorAll("button, a, input, select, textarea").forEach((control) => {
+            control.tabIndex = -1;
+          });
+          rail.append(clone);
+        });
+
+        const measure = () => {
+          const firstOriginal = rail.children[0];
+          const firstClone = rail.children[originals.length];
+          if (!firstOriginal || !firstClone) return;
+          loopWidth = firstClone.offsetLeft - firstOriginal.offsetLeft;
+        };
+
+        const normaliseScroll = () => {
+          if (loopWidth && rail.scrollLeft >= loopWidth) rail.scrollLeft -= loopWidth;
+        };
+
+        const resumeLater = () => {
+          clearTimeout(resumeTimer);
+          resumeTimer = setTimeout(() => { paused = false; }, 1600);
+        };
+
+        rail.addEventListener("pointerdown", () => {
+          paused = true;
+          clearTimeout(resumeTimer);
+        });
+        rail.addEventListener("pointerup", resumeLater);
+        rail.addEventListener("pointercancel", resumeLater);
+        rail.addEventListener("mouseenter", () => { paused = true; });
+        rail.addEventListener("mouseleave", resumeLater);
+        rail.addEventListener("focusin", () => {
+          paused = true;
+          clearTimeout(resumeTimer);
+        });
+        rail.addEventListener("focusout", resumeLater);
+
+        const animate = (time) => {
+          animationFrame = 0;
+          if (!visible) {
+            previousTime = 0;
+            return;
+          }
+
+          if (!previousTime) previousTime = time;
+          const elapsed = Math.min(time - previousTime, 50);
+          previousTime = time;
+
+          if (!paused && !document.hidden && !reduceMotion.matches) {
+            rail.scrollLeft += elapsed * speed;
+            normaliseScroll();
+          }
+
+          animationFrame = requestAnimationFrame(animate);
+        };
+
+        const startAnimation = () => {
+          if (!animationFrame) animationFrame = requestAnimationFrame(animate);
+        };
+
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            if (visible) {
+              measure();
+              startAnimation();
+            }
+          });
+          observer.observe(rail);
+        } else {
+          visible = true;
+          startAnimation();
+        }
+
+        requestAnimationFrame(measure);
+        window.addEventListener("resize", measure, { passive: true });
+        rail.addEventListener("scrollend", normaliseScroll);
+
+        if ("ResizeObserver" in window) {
+          const sizeObserver = new ResizeObserver(measure);
+          originals.forEach((item) => sizeObserver.observe(item));
+        } else {
+          originals.forEach((item) => item.querySelector("img")?.addEventListener("load", measure));
+        }
+      })();
+    </script>
 <script type="module" src="/analytics.js"></script>
 </body>
 </html>
