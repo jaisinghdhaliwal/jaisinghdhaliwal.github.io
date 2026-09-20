@@ -696,6 +696,7 @@ body[data-page="cv"] #linkedin {
   margin: auto;
   padding: 0;
   border: 0;
+  outline: 0;
   border-radius: var(--radius);
   color: var(--navy);
   background: #ddd;
@@ -723,8 +724,15 @@ body.model-dialog-open {
   display: block;
   width: 100%;
   height: 100%;
+  outline: 0;
   background: var(--coral-soft);
   --poster-color: transparent;
+}
+.model-viewer-dialog:focus,
+.model-viewer-dialog:focus-visible,
+.model-viewer-dialog model-viewer:focus,
+.model-viewer-dialog model-viewer:focus-visible {
+  outline: none;
 }
 .model-viewer-close {
   position: absolute;
@@ -758,7 +766,7 @@ body.model-dialog-open {
   gap: 16px;
   align-items: center;
   min-height: 52px;
-  padding: 11px 136px 11px 14px;
+  padding: 11px 14px;
   border: 1px solid rgba(255, 255, 255, .88);
   border-radius: 13px;
   background: rgba(248, 248, 246, .76);
@@ -1015,7 +1023,7 @@ body.model-dialog-open {
   }
   .model-viewer-meta {
     left: 8px;
-    right: 118px;
+    right: 128px;
     bottom: 8px;
     display: grid;
     gap: 3px;
@@ -1034,9 +1042,10 @@ body.model-dialog-open {
   .model-ar-button {
     right: 8px;
     bottom: 8px;
-    min-width: 102px;
+    width: 112px;
+    min-width: 112px;
     min-height: 58px;
-    padding-inline: 12px;
+    padding-inline: 10px;
   }
   .scene { margin-bottom: 32px; }
   .scene-mode-stage { aspect-ratio: 2 / 1; }
