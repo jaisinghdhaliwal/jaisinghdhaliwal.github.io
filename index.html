@@ -95,7 +95,6 @@
   </head>
   <body data-page="work">
     <a class="skip-link" href="#main">Skip to content</a>
-
     <header class="site-header">
       <div class="header-gradient-blur" aria-hidden="true">
         <span></span><span></span><span></span><span></span>
@@ -111,7 +110,6 @@
         <a href="about/" data-nav="cv">CV</a>
       </nav>
     </header>
-
     <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-media" style="background-color: #ffb255; background-image: linear-gradient(180deg, #f7d17f 0%, #f9dd8d 18%, #f8d783 31%, #f6c874 44%, #f3b364 60%, #f2a655 75%, #ea9d4d 100%);">
@@ -165,39 +163,67 @@
           <h2 id="work-title">Selected work</h2>
           <span aria-hidden="true"></span>
         </header>
+
         <div class="project-grid" id="project-grid" aria-live="polite">
           <div class="project-card">
             <a href="projects/gadjet-displays/" aria-label="View GadJet Display Visualiser">
               <img class="project-video" src="media/projects/gadjet-displays/thumb-720.avif" alt="GadJet Display Visualiser project preview" width="720" height="900" loading="lazy" decoding="async">
-              <span class="project-caption glass"><strong>GadJet Display Visualiser</strong><time>2026</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Display Visualiser</strong>
+                  <span class="project-category">3D + Web AR</span>
+                </span>
+                <time>2026</time>
+              </span>
             </a>
           </div>
+
           <div class="project-card">
             <a href="projects/gadjet-packaging/" aria-label="View GadJet Packaging">
               <img class="project-video" src="media/projects/gadjet-packaging/thumb-720.avif" alt="GadJet Packaging project preview" width="720" height="900" loading="lazy" decoding="async">
-              <span class="project-caption glass"><strong>GadJet Packaging</strong><time>2026</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Packaging</strong>
+                  <span class="project-category">Packaging systems + product visualisation</span>
+                </span>
+                <time>2026</time>
+              </span>
             </a>
           </div>
+
           <div class="project-card">
             <a href="projects/degree-show/" aria-label="View Degree Show Exhibition">
               <img class="project-video" src="media/projects/degree-show/thumb-720.avif" alt="Degree Show Exhibition project preview" width="720" height="900" loading="lazy" decoding="async">
-              <span class="project-caption glass"><strong>Degree Show Exhibition</strong><time>2025</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>Degree Show Exhibition</strong>
+                  <span class="project-category">3D + interactive experience</span>
+                </span>
+                <time>2025</time>
+              </span>
             </a>
           </div>
+
           <div class="project-card">
             <a href="projects/justdesign-show/" aria-label="View JustDesign.Show">
               <img class="project-video" src="media/projects/justdesign-show/thumb-720.avif" alt="JustDesign.Show project preview" width="720" height="900" loading="lazy" decoding="async">
-              <span class="project-caption glass"><strong>JustDesign.Show</strong><time>2024</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>JustDesign.Show</strong>
+                  <span class="project-category">Web design + development</span>
+                </span>
+                <time>2024</time>
+              </span>
             </a>
           </div>
         </div>
       </section>
+
       <script>
         function setupHeroShowreel() {
           const video = document.querySelector(".hero-video");
           const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
           const saveData = navigator.connection?.saveData;
-
           if (!video || reducedMotion || saveData) return;
 
           const revealVideo = () => video.classList.add("is-active");
@@ -221,13 +247,12 @@
           const clearFocusMode = () => {
             window.clearTimeout(idleTimer);
             hero.classList.remove("is-focus-mode");
-
             if (desktop.matches && !reducedMotion.matches && heroVisible) {
               idleTimer = window.setTimeout(() => {
                 if (!hero.matches(":focus-within")) {
                   hero.classList.add("is-focus-mode");
                 }
-              }, 6000);
+              }, 4000);
             }
           };
 
@@ -241,12 +266,14 @@
           window.addEventListener("scroll", clearFocusMode, { passive: true });
           window.addEventListener("pointerdown", clearFocusMode, { passive: true });
           window.addEventListener("keydown", clearFocusMode);
+
           let lastPointerReset = 0;
           hero.addEventListener("pointermove", (event) => {
             if (event.timeStamp - lastPointerReset < 200) return;
             lastPointerReset = event.timeStamp;
             clearFocusMode();
           }, { passive: true });
+
           desktop.addEventListener("change", clearFocusMode);
           clearFocusMode();
         }
@@ -262,7 +289,6 @@
         function setupProjectReveal(grid) {
           const cards = [...grid.querySelectorAll(".project-card")];
           if (!cards.length || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
           grid.classList.add("is-reveal-ready");
 
           const revealAll = () => {
@@ -289,26 +315,175 @@
           const videos = [...grid.querySelectorAll("video.project-video")];
           if (!videos.length) return;
 
-          const pauseVideos = () => videos.forEach((video) => video.pause());
-          const playVideos = () => {
-            if (document.visibilityState !== "visible") return;
+          const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+          const saveData = Boolean(navigator.connection?.saveData);
+          const state = new WeakMap();
 
-            videos.forEach((video) => {
-              video.muted = true;
-              if (video.readyState === 0) video.load();
-              video.play().catch(() => {});
+          videos.forEach((video) => {
+            video.muted = true;
+            video.preload = "none";
+            state.set(video, {
+              prepared: false,
+              active: false,
+              hasPlayed: false,
+              pausedAt: null,
+              waitingForCanPlay: false
             });
-          };
-          const resumeVideos = () => requestAnimationFrame(playVideos);
-
-          window.addEventListener("pagehide", pauseVideos);
-          window.addEventListener("pageshow", resumeVideos);
-          document.addEventListener("visibilitychange", () => {
-            if (document.hidden) pauseVideos();
-            else resumeVideos();
           });
 
-          playVideos();
+          // Under Reduced Motion or Save-Data, the lightweight poster remains
+          // visible and the actual video sources are never attached.
+          if (reducedMotion.matches || saveData) return;
+
+          const prepareVideo = (video) => {
+            const videoState = state.get(video);
+            if (!videoState || videoState.prepared) return;
+
+            video.querySelectorAll("source[data-src]").forEach((source) => {
+              source.src = source.dataset.src;
+              source.removeAttribute("data-src");
+            });
+
+            videoState.prepared = true;
+            video.preload = "auto";
+            video.load();
+          };
+
+          const catchUpTimeline = (video, videoState) => {
+            if (
+              !videoState.hasPlayed ||
+              videoState.pausedAt === null ||
+              !Number.isFinite(video.duration) ||
+              video.duration <= 0
+            ) return;
+
+            const elapsed = (performance.now() - videoState.pausedAt) / 1000;
+            if (elapsed < 0.08) return;
+
+            const nextTime = (video.currentTime + elapsed) % video.duration;
+            if (Math.abs(nextTime - video.currentTime) > 0.04) {
+              video.currentTime = nextTime;
+            }
+          };
+
+          const playVideo = (video) => {
+            const videoState = state.get(video);
+            if (
+              !videoState ||
+              !videoState.active ||
+              document.visibilityState !== "visible"
+            ) return;
+
+            prepareVideo(video);
+
+            const startPlayback = () => {
+              videoState.waitingForCanPlay = false;
+
+              if (
+                !videoState.active ||
+                document.visibilityState !== "visible"
+              ) return;
+
+              catchUpTimeline(video, videoState);
+              videoState.pausedAt = null;
+
+              video.play()
+                .then(() => {
+                  videoState.hasPlayed = true;
+                })
+                .catch(() => {});
+            };
+
+            if (video.readyState >= 2) {
+              startPlayback();
+            } else if (!videoState.waitingForCanPlay) {
+              videoState.waitingForCanPlay = true;
+              video.addEventListener("canplay", startPlayback, { once: true });
+            }
+          };
+
+          const pauseVideo = (video) => {
+            const videoState = state.get(video);
+            if (!videoState) return;
+
+            if (videoState.hasPlayed && videoState.pausedAt === null) {
+              videoState.pausedAt = performance.now();
+            }
+
+            video.pause();
+          };
+
+          const pauseAll = () => videos.forEach(pauseVideo);
+
+          const resumeActive = () => {
+            requestAnimationFrame(() => {
+              videos.forEach((video) => {
+                if (state.get(video)?.active) playVideo(video);
+              });
+            });
+          };
+
+          const startVisibilityManagement = () => {
+            if (!("IntersectionObserver" in window)) {
+              videos.forEach((video) => {
+                state.get(video).active = true;
+                prepareVideo(video);
+                playVideo(video);
+              });
+              return;
+            }
+
+            // Warm the selected card shortly before it reaches the viewport.
+            // Sources are attached only after the page's critical load is done.
+            const preloadObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                prepareVideo(entry.target);
+                preloadObserver.unobserve(entry.target);
+              });
+            }, {
+              rootMargin: "85% 0px",
+              threshold: 0
+            });
+
+            // Begin playback slightly outside the viewport so the first moving
+            // frame is already ready by the time the card is actually visible.
+            const playbackObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                const video = entry.target;
+                const videoState = state.get(video);
+                if (!videoState) return;
+
+                videoState.active = entry.isIntersecting;
+
+                if (videoState.active) playVideo(video);
+                else pauseVideo(video);
+              });
+            }, {
+              rootMargin: "12% 0px",
+              threshold: 0
+            });
+
+            videos.forEach((video) => {
+              preloadObserver.observe(video);
+              playbackObserver.observe(video);
+            });
+          };
+
+          window.addEventListener("pagehide", pauseAll);
+          window.addEventListener("pageshow", resumeActive);
+          document.addEventListener("visibilitychange", () => {
+            if (document.hidden) pauseAll();
+            else resumeActive();
+          });
+
+          if (document.readyState === "complete") {
+            requestAnimationFrame(startVisibilityManagement);
+          } else {
+            window.addEventListener("load", () => {
+              requestAnimationFrame(startVisibilityManagement);
+            }, { once: true });
+          }
         }
 
         async function renderProjects() {
@@ -321,40 +496,49 @@
             }
 
             const data = await response.json();
-            grid.innerHTML = data.projects.filter((project) => project.featured !== false).map((project) => {
-              const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
-              const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
-              const projectMedia = project.video === false
-                ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" width="720" height="900" loading="lazy" decoding="async">`
-                : `<video
-                      class="project-video"
-                      autoplay
-                      muted
-                      loop
-                      playsinline
-                      preload="metadata"
-                      poster="${escapeProjectHtml(poster)}"
-                      aria-hidden="true">
-                      <source
-                        src="${escapeProjectHtml(`${mediaDirectory}/h265.mp4`)}"
-                        type='video/mp4; codecs="hvc1"'>
-                      <source
-                        src="${escapeProjectHtml(`${mediaDirectory}/h264.mp4`)}"
-                        type='video/mp4; codecs="avc1"'>
-                    </video>`;
 
-              return `
-                <div class="project-card">
-                  <a href="${escapeProjectHtml(project.href)}" aria-label="View ${escapeProjectHtml(project.title)}">
-                    ${projectMedia}
-                    <span class="project-caption glass">
-                      <strong>${escapeProjectHtml(project.title)}</strong>
-                      <time>${escapeProjectHtml(project.year)}</time>
-                    </span>
-                  </a>
-                </div>
-              `;
-            }).join("");
+            grid.innerHTML = data.projects
+              .filter((project) => project.featured !== false)
+              .map((project) => {
+                const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
+                const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
+                const category = project.category || "";
+
+                const projectMedia = project.video === false
+                  ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" width="720" height="900" loading="lazy" decoding="async">`
+                  : `<video
+                        class="project-video"
+                        muted
+                        loop
+                        playsinline
+                        preload="none"
+                        poster="${escapeProjectHtml(poster)}"
+                        aria-hidden="true">
+                        <source
+                          data-src="${escapeProjectHtml(`${mediaDirectory}/h265.mp4`)}"
+                          type='video/mp4; codecs="hvc1"'>
+                        <source
+                          data-src="${escapeProjectHtml(`${mediaDirectory}/h264.mp4`)}"
+                          type='video/mp4; codecs="avc1"'>
+                      </video>`;
+
+                return `
+                  <div class="project-card">
+                    <a href="${escapeProjectHtml(project.href)}" aria-label="View ${escapeProjectHtml(project.title)}">
+                      ${projectMedia}
+                      <span class="project-caption glass">
+                        <span class="project-caption-copy">
+                          <strong>${escapeProjectHtml(project.title)}</strong>
+                          ${category ? `<span class="project-category">${escapeProjectHtml(category)}</span>` : ""}
+                        </span>
+                        <time>${escapeProjectHtml(project.year)}</time>
+                      </span>
+                    </a>
+                  </div>
+                `;
+              })
+              .join("");
+
             setupProjectReveal(grid);
             setupProjectPlayback(grid);
           } catch (error) {
@@ -378,10 +562,11 @@
       <div class="footer-inner">
         <div class="footer-brand-block">
           <a class="footer-brand" href="./" aria-label="Jai Singh Dhaliwal - Work">
-          <img src="logo/logo_name_white.svg" alt="" width="2261" height="240">
-        </a>
+            <img src="logo/logo_name_white.svg" alt="" width="2261" height="240">
+          </a>
           <p class="footer-analytics">Privacy-first <a href="https://www.cloudflare.com/web-analytics/" rel="noreferrer">Cloudflare Web Analytics</a> measures anonymous page views and performance without cookies or personal data. <a href="?analytics=off" data-analytics-choice>Opt out of analytics</a>; this preference is saved only in your browser.</p>
         </div>
+
         <nav class="footer-group" aria-label="Footer navigation">
           <p class="footer-heading">Explore</p>
           <a href="./">Work</a>
@@ -389,18 +574,21 @@
           <a href="about/">CV</a>
           <a href="Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" target="_blank" rel="noreferrer">Download CV PDF</a>
         </nav>
+
         <div class="footer-group">
           <p class="footer-heading">Contact</p>
           <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
           <a href="tel:+447455794117">+44 7455 794117</a>
           <a href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
         </div>
+
         <div class="footer-meta">
           <span>&copy; 2026 Jai Singh Dhaliwal</span>
         </div>
       </div>
     </footer>
-<script src="app.js" defer></script>
-<script type="module" src="/analytics.js"></script>
-</body>
+
+    <script src="app.js" defer></script>
+    <script type="module" src="/analytics.js"></script>
+  </body>
 </html>
