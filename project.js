@@ -51,6 +51,7 @@ document.querySelectorAll('.case-body > .scene-modes').forEach(viewer => {
   measure();
 });
 
+
 // Shared scroll gallery: exhibition comparisons and explicitly marked photo cards.
 const comparisonCards = [...document.querySelectorAll('.case-body > .scene-modes')]
   .filter(card =>
@@ -226,7 +227,6 @@ if (comparisonCards.length > 1) {
   window.addEventListener('load', measure, { once: true });
 
   motion.addEventListener('change', measure);
-
   new ResizeObserver(measure).observe(viewport);
   new ResizeObserver(measure).observe(track);
 
@@ -248,6 +248,7 @@ document.querySelectorAll(".case-image-set img").forEach((image) => {
     image.addEventListener("load", setRatio, { once: true });
   }
 });
+
 
 // Scrub transparent image sequences while their full-screen stage is pinned.
 document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
@@ -277,6 +278,7 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
     const frame = new Image();
     frame.src = source(index);
     frames[index] = frame;
+
     return frame;
   }
 
@@ -302,22 +304,34 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
   function draw() {
     animationFrame = 0;
 
-    const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
+    const progress = Math.max(
+      0,
+      Math.min(1, (scrollY - start) / travel)
+    );
+
     const next = Math.round(progress * (count - 1));
 
-    if (next !== current) show(next);
+    if (next !== current) {
+      show(next);
+    }
 
     load(next - 1);
     load(next + 1);
   }
 
   function schedule() {
-    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(draw);
+    }
   }
 
   function measure() {
     start = sequence.getBoundingClientRect().top + scrollY;
-    travel = Math.max(1, sequence.offsetHeight - innerHeight);
+    travel = Math.max(
+      1,
+      sequence.offsetHeight - innerHeight
+    );
+
     draw();
   }
 
@@ -331,9 +345,13 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
     const batch = () => {
       const end = Math.min(count, index + 8);
 
-      while (index < end) load(index++);
+      while (index < end) {
+        load(index++);
+      }
 
-      if (index < count) setTimeout(batch, 80);
+      if (index < count) {
+        setTimeout(batch, 80);
+      }
     };
 
     batch();
@@ -345,7 +363,9 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 
       preload();
       observer.disconnect();
-    }, { rootMargin: "100% 0px" });
+    }, {
+      rootMargin: "100% 0px"
+    });
 
     observer.observe(sequence);
   } else {
@@ -365,7 +385,6 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
 // Uncover the packaging family with a feathered left-to-right scroll reveal.
 document.querySelectorAll(".case-family-reveal img").forEach((image) => {
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-
   let animationFrame = 0;
 
   function draw() {
@@ -380,14 +399,22 @@ document.querySelectorAll(".case-family-reveal img").forEach((image) => {
 
     const progress = Math.max(
       0,
-      Math.min(1, (innerHeight - rect.top) / (innerHeight * .72))
+      Math.min(
+        1,
+        (innerHeight - rect.top) / (innerHeight * .72)
+      )
     );
 
-    image.style.setProperty("--family-reveal", `${progress * 112}%`);
+    image.style.setProperty(
+      "--family-reveal",
+      `${progress * 112}%`
+    );
   }
 
   function schedule() {
-    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(draw);
+    }
   }
 
   window.addEventListener("scroll", schedule, { passive: true });
@@ -399,6 +426,7 @@ document.querySelectorAll(".case-family-reveal img").forEach((image) => {
 
   draw();
 });
+
 
 // Keep the manual copy visible while its panoramic photograph pans across.
 document.querySelectorAll(".case-manual-pan").forEach((section) => {
@@ -415,18 +443,33 @@ document.querySelectorAll(".case-manual-pan").forEach((section) => {
   function draw() {
     animationFrame = 0;
 
-    const progress = Math.max(0, Math.min(1, (scrollY - start) / travel));
+    const progress = Math.max(
+      0,
+      Math.min(
+        1,
+        (scrollY - start) / travel
+      )
+    );
 
-    image.style.setProperty("--manual-pan", `${progress * 100}%`);
+    image.style.setProperty(
+      "--manual-pan",
+      `${progress * 100}%`
+    );
   }
 
   function schedule() {
-    if (!animationFrame) animationFrame = requestAnimationFrame(draw);
+    if (!animationFrame) {
+      animationFrame = requestAnimationFrame(draw);
+    }
   }
 
   function measure() {
     start = section.getBoundingClientRect().top + scrollY;
-    travel = Math.max(1, section.offsetHeight - sticky.offsetHeight);
+
+    travel = Math.max(
+      1,
+      section.offsetHeight - sticky.offsetHeight
+    );
 
     draw();
   }
@@ -441,11 +484,51 @@ document.querySelectorAll(".case-manual-pan").forEach((section) => {
 });
 
 
+// Keep the related-work grid balanced: two recommendations per case study.
+document.querySelectorAll(".case-more .project-grid").forEach((grid) => {
+  [...grid.querySelectorAll(":scope > .project-card")]
+    .slice(2)
+    .forEach((card) => card.remove());
+});
+
+
 const caseNav = document.querySelector(".case-local-nav");
 
 if (caseNav) {
   const caseLayout = caseNav.closest(".case-layout");
   const caseBody = caseLayout?.querySelector(".case-body");
+  const caseMore = document.querySelector(".case-more");
+
+  const canRevealCaseNavAt = (pointerY) => {
+    if (!caseLayout) return false;
+
+    const layoutRect = caseLayout.getBoundingClientRect();
+
+    // The desktop reveal gutter only belongs to the case-study body.
+    // Once the pointer is vertically outside that body, including over
+    // the More work section, the sidebar must stay closed.
+    const pointerInsideCaseLayout =
+      pointerY >= Math.max(0, layoutRect.top) &&
+      pointerY <= Math.min(innerHeight, layoutRect.bottom);
+
+    if (!pointerInsideCaseLayout) {
+      return false;
+    }
+
+    if (caseMore) {
+      const moreRect = caseMore.getBoundingClientRect();
+
+      const pointerOverMoreWork =
+        pointerY >= moreRect.top &&
+        pointerY <= moreRect.bottom;
+
+      if (pointerOverMoreWork) {
+        return false;
+      }
+    }
+
+    return true;
+  };
 
   let collapseTimer;
 
@@ -464,7 +547,6 @@ if (caseNav) {
 
       caseNav.classList.remove("is-collapsed");
       collapseNav();
-
       entranceObserver.disconnect();
     }, {
       rootMargin: "0px 0px -35%",
@@ -476,56 +558,120 @@ if (caseNav) {
     collapseNav();
   }
 
-  if (caseBody && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  if (
+    caseBody &&
+    matchMedia("(hover: hover) and (pointer: fine)").matches
+  ) {
     document.addEventListener("pointermove", (event) => {
-      if (!caseNav.classList.contains("is-collapsed")) return;
-
-      const activationEdge = caseBody.getBoundingClientRect().left - 14;
-      const inGutter = event.clientX < activationEdge;
-      const expanded = caseNav.classList.contains("is-expanded");
-
-      if (!expanded) {
-        if (inGutter) caseNav.classList.add("is-expanded");
+      if (!caseNav.classList.contains("is-collapsed")) {
         return;
       }
 
-      if (!inGutter && !caseNav.matches(":hover")) {
+      if (!canRevealCaseNavAt(event.clientY)) {
+        caseNav.classList.remove("is-expanded");
+        return;
+      }
+
+      const activationEdge =
+        caseBody.getBoundingClientRect().left - 14;
+
+      const inGutter =
+        event.clientX < activationEdge;
+
+      const expanded =
+        caseNav.classList.contains("is-expanded");
+
+      if (!expanded) {
+        if (inGutter) {
+          caseNav.classList.add("is-expanded");
+        }
+
+        return;
+      }
+
+      if (
+        !inGutter &&
+        !caseNav.matches(":hover")
+      ) {
         caseNav.classList.remove("is-expanded");
       }
-    }, { passive: true });
+    }, {
+      passive: true
+    });
 
     document.addEventListener("pointerleave", () => {
       caseNav.classList.remove("is-expanded");
     });
+
+    if (
+      caseMore &&
+      "IntersectionObserver" in window
+    ) {
+      const moreWorkObserver =
+        new IntersectionObserver(([entry]) => {
+          if (!entry.isIntersecting) return;
+
+          caseNav.classList.remove("is-expanded");
+        }, {
+          threshold: 0
+        });
+
+      moreWorkObserver.observe(caseMore);
+    }
   }
 
-  const links = [...caseNav.querySelectorAll("a[href^='#']")];
+  const links = [
+    ...caseNav.querySelectorAll("a[href^='#']")
+  ];
 
   // Hide only labels, retaining each link's geometry and active-section border.
   links.forEach((link) => {
     const label = document.createElement("span");
 
-    link.setAttribute("aria-label", link.textContent.trim());
+    link.setAttribute(
+      "aria-label",
+      link.textContent.trim()
+    );
 
     label.append(...link.childNodes);
     link.append(label);
   });
 
   // On phones, reuse this same navigation as a compact top-right menu.
-  const mobileNavQuery = matchMedia("(max-width: 640px)");
-  const siteHeader = document.querySelector(".site-header");
+  const mobileNavQuery =
+    matchMedia("(max-width: 640px)");
+
+  const siteHeader =
+    document.querySelector(".site-header");
 
   let mobileNavButton = null;
 
   if (siteHeader) {
-    if (!caseNav.id) caseNav.id = "case-section-nav";
+    if (!caseNav.id) {
+      caseNav.id = "case-section-nav";
+    }
 
-    mobileNavButton = document.createElement("button");
+    mobileNavButton =
+      document.createElement("button");
+
     mobileNavButton.type = "button";
-    mobileNavButton.className = "case-mobile-nav-toggle glass";
-    mobileNavButton.setAttribute("aria-controls", caseNav.id);
-    mobileNavButton.setAttribute("aria-expanded", "false");
-    mobileNavButton.setAttribute("aria-label", "Open section navigation");
+    mobileNavButton.className =
+      "case-mobile-nav-toggle glass";
+
+    mobileNavButton.setAttribute(
+      "aria-controls",
+      caseNav.id
+    );
+
+    mobileNavButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+    mobileNavButton.setAttribute(
+      "aria-label",
+      "Open section navigation"
+    );
 
     mobileNavButton.innerHTML = `
       <span class="case-mobile-nav-icon" aria-hidden="true">
@@ -536,12 +682,18 @@ if (caseNav) {
     `;
 
     siteHeader.append(mobileNavButton);
-    caseNav.classList.add("has-mobile-toggle");
+
+    caseNav.classList.add(
+      "has-mobile-toggle"
+    );
 
     const positionMobileNav = () => {
-      if (!mobileNavQuery.matches) return;
+      if (!mobileNavQuery.matches) {
+        return;
+      }
 
-      const rect = mobileNavButton.getBoundingClientRect();
+      const rect =
+        mobileNavButton.getBoundingClientRect();
 
       caseNav.style.setProperty(
         "--case-mobile-nav-top",
@@ -550,14 +702,27 @@ if (caseNav) {
 
       caseNav.style.setProperty(
         "--case-mobile-nav-right",
-        `${Math.max(16, Math.round(innerWidth - rect.right))}px`
+        `${Math.max(
+          16,
+          Math.round(innerWidth - rect.right)
+        )}px`
       );
     };
 
-    const setMobileNav = (open, returnFocus = false) => {
-      const shouldOpen = Boolean(open && mobileNavQuery.matches);
+    const setMobileNav = (
+      open,
+      returnFocus = false
+    ) => {
+      const shouldOpen =
+        Boolean(
+          open &&
+          mobileNavQuery.matches
+        );
 
-      caseNav.classList.toggle("is-mobile-open", shouldOpen);
+      caseNav.classList.toggle(
+        "is-mobile-open",
+        shouldOpen
+      );
 
       mobileNavButton.setAttribute(
         "aria-expanded",
@@ -571,89 +736,162 @@ if (caseNav) {
           : "Open section navigation"
       );
 
-      if (shouldOpen) positionMobileNav();
+      if (shouldOpen) {
+        positionMobileNav();
+      }
 
-      if (!shouldOpen && returnFocus) {
+      if (
+        !shouldOpen &&
+        returnFocus
+      ) {
         mobileNavButton.focus();
       }
     };
 
-    mobileNavButton.addEventListener("click", () => {
-      setMobileNav(!caseNav.classList.contains("is-mobile-open"));
-    });
+    mobileNavButton.addEventListener(
+      "click",
+      () => {
+        setMobileNav(
+          !caseNav.classList.contains(
+            "is-mobile-open"
+          )
+        );
+      }
+    );
 
     links.forEach((link) => {
-      link.addEventListener("click", () => setMobileNav(false));
+      link.addEventListener(
+        "click",
+        () => setMobileNav(false)
+      );
     });
 
-    document.addEventListener("pointerdown", (event) => {
-      if (!caseNav.classList.contains("is-mobile-open")) return;
+    document.addEventListener(
+      "pointerdown",
+      (event) => {
+        if (
+          !caseNav.classList.contains(
+            "is-mobile-open"
+          )
+        ) {
+          return;
+        }
 
-      if (
-        caseNav.contains(event.target) ||
-        mobileNavButton.contains(event.target)
-      ) return;
+        if (
+          caseNav.contains(event.target) ||
+          mobileNavButton.contains(event.target)
+        ) {
+          return;
+        }
 
-      setMobileNav(false);
-    });
-
-    document.addEventListener("keydown", (event) => {
-      if (
-        event.key !== "Escape" ||
-        !caseNav.classList.contains("is-mobile-open")
-      ) return;
-
-      setMobileNav(false, true);
-    });
-
-    window.addEventListener("resize", () => {
-      if (!mobileNavQuery.matches) {
         setMobileNav(false);
-        return;
       }
+    );
 
-      if (caseNav.classList.contains("is-mobile-open")) {
-        positionMobileNav();
+    document.addEventListener(
+      "keydown",
+      (event) => {
+        if (
+          event.key !== "Escape" ||
+          !caseNav.classList.contains(
+            "is-mobile-open"
+          )
+        ) {
+          return;
+        }
+
+        setMobileNav(false, true);
       }
-    });
+    );
 
-    mobileNavQuery.addEventListener("change", (event) => {
-      if (!event.matches) setMobileNav(false);
-    });
+    window.addEventListener(
+      "resize",
+      () => {
+        if (!mobileNavQuery.matches) {
+          setMobileNav(false);
+          return;
+        }
+
+        if (
+          caseNav.classList.contains(
+            "is-mobile-open"
+          )
+        ) {
+          positionMobileNav();
+        }
+      }
+    );
+
+    mobileNavQuery.addEventListener(
+      "change",
+      (event) => {
+        if (!event.matches) {
+          setMobileNav(false);
+        }
+      }
+    );
   }
 
   const sections = links
-    .map((link) => document.querySelector(link.hash))
+    .map((link) =>
+      document.querySelector(link.hash)
+    )
     .filter(Boolean);
 
-  if (sections.length && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort(
-          (a, b) =>
-            b.intersectionRatio - a.intersectionRatio
-        )[0];
+  if (
+    sections.length &&
+    "IntersectionObserver" in window
+  ) {
+    const observer =
+      new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(
+            (entry) =>
+              entry.isIntersecting
+          )
+          .sort(
+            (a, b) =>
+              b.intersectionRatio -
+              a.intersectionRatio
+          )[0];
 
-      if (!visible) return;
+        if (!visible) return;
 
-      links.forEach((link) => {
-        const active =
-          link.hash === `#${visible.target.id}`;
+        links.forEach((link) => {
+          const active =
+            link.hash ===
+            `#${visible.target.id}`;
 
-        link.classList.toggle("is-active", active);
+          link.classList.toggle(
+            "is-active",
+            active
+          );
 
-        if (active) {
-          link.setAttribute("aria-current", "location");
-        } else {
-          link.removeAttribute("aria-current");
-        }
+          if (active) {
+            link.setAttribute(
+              "aria-current",
+              "location"
+            );
+          } else {
+            link.removeAttribute(
+              "aria-current"
+            );
+          }
+        });
+      }, {
+        rootMargin:
+          "-18% 0px -65% 0px",
+        threshold: [
+          0,
+          .2,
+          .5,
+          1
+        ]
       });
-    }, {
-      rootMargin: "-18% 0px -65% 0px",
-      threshold: [0, .2, .5, 1]
-    });
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach(
+      (section) =>
+        observer.observe(section)
+    );
   }
 }
