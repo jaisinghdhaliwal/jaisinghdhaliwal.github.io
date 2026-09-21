@@ -1,0 +1,688 @@
+/* ==========================================================================
+   PRINT STYLESHEET
+   Jai Singh Dhaliwal portfolio
+
+   Link from every page with:
+   <link rel="stylesheet" href="/print.css" media="print">
+   ========================================================================== */
+
+@page {
+  size: A4;
+  margin: 14mm 14mm 16mm;
+}
+
+@media print {
+
+  :root {
+    --paper: #fff;
+    --white: #fff;
+    --navy: #131E29;
+    --coral: #F9423A;
+    --coral-soft: #fff;
+    --line: rgba(19, 30, 41, .28);
+    --shadow: none;
+    --shell: 100%;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    color: var(--navy) !important;
+    background: #fff !important;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    position: static !important;
+  }
+
+  main,
+  .page-shell {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+
+  p {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h1,
+  h2,
+  h3,
+  dt,
+  figcaption,
+  .section-heading,
+  .case-section-heading {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  img,
+  svg {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  figure,
+  img,
+  .project-card,
+  .case-scan-stats,
+  .case-process-strip,
+  .case-takeaway,
+  .cv-entry,
+  .cv-side-block,
+  .certification-list li,
+  .scene-modes {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Screen-only navigation and interaction chrome */
+  .skip-link,
+  .site-header,
+  .header-gradient-blur,
+  .site-nav,
+  .nav-active-pill,
+  .case-local-nav,
+  .case-mobile-nav-toggle,
+  .hero-focus-label,
+  .case-actions,
+  .case-more,
+  .carousel-button,
+  .comparison-controls,
+  .country-tabs,
+  .image-viewer,
+  .model-viewer-dialog,
+  .model-ar-button,
+  .model-viewer-close,
+  .scene-mode-wipe,
+  .scene-mode-label,
+  .stand-experience,
+  .scan-hint {
+    display: none !important;
+  }
+
+  .glass {
+    background: #fff !important;
+    border-color: var(--line) !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* Shared typography */
+  .page-title {
+    margin: 0 0 5mm !important;
+    font-size: 28pt !important;
+    line-height: 1.02 !important;
+    letter-spacing: -.035em !important;
+  }
+
+  .section-heading {
+    gap: 4mm !important;
+    margin: 7mm 0 4mm !important;
+  }
+
+  .section-heading h2 {
+    color: var(--coral) !important;
+  }
+
+  .section-heading span {
+    background: var(--navy) !important;
+  }
+
+  .case-kicker {
+    margin: 0 0 4mm !important;
+  }
+
+  .case-deck {
+    max-width: none !important;
+    margin-bottom: 5mm !important;
+  }
+
+  .button {
+    display: none !important;
+  }
+
+  /* Simplified printable footer */
+  .site-footer {
+    position: static !important;
+    margin: 10mm 0 0 !important;
+    color: var(--navy) !important;
+    background: #fff !important;
+    break-inside: avoid;
+  }
+
+  .footer-inner {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 6mm 0 0 !important;
+    border-top: .5pt solid var(--line);
+  }
+
+  .footer-brand-block,
+  .site-footer nav.footer-group,
+  .footer-analytics {
+    display: none !important;
+  }
+
+  .site-footer .footer-group {
+    display: block !important;
+  }
+
+  .site-footer .footer-group .footer-heading {
+    margin: 0 0 2mm !important;
+    color: var(--coral) !important;
+  }
+
+  .site-footer .footer-group a {
+    display: block !important;
+    margin: 0 0 1mm !important;
+    white-space: normal !important;
+  }
+
+  .site-footer .footer-group a::after {
+    display: none !important;
+  }
+
+  .footer-meta {
+    display: block !important;
+    margin-top: 4mm !important;
+    padding-top: 3mm !important;
+    border-top: .5pt solid var(--line) !important;
+    color: var(--navy) !important;
+  }
+
+  /* ==========================================================================
+     WORK / HOMEPAGE
+     ========================================================================== */
+
+  .hero {
+    min-height: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  .hero-media,
+  .hero-shade {
+    display: none !important;
+  }
+
+  .hero-content {
+    position: static !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 0 8mm !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .hero-copy {
+    width: auto !important;
+    max-width: 150mm !important;
+  }
+
+  .hero-actions {
+    display: none !important;
+  }
+
+  .contact-lines {
+    display: block !important;
+    margin-top: 4mm !important;
+  }
+
+  .contact-lines span {
+    display: none !important;
+  }
+
+  .work-section {
+    padding: 0 !important;
+  }
+
+  .project-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 5mm !important;
+  }
+
+  .project-card a {
+    display: block !important;
+    aspect-ratio: auto !important;
+    padding: 4mm !important;
+    overflow: visible !important;
+    border: .5pt solid var(--line) !important;
+    border-radius: 4mm !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .project-video {
+    display: none !important;
+  }
+
+  .project-caption {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 2mm 4mm !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+
+  .project-caption strong {
+    white-space: normal !important;
+  }
+
+  .project-category {
+    display: block !important;
+    grid-column: 1 / -1 !important;
+    max-height: none !important;
+    margin-top: 1.5mm !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* ==========================================================================
+     PROJECT / CASE-STUDY PAGES
+     ========================================================================== */
+
+  .case-study {
+    min-height: 0 !important;
+  }
+
+  .case-hero {
+    padding: 0 0 8mm !important;
+  }
+
+  .case-facts {
+    margin-top: 6mm !important;
+    break-inside: avoid;
+  }
+
+  .case-layout {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .case-body {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+
+  .case-section-heading {
+    margin-top: 9mm !important;
+  }
+
+  .case-media,
+  .case-image-set,
+  .case-transparent {
+    margin-block: 5mm !important;
+  }
+
+  .case-media img,
+  .case-image-set img {
+    width: auto !important;
+    max-width: 100% !important;
+    max-height: 185mm !important;
+    margin-inline: auto !important;
+    object-fit: contain !important;
+  }
+
+  /* Moving media does not translate usefully to paper. */
+  .case-video,
+  .case-embed {
+    display: none !important;
+  }
+
+  .case-scan-stats {
+    display: grid !important;
+    grid-template-columns: repeat(var(--scan-columns, 2), minmax(0, 1fr)) !important;
+    margin-block: 6mm !important;
+    border-color: var(--line) !important;
+  }
+
+  .case-scan-stats > div {
+    min-height: 0 !important;
+    padding: 5mm !important;
+    border-color: var(--line) !important;
+  }
+
+  .case-scan-stats strong {
+    color: var(--coral) !important;
+  }
+
+  .case-process-strip,
+  .case-takeaway {
+    margin-block: 6mm !important;
+  }
+
+  /* Scroll-controlled image sequences become one static frame. */
+  .case-frame-sequence {
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 6mm 0 !important;
+    overflow: visible !important;
+  }
+
+  .case-frame-sequence-sticky {
+    position: static !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .case-frame-sequence img,
+  .case-frame-sequence--viewport img {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 180mm !important;
+    margin: 0 auto !important;
+    object-fit: contain !important;
+    transform: none !important;
+  }
+
+  /* Packaging reveal — show the finished image rather than the animated mask. */
+  .case-family-reveal,
+  .case-family-reveal img {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    clip-path: none !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+  }
+
+  /* Manual panorama — flatten sticky/panning treatment. */
+  .case-manual-pan {
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .case-manual-pan-sticky {
+    position: static !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .case-manual-pan img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none !important;
+  }
+
+  /* Scroll galleries become normal printable image stacks. */
+  .comparison-gallery {
+    height: auto !important;
+    min-height: 0 !important;
+    margin-block: 6mm !important;
+  }
+
+  .comparison-sticky {
+    position: static !important;
+    inset: auto !important;
+    height: auto !important;
+  }
+
+  .comparison-viewport {
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .comparison-track {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 5mm !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  .comparison-gallery .scene-modes {
+    width: 100% !important;
+    margin: 0 !important;
+    transform: none !important;
+  }
+
+  .scene-mode-stage {
+    overflow: hidden !important;
+    box-shadow: none !important;
+  }
+
+  .scene-mode-image {
+    position: static !important;
+    display: none !important;
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    clip-path: none !important;
+  }
+
+  .scene-mode-image.is-active,
+  .scene-mode-image:first-of-type {
+    display: block !important;
+  }
+
+  /* ==========================================================================
+     CREATE PAGE
+     ========================================================================== */
+
+  .create-intro {
+    padding: 0 0 8mm !important;
+  }
+
+  .create-section {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .photography-layout,
+  .photography-layout[hidden] {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4mm !important;
+    margin-bottom: 8mm !important;
+  }
+
+  .place-copy {
+    display: block !important;
+  }
+
+  .location-map {
+    width: 45mm !important;
+    margin: 3mm 0 4mm !important;
+  }
+
+  .carousel-fade-shell,
+  .scan-marquee-shell {
+    overflow: visible !important;
+  }
+
+  .carousel-fade-shell::before,
+  .carousel-fade-shell::after,
+  .scan-marquee-shell::before,
+  .scan-marquee-shell::after {
+    display: none !important;
+  }
+
+  .photo-rail {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 4mm !important;
+    width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .photo-rail figure {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .photo-open {
+    cursor: default !important;
+  }
+
+  .photo-rail img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Photogrammetry strip — print static WebP objects as a grid. */
+  .scan-section {
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  .scan-rail {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 4mm !important;
+    width: 100% !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  .scan-thumb {
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  .scan-open {
+    width: 100% !important;
+    height: auto !important;
+    padding: 0 !important;
+    cursor: default !important;
+  }
+
+  .scan-open img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: 55mm !important;
+    object-fit: contain !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .scan-thumb figcaption {
+    display: block !important;
+    position: static !important;
+    margin-top: 2mm !important;
+    text-align: center !important;
+  }
+
+  .scene {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 4mm !important;
+    margin-bottom: 6mm !important;
+  }
+
+  /* ==========================================================================
+     ABOUT / CV PAGE
+     ========================================================================== */
+
+  .about-page {
+    min-height: 0 !important;
+  }
+
+  .about-intro {
+    padding-top: 0 !important;
+  }
+
+  .about-actions {
+    display: none !important;
+  }
+
+  .cv-section {
+    padding: 0 !important;
+  }
+
+  .cv-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.45fr) minmax(52mm, .8fr) !important;
+    gap: 7mm !important;
+  }
+
+  .cv-sidebar {
+    margin-top: 0 !important;
+  }
+
+  .cv-side-block {
+    padding: 4mm !important;
+    border: .5pt solid var(--line) !important;
+    border-radius: 3mm !important;
+    background: #fff !important;
+    box-shadow: none !important;
+  }
+
+  .cv-entry {
+    grid-template-columns: 32mm minmax(0, 1fr) !important;
+    gap: 5mm !important;
+    padding-block: 4mm !important;
+  }
+
+  .cv-block + .cv-block {
+    margin-top: 6mm !important;
+  }
+
+  .skills-list {
+    gap: 3mm !important;
+  }
+
+  .certification-list {
+    gap: 2mm !important;
+  }
+
+  /* Last-resort cleanup for inline sticky positioning. */
+  [style*="position: sticky"],
+  [style*="position:sticky"] {
+    position: static !important;
+  }
+}
