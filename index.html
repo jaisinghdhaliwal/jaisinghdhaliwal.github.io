@@ -106,7 +106,7 @@
       <nav class="site-nav glass" aria-label="Primary navigation">
         <span class="nav-active-pill" aria-hidden="true"></span>
         <a class="is-active" href="./" data-nav="work" aria-current="page">Work</a>
-        <a href="create/" data-nav="create">Create</a>
+        <a href="lab/" data-nav="lab">Lab</a>
         <a href="about/" data-nav="cv">CV</a>
       </nav>
     </header>
@@ -172,6 +172,7 @@
                 <span class="project-caption-copy">
                   <strong>GadJet Display Visualiser</strong>
                   <span class="project-category">3D + Web AR</span>
+                  <span class="project-outcome">11 AR-ready retail displays across 3 live catalogue surfaces</span>
                 </span>
                 <time>2026</time>
               </span>
@@ -185,6 +186,7 @@
                 <span class="project-caption-copy">
                   <strong>GadJet Packaging</strong>
                   <span class="project-category">Packaging systems + product visualisation</span>
+                  <span class="project-outcome">100+ packaging assignments across 3 product ranges</span>
                 </span>
                 <time>2026</time>
               </span>
@@ -198,6 +200,7 @@
                 <span class="project-caption-copy">
                   <strong>Degree Show Exhibition</strong>
                   <span class="project-category">3D + interactive experience</span>
+                  <span class="project-outcome">A physical degree show preserved as a playable digital exhibition</span>
                 </span>
                 <time>2025</time>
               </span>
@@ -211,6 +214,7 @@
                 <span class="project-caption-copy">
                   <strong>JustDesign.Show</strong>
                   <span class="project-category">Web design + development</span>
+                  <span class="project-outcome">A responsive exhibition website for 34 graduating designers</span>
                 </span>
                 <time>2024</time>
               </span>
@@ -503,6 +507,7 @@
                 const mediaDirectory = `${data.mediaRoot.replace(/\/$/, "")}/${project.id}`;
                 const poster = `${mediaDirectory}/${project.poster || "thumb-720.avif"}`;
                 const category = project.category || "";
+                const outcome = project.outcome || "";
 
                 const projectMedia = project.video === false
                   ? `<img class="project-video" src="${escapeProjectHtml(poster)}" alt="${escapeProjectHtml(`${project.title} project preview`)}" width="720" height="900" loading="lazy" decoding="async">`
@@ -530,6 +535,7 @@
                         <span class="project-caption-copy">
                           <strong>${escapeProjectHtml(project.title)}</strong>
                           ${category ? `<span class="project-category">${escapeProjectHtml(category)}</span>` : ""}
+                          ${outcome ? `<span class="project-outcome">${escapeProjectHtml(outcome)}</span>` : ""}
                         </span>
                         <time>${escapeProjectHtml(project.year)}</time>
                       </span>
@@ -570,7 +576,7 @@
         <nav class="footer-group" aria-label="Footer navigation">
           <p class="footer-heading">Explore</p>
           <a href="./">Work</a>
-          <a href="create/">Create</a>
+          <a href="lab/">Lab</a>
           <a href="about/">CV</a>
           <a href="Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" target="_blank" rel="noreferrer">Download CV PDF</a>
         </nav>

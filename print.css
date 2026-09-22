@@ -505,14 +505,14 @@
   }
 
   /* ==========================================================================
-     CREATE PAGE
+    LAB PAGE
      ========================================================================== */
 
-  .create-intro {
+  .lab-intro {
     padding: 0 0 8mm !important;
   }
 
-  .create-section {
+  .lab-section {
     padding: 0 !important;
     background: #fff !important;
   }

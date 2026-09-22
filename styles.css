@@ -183,7 +183,7 @@ main:focus { outline: none; }
   view-transition-name: active-nav-pill;
 }
 body[data-page="work"] { --nav-index: 0; }
-body[data-page="create"] { --nav-index: 1; }
+body[data-page="lab"] { --nav-index: 1; }
 body[data-page="cv"] { --nav-index: 2; }
 .site-nav a {
   position: relative; z-index: 1; display: grid; place-items: center; min-width: 0; min-height: 40px; padding: 0 12px;
@@ -191,7 +191,7 @@ body[data-page="cv"] { --nav-index: 2; }
   transition: color 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 .site-nav a[data-nav="work"] { view-transition-name: nav-work-label; }
-.site-nav a[data-nav="create"] { view-transition-name: nav-create-label; }
+.site-nav a[data-nav="lab"] { view-transition-name: nav-lab-label; }
 .site-nav a[data-nav="cv"] { view-transition-name: nav-cv-label; }
 .site-nav a.is-active { color: var(--navy); }
 .site-nav a:not(.is-active):is(:hover, :focus-visible) {
@@ -256,19 +256,19 @@ body[data-page="cv"] { --nav-index: 2; }
   animation-timing-function: cubic-bezier(.2, .8, .2, 1);
 }
 ::view-transition-group(nav-work-label),
-::view-transition-group(nav-create-label),
+::view-transition-group(nav-lab-label),
 ::view-transition-group(nav-cv-label) { z-index: 3; animation: none; }
 ::view-transition-old(nav-work-label),
-::view-transition-old(nav-create-label),
+::view-transition-old(nav-lab-label),
 ::view-transition-old(nav-cv-label),
 ::view-transition-new(nav-work-label),
-::view-transition-new(nav-create-label),
+::view-transition-new(nav-lab-label),
 ::view-transition-new(nav-cv-label) { animation: none; }
 ::view-transition-old(nav-work-label),
-::view-transition-old(nav-create-label),
+::view-transition-old(nav-lab-label),
 ::view-transition-old(nav-cv-label) { opacity: 0; }
 ::view-transition-new(nav-work-label),
-::view-transition-new(nav-create-label),
+::view-transition-new(nav-lab-label),
 ::view-transition-new(nav-cv-label) { opacity: 1; }
 @media (min-width: 641px) and (hover: hover) and (pointer: fine) {
   .site-nav:hover {
@@ -337,7 +337,7 @@ body[data-page="cv"] { --nav-index: 2; }
 .page-title {
   margin: 0; font-size: clamp(48px, 7vw, 96px); line-height: 1.05; letter-spacing: -0.055em;
 }
-.create-intro > .page-title { letter-spacing: -0.025em; }
+.lab-intro > .page-title { letter-spacing: -0.025em; }
 .hero-copy { width: min(470px, 100%); margin-top: 24px; }
 .hero-copy p { margin: 0 0 14px; }
 .contact-lines { display: flex; gap: 24px; align-items: center; margin-top: 26px; font-style: normal; }
@@ -403,7 +403,7 @@ body[data-page="cv"] #linkedin {
 .section-heading h2 { flex: 0 1 auto; min-width: 0; margin: 0; color: var(--coral); }
 .section-heading span { flex: 1 1 28px; min-width: 28px; height: 1px; background: var(--navy); }
 .project-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
-.project-card { min-width: 0; }
+.project-card { position: relative; z-index: 0; min-width: 0; }
 @keyframes project-in {
   from { opacity: 0; transform: translateY(28px) scale(.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -469,8 +469,15 @@ body[data-page="cv"] #linkedin {
     opacity 170ms ease,
     transform 280ms cubic-bezier(.2, .75, .25, 1);
 }
+.project-outcome {
+  display: none;
+}
 .loading-copy, .load-error { grid-column: 1 / -1; padding: 60px 0; text-align: center; }
 @media (hover: hover) and (pointer: fine) {
+  .project-card:hover,
+  .project-card:focus-within {
+    z-index: 10;
+  }
   .project-card a {
     overflow: visible;
     transform-style: preserve-3d;
@@ -504,13 +511,36 @@ body[data-page="cv"] #linkedin {
     opacity: .68;
     transform: translateY(0);
   }
+  .project-outcome {
+    display: block;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    color: var(--navy);
+    opacity: 0;
+    transform: translateY(-4px);
+    font: 400 var(--ui-size)/1.35 var(--font-body);
+    transition:
+      max-height 280ms cubic-bezier(.2, .75, .25, 1),
+      margin-top 280ms cubic-bezier(.2, .75, .25, 1),
+      opacity 170ms ease,
+      transform 280ms cubic-bezier(.2, .75, .25, 1);
+  }
+  .project-card:hover .project-outcome,
+  .project-card:focus-within .project-outcome {
+    max-height: 3em;
+    margin-top: 7px;
+    opacity: .82;
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .project-card a,
   .project-card .project-video,
   .project-card .project-caption,
-  .project-category {
+  .project-category,
+  .project-outcome {
     transform: none !important;
     transition: none;
   }
@@ -553,11 +583,11 @@ body[data-page="cv"] #linkedin {
 }
 .footer-analytics a { text-decoration: underline; text-underline-offset: 3px; }
 /* ==========================================================================
-   CREATE PAGE - introduction, photography, scans and scenes
+  LAB PAGE - introduction, photography, scans and scenes
    ========================================================================== */
 
-.create-intro { padding-block: clamp(196px, calc(14vw + 100px), 290px) 0; }
-.create-intro > p { max-width: 500px; }
+.lab-intro { padding-block: clamp(196px, calc(14vw + 100px), 290px) 0; }
+.lab-intro > p { max-width: 500px; }
 /* 404 */
 .error-page { min-height: 100svh; overflow-x: hidden; }
 .error-main { display: grid; min-height: 100svh; align-items: center; padding-block: 150px 80px; }
@@ -581,8 +611,8 @@ body[data-page="cv"] #linkedin {
   .error-number { font-size: clamp(116px, 26vw, 190px); }
   .error-message { max-width: 680px; }
 }
-.create-section { padding-block: 26px 0; scroll-margin-top: 20px; }
-.create-section:last-of-type { padding-bottom: 72px; }
+.lab-section { padding-block: 26px 0; scroll-margin-top: 20px; }
+.lab-section:last-of-type { padding-bottom: 72px; }
 .country-tabs { display: flex; gap: 70px; margin: 8px 0 42px; }
 .country-tabs button {
   padding: 10px 0; border: 0; border-bottom: 2px solid transparent; color: var(--navy);
@@ -928,7 +958,7 @@ body.model-dialog-open {
   padding-bottom: 15px;
 }
 /* ==========================================================================
-   RESPONSIVE - shared, Work, Create and About adaptations
+  RESPONSIVE - shared, Work, Lab and About adaptations
    ========================================================================== */
 @media (max-width: 1024px) {
   .project-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1022,9 +1052,9 @@ body.model-dialog-open {
 
   .site-footer { width: 100%; margin: 0; }
   .footer-inner { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
-  .create-intro { padding: calc(220px + env(safe-area-inset-top)) 0 0; }
-  .create-section { padding-block: 24px 0; }
-  .create-section:last-of-type { padding-bottom: 30px; }
+  .lab-intro { padding: calc(220px + env(safe-area-inset-top)) 0 0; }
+  .lab-section { padding-block: 24px 0; }
+  .lab-section:last-of-type { padding-bottom: 30px; }
   .country-tabs {
     width: calc(100% + 32px); margin: 0 -16px 24px; padding: 0 50% 4px; gap: 38px;
     overflow-x: auto; overscroll-behavior-inline: contain; scroll-snap-type: x proximity;

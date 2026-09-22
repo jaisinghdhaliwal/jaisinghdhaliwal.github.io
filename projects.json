@@ -5,7 +5,8 @@
       "id": "gadjet-displays",
       "title": "GadJet Display Visualiser",
       "year": "2026",
-      "category": "3D + Web development + AR",
+      "category": "3D + Web AR",
+      "outcome": "11 AR-ready retail displays across 3 live catalogue surfaces",
       "href": "projects/gadjet-displays/",
       "featured": true
     },
@@ -14,6 +15,7 @@
       "title": "GadJet Packaging",
       "year": "2026",
       "category": "Packaging systems + product visualisation",
+      "outcome": "100+ packaging assignments across 3 product ranges",
       "href": "projects/gadjet-packaging/",
       "featured": true
     },
@@ -22,6 +24,7 @@
       "title": "Degree Show Exhibition",
       "year": "2025",
       "category": "3D + interactive experience",
+      "outcome": "A physical degree show preserved as a playable digital exhibition",
       "href": "projects/degree-show/",
       "featured": true
     },
@@ -30,6 +33,7 @@
       "title": "JustDesign.Show",
       "year": "2024",
       "category": "Web design + development",
+      "outcome": "A responsive exhibition website for 34 graduating designers",
       "href": "projects/justdesign-show/",
       "featured": true
     },

@@ -567,15 +567,15 @@ setupScanCarousel();
 setupCountryTabs();
 setupImageViewer();
 
-const startCreateCarousels = () => {
+const startLabCarousels = () => {
   window.setTimeout(() => {
     setupDragRails();
     setupSceneModes();
   }, 1500);
 };
 
-if (document.readyState === "complete") startCreateCarousels();
-else window.addEventListener("load", startCreateCarousels, { once: true });
+if (document.readyState === "complete") startLabCarousels();
+else window.addEventListener("load", startLabCarousels, { once: true });
 
 if ("serviceWorker" in navigator) {
   const workerPath = new URL("sw.js", document.currentScript.src);

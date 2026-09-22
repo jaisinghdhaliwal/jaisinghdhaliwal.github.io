@@ -2,7 +2,7 @@ const CACHE_NAME = "jai-portfolio-v100";
 const OFFLINE_URL = "./offline/";
 const APP_SHELL = [
   "./",
-  "./create/",
+  "./lab/",
   "./about/",
   OFFLINE_URL,
   "./styles.css",

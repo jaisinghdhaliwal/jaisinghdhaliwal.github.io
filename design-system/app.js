@@ -96,7 +96,7 @@ function mountChrome() {
           <nav class="footer-group" aria-label="Footer navigation">
             <p class="footer-heading">Explore</p>
             <a href="${siteUrl()}">Work</a>
-            <a href="${siteUrl("create/")}">Create</a>
+            <a href="${siteUrl("lab/")}">Lab</a>
             <a href="${siteUrl("about/")}">CV</a>
             <a href="${siteUrl("Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf")}" target="_blank" rel="noreferrer">Download CV PDF</a>
           </nav>

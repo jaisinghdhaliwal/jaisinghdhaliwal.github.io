@@ -27,9 +27,9 @@
       "url": "./"
     },
     {
-      "name": "Create",
-      "short_name": "Create",
-      "url": "./create/"
+      "name": "Lab",
+      "short_name": "Lab",
+      "url": "./lab/"
     },
     {
       "name": "Curriculum vitae",
