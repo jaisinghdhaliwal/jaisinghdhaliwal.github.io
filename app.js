@@ -1,5 +1,43 @@
 const page = document.body.dataset.page;
 
+function setupProjectCaptionHeights(grid) {
+  grid.querySelectorAll(".project-card").forEach((card) => {
+    const category = card.querySelector(".project-category");
+    const outcome = card.querySelector(".project-outcome");
+
+    if (category) {
+      category.style.setProperty("white-space", "normal");
+      category.style.setProperty("max-height", "none");
+      category.style.setProperty("overflow", "visible");
+      category.style.setProperty("--project-category-height", `${category.scrollHeight}px`);
+      category.style.removeProperty("white-space");
+      category.style.removeProperty("max-height");
+      category.style.removeProperty("overflow");
+    }
+
+    if (outcome) {
+      outcome.style.setProperty("display", "block");
+      outcome.style.setProperty("max-height", "none");
+      outcome.style.setProperty("overflow", "visible");
+      outcome.style.setProperty("--project-outcome-height", `${outcome.scrollHeight}px`);
+      outcome.style.removeProperty("display");
+      outcome.style.removeProperty("max-height");
+      outcome.style.removeProperty("overflow");
+    }
+  });
+}
+
+function refreshProjectCaptionHeights() {
+  document.querySelectorAll(".project-grid").forEach(setupProjectCaptionHeights);
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", refreshProjectCaptionHeights, { once: true });
+} else {
+  refreshProjectCaptionHeights();
+}
+window.addEventListener("resize", refreshProjectCaptionHeights, { passive: true });
+
 // One delegated controller also handles dynamically inserted More work tiles.
 (() => {
   const enabled = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
