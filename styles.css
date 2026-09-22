@@ -428,7 +428,7 @@ body[data-page="cv"] #linkedin {
 .project-card:hover .project-video { transform: scale(1.035); }
 .project-caption {
   position: absolute; z-index: 2; left: 10px; right: 10px; bottom: 10px;
-  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 14px; align-items: start;
+  display: block;
   min-height: 40px; padding: 10px 13px; border-radius: 13px;
   box-shadow:
     0 13px 26px rgba(15, 22, 37, 0.22),
@@ -447,10 +447,11 @@ body[data-page="cv"] #linkedin {
   font: 700 var(--ui-size)/1.2 var(--font-mono); text-transform: uppercase;
 }
 .project-caption strong {
+  padding-right: 48px;
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
 .project-caption time {
-  padding-top: 1px;
+  position: absolute; top: 10px; right: 13px; padding-top: 1px;
 }
 .project-category {
   max-height: 0;
@@ -504,12 +505,18 @@ body[data-page="cv"] #linkedin {
       0 5px 12px rgba(15, 22, 37, 0.2),
       inset 0 0 0 1px rgba(255, 255, 255, 0.62);
   }
+  .project-card:hover .project-caption time,
+  .project-card:focus-within .project-caption time {
+    top: 12px;
+  }
   .project-card:hover .project-category,
   .project-card:focus-within .project-category {
-    max-height: 1.4em;
+    max-height: none;
     margin-top: 5px;
+    overflow: visible;
     opacity: .68;
     transform: translateY(0);
+    white-space: normal;
   }
   .project-outcome {
     display: block;
@@ -528,8 +535,9 @@ body[data-page="cv"] #linkedin {
   }
   .project-card:hover .project-outcome,
   .project-card:focus-within .project-outcome {
-    max-height: 3em;
+    max-height: none;
     margin-top: 7px;
+    overflow: visible;
     opacity: .82;
     transform: translateY(0);
   }
@@ -718,7 +726,7 @@ body[data-page="cv"] #linkedin {
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 2px max(10px, calc((100vw - var(--shell)) / 2)) 16px;
+  padding: 2px max(10px, calc((100vw - var(--shell)) / 2)) 52px;
   cursor: grab; scrollbar-width: none;
   overscroll-behavior-inline: contain;
   touch-action: pan-x pan-y;
@@ -1074,7 +1082,7 @@ body.model-dialog-open {
   .photo-rail { padding-inline: 16px; }
   .scan-rail {
     gap: 6px;
-    padding: 18px 4px 36px;
+    padding: 18px 4px 64px;
   }
   .scan-thumb {
     width: clamp(165px, 48vw, 215px);

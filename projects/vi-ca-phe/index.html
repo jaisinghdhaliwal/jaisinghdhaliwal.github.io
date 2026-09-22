@@ -4,16 +4,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#f7f6f3">
-    <meta name="description" content="Packaging, product graphics and visualisation for Vi Cà Phê, spanning hot-drink cups, a 500ml can, early 3D concepts and imagery for its online launch.">
+    <meta name="description" content="Packaging, product graphics, 3D visualisation and launch imagery for Vi Cà Phê, moving from speculative product concepts to a manufactured drinks range.">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Jai Singh Dhaliwal">
     <meta property="og:title" content="Vi Cà Phê | Packaging and Product Visualisation - Jai Singh Dhaliwal">
-    <meta property="og:description" content="Packaging, product graphics and visualisation for Vi Cà Phê, spanning hot-drink cups, a 500ml can, early 3D concepts and imagery for its online launch.">
+    <meta property="og:description" content="Packaging, product graphics, 3D visualisation and launch imagery for Vi Cà Phê, moving from speculative product concepts to a manufactured drinks range.">
     <meta property="og:url" content="https://jaisinghdhaliwal.github.io/projects/vi-ca-phe/">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://jaisinghdhaliwal.github.io/media/projects/vi-ca-phe/vi-can-pair.AVIF">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://jaisinghdhaliwal.github.io/media/projects/vi-ca-phe/vi-can-pair.AVIF">
     <title>Vi Cà Phê | Packaging and Product Visualisation - Jai Singh Dhaliwal</title>
     <link rel="canonical" href="https://jaisinghdhaliwal.github.io/projects/vi-ca-phe/">
-    <!-- Add og:image / twitter:image once the final project thumbnail exists. -->
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -23,8 +24,9 @@
       "@id": "https://jaisinghdhaliwal.github.io/projects/vi-ca-phe/#project",
       "url": "https://jaisinghdhaliwal.github.io/projects/vi-ca-phe/",
       "name": "Vi Cà Phê",
-      "description": "Packaging, product graphics and visualisation for Vi Cà Phê, spanning hot-drink cups, a 500ml can, early 3D concepts and imagery for its online launch.",
+      "description": "Packaging, product graphics, 3D visualisation and launch imagery for Vi Cà Phê, moving from speculative product concepts to a manufactured drinks range.",
       "genre": "Packaging + product visualisation",
+      "image": "https://jaisinghdhaliwal.github.io/media/projects/vi-ca-phe/vi-can-pair.AVIF",
       "creator": {
         "@id": "https://jaisinghdhaliwal.github.io/#person"
       },
@@ -57,13 +59,141 @@
     <link rel="icon" href="../../favicon.ico" sizes="any">
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../../project.css">
+
+    <!-- Vi Cà Phê-specific presentation only. Keeping it here avoids changing
+         the shared project stylesheet for a single case study. -->
     <style>
-      body[data-project="vi-ca-phe"] .case-frame-sequence--viewport img {
+      body[data-project="vi-ca-phe"] .vi-opening-product img {
+        aspect-ratio: 3 / 2;
+        object-fit: cover;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-reveal {
+        width: 100vw;
+        height: 220vh;
+        margin: 38px 0 38px calc(50% - 50vw);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-stage {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background: var(--paper);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-products {
+        position: relative;
+        width: min(1000px, 92vw);
+        height: min(74svh, 760px);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-product {
+        position: absolute;
+        left: 50%;
+        bottom: 8%;
         width: auto;
-        height: 100%;
-        max-width: none;
-        max-height: none;
+        max-width: 32vw;
         object-fit: contain;
+        filter: drop-shadow(0 24px 28px rgba(19, 30, 41, .16));
+        opacity: 0;
+        transform-origin: 50% 100%;
+        will-change: transform, opacity;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-product--12 {
+        height: 46%;
+        --vi-target-x: calc(-1 * clamp(135px, 20vw, 285px));
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-product--16 {
+        height: 56%;
+        --vi-target-x: 0px;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-product--500 {
+        height: 68%;
+        --vi-target-x: clamp(135px, 20vw, 285px);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-family-caption {
+        position: absolute;
+        left: 50%;
+        bottom: max(30px, env(safe-area-inset-bottom));
+        width: min(900px, calc(100% - 48px));
+        margin: 0;
+        transform: translateX(-50%);
+        color: var(--coral);
+        text-align: center;
+        font: 700 var(--ui-size)/1.3 var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: .02em;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-physical-pair img {
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-physical-pair figcaption {
+        margin-top: 12px;
+        color: var(--navy);
+        font: 400 14px/1.45 var(--font-body);
+        text-transform: none;
+        letter-spacing: 0;
+        opacity: .72;
+      }
+
+      @media (max-width: 640px) {
+        body[data-project="vi-ca-phe"] .vi-family-reveal {
+          height: 185vh;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-products {
+          width: 100vw;
+          height: 68svh;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-product {
+          max-width: 40vw;
+          bottom: 12%;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-product--12 {
+          height: 39%;
+          --vi-target-x: -29vw;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-product--16 {
+          height: 47%;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-product--500 {
+          height: 57%;
+          --vi-target-x: 29vw;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        body[data-project="vi-ca-phe"] .vi-family-reveal {
+          height: auto;
+          width: 100%;
+          margin: 38px 0;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-stage {
+          position: relative;
+          height: min(72svh, 720px);
+          overflow: visible;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-family-product {
+          opacity: 1 !important;
+          transform: translate3d(calc(-50% + var(--vi-target-x)), 0, 0) !important;
+          will-change: auto;
+        }
       }
     </style>
   </head>
@@ -85,17 +215,15 @@
       <header class="case-hero page-shell">
         <h1 class="page-title">Vi Cà Phê</h1>
         <p class="case-kicker"><span>Packaging + product visualisation</span><span class="case-meta-year"><i></i><time datetime="2026">2026</time></span></p>
-        <p class="case-deck">Physical product graphics, early 3D visualisation and imagery for a new Vietnamese coffee brand selling online.</p>
-
+        <p class="case-deck">Packaging, 3D product visualisation and launch imagery for a Vietnamese coffee brand moving from concept to manufactured product.</p>
         <div class="case-actions">
           <a class="button case-website" href="https://vicaphe.com/" target="_blank" rel="noreferrer">
             <span class="button-label">View Vi Cà Phê online</span>
           </a>
         </div>
-
         <dl class="case-facts">
-          <div><dt>Role</dt><dd>Packaging, product graphics, 3D visualisation and AI-assisted imagery</dd></div>
-          <div><dt>Tools</dt><dd>Adobe Illustrator, Blender and AI image-generation tools</dd></div>
+          <div><dt>Role</dt><dd>Packaging, product graphics, 3D visualisation and product imagery</dd></div>
+          <div><dt>Tools</dt><dd>Adobe Illustrator, Blender, photography and generative image tools for early visual exploration</dd></div>
           <div><dt>Outcome</dt><dd>12oz and 16oz paper hot-drink cups, a 500ml can and supporting imagery for the brand's online launch</dd></div>
         </dl>
       </header>
@@ -111,19 +239,19 @@
         </nav>
 
         <div class="case-body">
-          <!--
-            OPENING MEDIA TO ADD:
-            Use your strongest finished-product image showing the real 500ml can
-            with the 12oz and 16oz cups if you can photograph/render them together.
-
-            This should immediately establish that the project became a real,
-            manufactured product range rather than opening on an early concept.
-          -->
+          <figure class="case-media is-wide vi-opening-product">
+            <img
+              src="../../media/projects/vi-ca-phe/vi-can-pair.AVIF"
+              width="1500"
+              height="1000"
+              fetchpriority="high"
+              decoding="async"
+              alt="Two finished Vi Cà Phê drinks in transparent 500ml cans on a white counter">
+            <figcaption>Manufactured Vi Cà Phê drinks photographed after the canned range moved into production.</figcaption>
+          </figure>
 
           <div class="section-heading case-section-heading" id="overview"><h2>Overview</h2><span aria-hidden="true"></span></div>
-
-          <p>Vi Cà Phê is a new Vietnamese coffee brand currently selling online. I support the brand across packaging, product graphics, 3D visualisation and imagery as its product range develops.</p>
-
+          <p>Vi Cà Phê is a Vietnamese coffee brand currently selling online. I support the brand across packaging, product graphics, 3D visualisation and imagery as its product range develops.</p>
           <p>My work focuses on the physical products and the visual assets used to present them. Website design and development are handled by others.</p>
 
           <section class="case-scan-stats" style="--scan-columns: 3;" aria-label="Vi Cà Phê product formats">
@@ -133,119 +261,99 @@
           </section>
 
           <div class="section-heading case-section-heading" id="designing-the-products"><h2>Designing the products</h2><span aria-hidden="true"></span></div>
-
-          <p>The cup and can artwork is created in Adobe Illustrator, adapting the Vi Cà Phê identity across different proportions while keeping the products recognisable as one range. The colour system uses specified Pantone colours, including PANTONE 7599 C and PANTONE P 23-1, helping maintain consistency across the printed packaging.</p>
-
-          <!--
-            PRODUCT MEDIA TO ADD:
-
-            1. A clean three-format comparison:
-               12oz cup + 16oz cup + 500ml can.
-
-               This should be the main image in this section because it directly
-               supports the format strip above and shows how one identity adapts
-               across three different proportions.
-
-            2. Optional close-up:
-               Use one strong crop/photo showing the printed artwork and colour
-               reproduction on the real cup or can.
-
-               Keep this to one image. The Pantone detail should support the
-               production story rather than turn the section into a print spec sheet.
-          -->
-
-          <div class="section-heading case-section-heading" id="visualising-the-range"><h2>Visualising the range</h2><span aria-hidden="true"></span></div>
-
-          <p>Before the canned drinks had been manufactured, I used Blender to explore how a possible range could look. At this stage the products were deliberately speculative, with preliminary can models and AI-generated drink textures used to quickly visualise different flavour and presentation possibilities.</p>
-
-          <p class="case-takeaway">Before there were physical products, 3D mockups helped make the range tangible.</p>
+          <p>The cup and can artwork is created in Adobe Illustrator, adapting the Vi Cà Phê identity across different proportions while keeping the products recognisable as one range. Specified Pantone references, including PANTONE 7599 C and PANTONE P 23-1, give production a repeatable colour target across the printed packaging and provide a fixed reference when the palette is translated into digital imagery.</p>
 
           <!--
-            EARLY VISUALISATION MEDIA TO ADD:
+            RANGE REVEAL ASSETS
+            Add three transparent product cut-outs to:
+            /media/projects/vi-ca-phe/
 
-            Use your strongest early Blender render showing the speculative canned
-            drinks. If several images are worth keeping, use a concise 2-3 image
-            group rather than a long gallery.
+            vi-range-12oz.avif
+            vi-range-16oz.avif
+            vi-range-500ml.avif
 
-            Recommended caption:
-            "Early product visualisation used to explore a potential canned-drink
-            range before manufacture. The drink appearances were speculative,
-            using AI-generated textures inside preliminary 3D can models."
-
-            The AI-generated drink textures should be stated transparently in the
-            caption, but should not become the visual headline of the project.
+            The reveal stays hidden automatically until all three files load, so
+            this page can be deployed before those assets are ready without broken
+            image icons appearing.
           -->
-
-          <section
-            class="case-frame-sequence case-frame-sequence--viewport"
-            data-frame-count="50"
-            data-frame-path="../../media/projects/vi-ca-phe/can-sequence/can.png{frame}.png"
-            aria-label="Scroll-controlled animation of the Vi Cà Phê 500ml can">
-            <div class="case-frame-sequence-sticky">
-              <img
-                src="../../media/projects/vi-ca-phe/can-sequence/can.png0001.png"
-                alt="Vi Cà Phê 500ml can rising into view as the page scrolls">
+          <section class="vi-family-reveal" data-vi-family-reveal hidden aria-label="Vi Cà Phê range shown across three product formats">
+            <div class="vi-family-stage">
+              <div class="vi-family-products">
+                <img class="vi-family-product vi-family-product--12"
+                     src="../../media/projects/vi-ca-phe/vi-range-12oz.avif"
+                     alt="Vi Cà Phê 12oz paper hot-drink cup">
+                <img class="vi-family-product vi-family-product--16"
+                     src="../../media/projects/vi-ca-phe/vi-range-16oz.avif"
+                     alt="Vi Cà Phê 16oz paper hot-drink cup">
+                <img class="vi-family-product vi-family-product--500"
+                     src="../../media/projects/vi-ca-phe/vi-range-500ml.avif"
+                     alt="Vi Cà Phê 500ml transparent can">
+              </div>
+              <p class="vi-family-caption">One identity · three physical formats</p>
             </div>
           </section>
 
+          <p class="case-takeaway">The same identity has to remain recognisable across different proportions, materials and production methods.</p>
+
+          <div class="section-heading case-section-heading" id="visualising-the-range"><h2>Visualising the range</h2><span aria-hidden="true"></span></div>
+          <p>Before the canned drinks had been manufactured, I used Blender to explore how a possible range could look. At this stage the products were deliberately speculative, with preliminary can models and AI-generated drink textures used to quickly visualise different flavour and presentation possibilities.</p>
+
+          <figure class="case-media is-wide">
+            <img
+              src="../../media/projects/vi-ca-phe/vi-early-range.avif"
+              width="1800"
+              height="1350"
+              loading="lazy"
+              decoding="async"
+              alt="Early Blender visualisation of multiple Vi Cà Phê canned drinks arranged on a café counter">
+            <figcaption>Early speculative range visualisation created before manufacture. The drink appearances use AI-generated textures inside preliminary 3D can models.</figcaption>
+          </figure>
+
+          <p class="case-takeaway">Before there were physical products, 3D mockups helped make the range tangible.</p>
+
           <div class="section-heading case-section-heading" id="from-mockup-to-product"><h2>From mockup to product</h2><span aria-hidden="true"></span></div>
+          <p>The cans have since been manufactured and Vi Cà Phê is taking online orders. With the finished product now available as a physical reference, I can compare its proportions, artwork placement and construction against the original preliminary model and rebuild the 3D asset so future renders more closely reflect the manufactured can.</p>
 
-          <p>The cans have since been manufactured and Vi Cà Phê is taking online orders. With the finished product now available as a physical reference, I can compare its proportions, artwork placement and construction against the original preliminary model and update the 3D asset to more accurately reflect the manufactured can.</p>
-
-          <ol class="case-process-strip" aria-label="Product development workflow">
-            <li>Concept model</li>
-            <li>Production</li>
-            <li>Physical reference</li>
-            <li>Accurate digital model</li>
-          </ol>
+          <div class="case-image-set vi-physical-pair" aria-label="Manufactured Vi Cà Phê product photography">
+            <figure style="--media-ratio: 2 / 3;">
+              <img
+                src="../../media/projects/vi-ca-phe/vi-can-macademia.AVIF"
+                width="1000"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+                alt="Finished Vi Cà Phê 500ml drink in a transparent can with a gold lid">
+              <figcaption>Manufactured 500ml can — the physical reference for rebuilding the 3D model.</figcaption>
+            </figure>
+            <figure style="--media-ratio: 2 / 3;">
+              <img
+                src="../../media/projects/vi-ca-phe/vi-can-yoghurt.AVIF"
+                width="1000"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+                alt="Finished purple and yellow Vi Cà Phê drink in a transparent 500ml can">
+              <figcaption>A second finished drink using the same 500ml packaging system.</figcaption>
+            </figure>
+          </div>
 
           <p>The process has effectively reversed: the original 3D model helped visualise the product before manufacture, while the manufactured product now provides the reference for a more accurate digital version.</p>
 
           <!--
-            PRODUCT DEVELOPMENT MEDIA TO ADD:
-
-            Strongest version:
-            early preliminary can model
-            → photograph of the manufactured can
-            → updated accurate 3D model
-
-            Treat these as one comparison/process story rather than three unrelated
-            images.
-
-            You can also use the empty physical can you kept as a supporting reference
-            image if it clearly shows details you measured or corrected in the model.
-            It does not need to be presented as an achievement on its own.
+            When the rebuilt final can render is ready, add it here or turn the
+            section above into a three-part comparison:
+            early 3D model → manufactured product → refined 3D asset.
           -->
 
           <div class="section-heading case-section-heading" id="in-use"><h2>In use</h2><span aria-hidden="true"></span></div>
-
           <p>I continue to create product imagery and selected social media graphics for Vi Cà Phê as the brand develops. The finished assets support online product presentation and launch communications while keeping the physical packaging as the main visual anchor.</p>
 
           <!--
-            IN-USE MEDIA TO ADD:
+            Best next addition here: one live storefront/product-listing screenshot
+            using your imagery and, at most, one or two strong social graphics.
 
-            Keep this concise. Recommended order:
-
-            1. Your strongest real photograph of the filled can from when the coffee
-               was delivered to the workplace.
-
-            2. Two or three of the strongest social-media graphics only.
-               Do not turn this into a complete social archive.
-
-            3. One screenshot of the Vi Cà Phê online storefront/product listing
-               where your product imagery is being used.
-
-               Use this exact attribution beneath the website screenshot:
-               "Product imagery supplied for Vi Cà Phê. Website design and
-               development by others."
-
-            Leave out for now:
-            - unused takeaway-bottle samples
-            - candle / safety sticker
-            - taste-testing material
-            - miscellaneous product experiments
-
-            Those can be introduced later if they become part of the live range.
+            Caption the storefront screenshot:
+            "Product imagery supplied for Vi Cà Phê. Website design and development by others."
           -->
 
           <p>The project has developed from speculative product visualisation into a manufactured product range, connecting packaging design, physical production, 3D modelling and commercial imagery within one ongoing workflow.</p>
@@ -267,27 +375,46 @@
                 <source src="../../media/projects/gadjet-packaging/h265.mp4" type='video/mp4; codecs="hvc1"'>
                 <source src="../../media/projects/gadjet-packaging/h264.mp4" type='video/mp4; codecs="avc1"'>
               </video>
-              <span class="project-caption glass"><strong>GadJet Packaging</strong><time>2026</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Packaging</strong>
+                  <span class="project-category">Packaging systems + product visualisation</span>
+                  <span class="project-outcome">100+ packaging assignments across 3 product ranges</span>
+                </span>
+                <time>2026</time>
+              </span>
             </a>
           </div>
-
           <div class="project-card">
             <a href="../../projects/gadjet-displays/" aria-label="View GadJet Display Visualiser">
               <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../../media/projects/gadjet-displays/thumb-720.avif" aria-hidden="true">
                 <source src="../../media/projects/gadjet-displays/h265.mp4" type='video/mp4; codecs="hvc1"'>
                 <source src="../../media/projects/gadjet-displays/h264.mp4" type='video/mp4; codecs="avc1"'>
               </video>
-              <span class="project-caption glass"><strong>GadJet Display Visualiser</strong><time>2026</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Display Visualiser</strong>
+                  <span class="project-category">3D + Web AR</span>
+                  <span class="project-outcome">11 AR-ready retail displays across 3 live catalogue surfaces</span>
+                </span>
+                <time>2026</time>
+              </span>
             </a>
           </div>
-
           <div class="project-card">
             <a href="../../projects/justdesign-show/" aria-label="View JustDesign.Show">
               <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../../media/projects/justdesign-show/thumb-720.avif" aria-hidden="true">
                 <source src="../../media/projects/justdesign-show/h265.mp4" type='video/mp4; codecs="hvc1"'>
                 <source src="../../media/projects/justdesign-show/h264.mp4" type='video/mp4; codecs="avc1"'>
               </video>
-              <span class="project-caption glass"><strong>JustDesign.Show</strong><time>2024</time></span>
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>JustDesign.Show</strong>
+                  <span class="project-category">Web design + development</span>
+                  <span class="project-outcome">A responsive exhibition website for 34 graduating designers</span>
+                </span>
+                <time>2024</time>
+              </span>
             </a>
           </div>
         </div>
@@ -302,7 +429,6 @@
           </a>
           <p class="footer-analytics">Privacy-first <a href="https://www.cloudflare.com/web-analytics/" rel="noreferrer">Cloudflare Web Analytics</a> measures anonymous page views and performance without cookies or personal data. <a href="?analytics=off" data-analytics-choice>Opt out of analytics</a>; this preference is saved only in your browser.</p>
         </div>
-
         <nav class="footer-group" aria-label="Footer navigation">
           <p class="footer-heading">Explore</p>
           <a href="../../">Work</a>
@@ -310,14 +436,12 @@
           <a href="../../about/">CV</a>
           <a href="../../Jai_Singh_Dhaliwal_Graphic_Designer_CV.pdf" target="_blank" rel="noreferrer">Download CV PDF</a>
         </nav>
-
         <div class="footer-group">
           <p class="footer-heading">Contact</p>
           <a href="mailto:jaisinghdhaliwal@outlook.com">jaisinghdhaliwal@outlook.com</a>
           <a href="tel:+447455794117">+44 7455 794117</a>
           <a href="https://www.linkedin.com/in/jaidhaliwal/" rel="noreferrer">LinkedIn</a>
         </div>
-
         <div class="footer-meta">
           <span>&copy; 2026 Jai Singh Dhaliwal</span>
         </div>
@@ -326,6 +450,83 @@
 
     <script src="../../app.js" defer></script>
     <script src="../../project.js" defer></script>
+
+    <!-- Vi Cà Phê family reveal. It activates only when all three transparent
+         product assets exist; otherwise the whole reveal remains hidden. -->
+    <script>
+      (() => {
+        const reveal = document.querySelector('[data-vi-family-reveal]');
+        if (!reveal) return;
+
+        const products = [...reveal.querySelectorAll('.vi-family-product')];
+        const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+        let raf = 0;
+        let readyCount = 0;
+        let failed = false;
+
+        const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
+        const smooth = (value) => {
+          const t = clamp(value);
+          return t * t * (3 - 2 * t);
+        };
+
+        const showWhenReady = () => {
+          if (failed || readyCount !== products.length) return;
+          reveal.hidden = false;
+          requestAnimationFrame(update);
+        };
+
+        products.forEach((image) => {
+          const loaded = () => {
+            readyCount += 1;
+            showWhenReady();
+          };
+          const errored = () => {
+            failed = true;
+            reveal.hidden = true;
+          };
+
+          if (image.complete) {
+            if (image.naturalWidth) loaded();
+            else errored();
+          } else {
+            image.addEventListener('load', loaded, { once: true });
+            image.addEventListener('error', errored, { once: true });
+          }
+        });
+
+        function update() {
+          raf = 0;
+          if (reveal.hidden || reduceMotion.matches) return;
+
+          const rect = reveal.getBoundingClientRect();
+          const travel = Math.max(1, rect.height - innerHeight);
+          const progress = clamp(-rect.top / travel);
+          const starts = [0.03, 0.28, 0.53];
+          const ends = [0.36, 0.61, 0.86];
+          const entryRotations = [-7, 5, -4];
+
+          products.forEach((product, index) => {
+            const local = smooth((progress - starts[index]) / (ends[index] - starts[index]));
+            const y = (1 - local) * Math.min(innerHeight * 0.78, 720);
+            const rotation = entryRotations[index] * (1 - local);
+            const opacity = clamp(local * 1.8);
+
+            product.style.opacity = opacity.toFixed(3);
+            product.style.transform = `translate3d(calc(-50% + var(--vi-target-x)), ${y.toFixed(1)}px, 0) rotate(${rotation.toFixed(2)}deg)`;
+          });
+        }
+
+        const requestUpdate = () => {
+          if (!raf) raf = requestAnimationFrame(update);
+        };
+
+        addEventListener('scroll', requestUpdate, { passive: true });
+        addEventListener('resize', requestUpdate, { passive: true });
+        reduceMotion.addEventListener('change', requestUpdate);
+      })();
+    </script>
+
     <script type="module" src="/analytics.js"></script>
   </body>
 </html>
