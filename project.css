@@ -172,6 +172,7 @@
 .case-media.is-portrait {width: min(720px, 100%);margin: 38px auto}
 .case-media img,
 .case-media video { width: 100%; border-radius: var(--radius); background: #ddd; box-shadow: var(--shadow); }
+.case-media img { height: auto; }
 .case-media video { display: block; aspect-ratio: 16 / 9; object-fit: cover; }
 .case-media.case-transparent img { height: auto; object-fit: contain; border-radius: 0; background: transparent; box-shadow: none; }
 .case-transparent-video { width: min(720px, 100%); margin-inline: auto; }
@@ -862,4 +863,3 @@
     transition: none;
   }
 }
-
