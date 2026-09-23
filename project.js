@@ -443,11 +443,13 @@ document.querySelectorAll(".case-manual-pan").forEach((section) => {
   function draw() {
     animationFrame = 0;
 
+    const sectionTop = section.getBoundingClientRect().top;
+
     const progress = Math.max(
       0,
       Math.min(
         1,
-        (scrollY - start) / travel
+        -sectionTop / travel
       )
     );
 
