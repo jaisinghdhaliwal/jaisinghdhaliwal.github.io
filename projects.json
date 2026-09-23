@@ -6,7 +6,7 @@
       "title": "GadJet Display Visualiser",
       "year": "2026",
       "category": "3D + Web AR",
-      "outcome": "11 AR-ready retail displays across 3 live catalogue surfaces",
+      "outcome": "11 retail displays modelled for interactive 3D and accurate-scale AR",
       "href": "projects/gadjet-displays/",
       "featured": true
     },
@@ -17,6 +17,15 @@
       "category": "Packaging systems + product visualisation",
       "outcome": "100+ packaging assignments across 3 product ranges",
       "href": "projects/gadjet-packaging/",
+      "featured": true
+    },
+    {
+      "id": "vi-ca-phe",
+      "title": "Vi Cà Phê",
+      "year": "2026",
+      "category": "Packaging + product visualisation",
+      "outcome": "3 packaging formats developed from concept through manufacture and launch",
+      "href": "projects/vi-ca-phe/",
       "featured": true
     },
     {
@@ -35,15 +44,6 @@
       "category": "Web design + development",
       "outcome": "A responsive exhibition website for 34 graduating designers",
       "href": "projects/justdesign-show/",
-      "featured": true
-    },
-    {
-      "id": "vi-ca-phe",
-      "title": "Vi Cà Phê",
-      "year": "2026",
-      "category": "Packaging + product visualisation",
-      "outcome": "Packaging and launch imagery for a manufactured Vietnamese coffee range",
-      "href": "projects/vi-ca-phe/",
       "featured": true
     },
     {

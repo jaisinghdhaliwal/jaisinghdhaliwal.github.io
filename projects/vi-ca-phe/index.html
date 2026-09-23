@@ -137,6 +137,37 @@
         object-fit: cover;
       }
 
+      body[data-project="vi-ca-phe"] .vi-storefront-gallery {
+        width: min(1600px, calc(100vw - 48px));
+        max-width: none;
+        margin: 34px 50% 42px;
+        transform: translateX(-50%);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-storefront-row + .vi-storefront-row {
+        margin-top: -24px;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-storefront-row .photo-rail {
+        padding-block: 60px;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-storefront-row figure {
+        overflow: hidden;
+        padding: 0;
+        border-radius: var(--radius);
+      }
+
+      body[data-project="vi-ca-phe"] .vi-storefront-row img {
+        width: auto;
+        height: clamp(210px, 22vw, 320px);
+        object-fit: contain;
+      }
+
+      body[data-project="vi-ca-phe"] .vi-storefront-row--fancy img {
+        height: clamp(315px, 33vw, 480px);
+      }
+
       @media (max-width: 640px) {
         body[data-project="vi-ca-phe"] .vi-family-reveal {
           height: 185vh;
@@ -164,6 +195,19 @@
         body[data-project="vi-ca-phe"] .vi-family-product--500 {
           height: 57%;
           --vi-target-x: 29vw;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-storefront-gallery {
+          width: 100vw;
+          margin-block: 28px 38px;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-storefront-row img {
+          height: 230px;
+        }
+
+        body[data-project="vi-ca-phe"] .vi-storefront-row--fancy img {
+          height: 345px;
         }
       }
 
@@ -339,13 +383,76 @@
           <div class="section-heading case-section-heading" id="in-use"><h2>In use</h2><span aria-hidden="true"></span></div>
           <p>I continue to create product imagery and selected social media graphics for Vi Cà Phê as the brand develops. The finished assets support online product presentation and launch communications while keeping the physical packaging as the main visual anchor.</p>
 
-          <!--
-            Best next addition here: one live storefront/product-listing screenshot
-            using your imagery and, at most, one or two strong social graphics.
-
-            Caption the storefront screenshot:
-            "Product imagery supplied for Vi Cà Phê. Website design and development by others."
-          -->
+          <section class="vi-storefront-gallery" aria-label="Product imagery supplied for the Vi Cà Phê storefront">
+            <div class="vi-storefront-row vi-storefront-row--fancy">
+              <div class="carousel-fade-shell">
+                <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling Vi Cà Phê styled drink imagery carousel">
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-banana-turmeric-yoghurt.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Banana Turmeric Yoghurt drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-almond.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Almond drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-coconut.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Coconut drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-egg.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Egg drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-macadamia.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Macadamia drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-oat.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Oat drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ca-phe-salted.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Coffee Salted drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-pandan-coconut-yoghurt.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Pandan Coconut Yoghurt drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-ube-yoghurt.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê Ube Yoghurt drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-vi-bac-xỉu.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê bạc xỉu drink composition"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/fancy-vi-sua-da.webp" width="580" height="780" loading="lazy" decoding="async" alt="Styled Vi Cà Phê sữa đá drink composition"></figure>
+                </div>
+              </div>
+            </div>
+            <div class="vi-storefront-row">
+              <div class="carousel-fade-shell">
+                <div class="photo-rail drag-rail" data-auto-scroll data-auto-scroll-reverse tabindex="0" aria-label="Automatically scrolling Vi Cà Phê drink product imagery carousel">
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-almond.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Almond drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-bac-xiu.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê bạc xỉu drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-banana-turmeric-yoghurt.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Banana Turmeric Yoghurt drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-ca-phe-1.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Coffee 1 drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-ca-phe-2.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Coffee 2 drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-ca-phe-3.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Coffee 3 drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-coconut.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Coconut drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-egg.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Egg drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-hot-coffee.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Hot Coffee drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-macadamia.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Macadamia drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-oat.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Oat drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-obe-yoghurt.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Ube Yoghurt drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-pandan-coconut-yoghurt.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Pandan Coconut Yoghurt drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-salted.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Salted drink product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/drink-sua-da.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê sữa đá drink product image"></figure>
+                </div>
+              </div>
+            </div>
+            <div class="vi-storefront-row">
+              <div class="carousel-fade-shell">
+                <div class="photo-rail drag-rail" data-auto-scroll tabindex="0" aria-label="Automatically scrolling Vi Cà Phê food product imagery carousel">
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-almond-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Almond Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-butter-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Butter Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-chicken-cheese-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Chicken Cheese Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-green-lotus-seed-cice-cracker.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Green Lotus Seed Rice Cracker food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-mango-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Mango Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-pistachio-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Pistachio Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-rocher-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Rocher Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-smoked-salmon-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Smoked Salmon Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-tiramisu-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Tiramisu Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-tomato-mozzarella-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Tomato Mozzarella Croissant food product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/food-turkey-ham-cheese-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Turkey Ham Cheese Croissant food product image"></figure>
+                </div>
+              </div>
+            </div>
+            <div class="vi-storefront-row">
+              <div class="carousel-fade-shell">
+                <div class="photo-rail drag-rail" data-auto-scroll data-auto-scroll-reverse tabindex="0" aria-label="Automatically scrolling Vi Cà Phê deal and bundle imagery carousel">
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-2-bottles-2-croissants.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê 2 Bottles 2 Croissants bundle product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-2-bottles-2-sweet-croissants.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê 2 Bottles 2 Sweet Croissants bundle product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-4-bundle.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê 4 Bundle bundle product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-egg-coffee-croissant.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Egg Coffee Croissant bundle product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-iced-drink-croissant-1.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Iced Drink Croissant 1 bundle product image"></figure>
+                  <figure><img src="../../media/projects/vi-ca-phe/product-images/deals-iced-drink-croissant-2.webp" width="780" height="780" loading="lazy" decoding="async" alt="Vi Cà Phê Iced Drink Croissant 2 bundle product image"></figure>
+                </div>
+              </div>
+            </div>
+          </section>
+          <p>Product imagery supplied for the Vi Cà Phê storefront. Website design and development by others.</p>
 
           <p>The project has developed from speculative product visualisation into a manufactured product range, connecting packaging design, physical production, 3D modelling and commercial imagery within one ongoing workflow.</p>
 

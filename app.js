@@ -282,6 +282,7 @@ function setupDragRails() {
     if (rail.hasAttribute("data-auto-scroll")) {
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
       const originals = [...rail.children];
+      const direction = rail.hasAttribute("data-auto-scroll-reverse") ? -1 : 1;
 
       originals.forEach((item) => {
         const clone = item.cloneNode(true);
@@ -296,16 +297,22 @@ function setupDragRails() {
       let previousTime = 0;
       let animationFrame = 0;
       let visible = false;
+      let reversePrimed = false;
 
       const measure = () => {
         const firstOriginal = rail.children[0];
         const firstClone = rail.children[originals.length];
         loopWidth = firstClone.offsetLeft - firstOriginal.offsetLeft;
+        if (direction < 0 && loopWidth && !reversePrimed) {
+          rail.scrollLeft = loopWidth;
+          reversePrimed = true;
+        }
       };
 
       const normaliseScroll = () => {
         if (!loopWidth) return;
-        if (rail.scrollLeft >= loopWidth) rail.scrollLeft -= loopWidth;
+        if (direction > 0 && rail.scrollLeft >= loopWidth) rail.scrollLeft -= loopWidth;
+        if (direction < 0 && rail.scrollLeft <= 0) rail.scrollLeft += loopWidth;
       };
 
       const animate = (time) => {
@@ -319,7 +326,7 @@ function setupDragRails() {
         previousTime = time;
 
         if (!paused && !document.hidden && !reduceMotion.matches) {
-          rail.scrollLeft += elapsed * 0.075;
+          rail.scrollLeft += elapsed * 0.075 * direction;
           normaliseScroll();
         }
         animationFrame = requestAnimationFrame(animate);
