@@ -21,17 +21,14 @@
   };
 
   const selectMoreWork = (projects, currentId, count = MORE_WORK_COUNT) => {
-    if (!projects.length) return [];
+    const available = projects.filter((project) => project.id !== currentId);
 
-    const currentIndex = projects.findIndex((project) => project.id === currentId);
-    if (currentIndex < 0) return projects.slice(0, count);
-
-    const selected = [];
-    for (let offset = 1; offset < projects.length && selected.length < count; offset += 1) {
-      const project = projects[(currentIndex + offset) % projects.length];
-      if (project.id !== currentId) selected.push(project);
+    for (let i = available.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [available[i], available[j]] = [available[j], available[i]];
     }
-    return selected;
+
+    return available.slice(0, count);
   };
 
   const buildCard = (project, data, siteRoot) => {
@@ -41,18 +38,15 @@
     const href = /^https?:\/\//i.test(project.href || "")
       ? project.href
       : new URL(project.href || `projects/${project.id}/`, siteRoot).href;
-
     const category = project.category || "";
     const outcome = project.outcome || "";
     const title = project.title || project.id;
-
     const projectMedia = project.video === false
       ? `<img class="project-video" src="${escapeHtml(poster)}" alt="${escapeHtml(`${title} project preview`)}" width="720" height="900" loading="lazy" decoding="async">`
       : `<video class="project-video" autoplay muted loop playsinline preload="metadata" poster="${escapeHtml(poster)}" aria-hidden="true">
           <source src="${escapeHtml(new URL("h265.mp4", mediaDirectory).href)}" type='video/mp4; codecs="hvc1"'>
           <source src="${escapeHtml(new URL("h264.mp4", mediaDirectory).href)}" type='video/mp4; codecs="avc1"'>
         </video>`;
-
     const external = /^https?:\/\//i.test(href) && new URL(href).origin !== location.origin;
     const externalAttrs = external ? ' target="_blank" rel="noreferrer"' : "";
 
