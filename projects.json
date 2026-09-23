@@ -38,6 +38,15 @@
       "featured": true
     },
     {
+      "id": "vi-ca-phe",
+      "title": "Vi Cà Phê",
+      "year": "2026",
+      "category": "Packaging + product visualisation",
+      "outcome": "Packaging and launch imagery for a manufactured Vietnamese coffee range",
+      "href": "projects/vi-ca-phe/",
+      "featured": true
+    },
+    {
       "id": "coventry-ar",
       "title": "Coventry AR Map",
       "year": "2023",
