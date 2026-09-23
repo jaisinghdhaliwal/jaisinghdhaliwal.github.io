@@ -165,8 +165,62 @@
         </header>
 
         <div class="project-grid" id="project-grid" aria-live="polite">
-        <noscript><p class="load-error">Enable JavaScript to view selected work.</p></noscript>
-      </div>
+          <div class="project-card">
+            <a href="projects/gadjet-displays/" aria-label="View GadJet Display Visualiser">
+              <img class="project-video" src="media/projects/gadjet-displays/thumb-720.avif" alt="GadJet Display Visualiser project preview" width="720" height="900" loading="lazy" decoding="async">
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Display Visualiser</strong>
+                  <span class="project-category">3D + Web AR</span>
+                  <span class="project-outcome">11 AR-ready retail displays across 3 live catalogue surfaces</span>
+                </span>
+                <time>2026</time>
+              </span>
+            </a>
+          </div>
+
+          <div class="project-card">
+            <a href="projects/gadjet-packaging/" aria-label="View GadJet Packaging">
+              <img class="project-video" src="media/projects/gadjet-packaging/thumb-720.avif" alt="GadJet Packaging project preview" width="720" height="900" loading="lazy" decoding="async">
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>GadJet Packaging</strong>
+                  <span class="project-category">Packaging systems + product visualisation</span>
+                  <span class="project-outcome">100+ packaging assignments across 3 product ranges</span>
+                </span>
+                <time>2026</time>
+              </span>
+            </a>
+          </div>
+
+          <div class="project-card">
+            <a href="projects/degree-show/" aria-label="View Degree Show Exhibition">
+              <img class="project-video" src="media/projects/degree-show/thumb-720.avif" alt="Degree Show Exhibition project preview" width="720" height="900" loading="lazy" decoding="async">
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>Degree Show Exhibition</strong>
+                  <span class="project-category">3D + interactive experience</span>
+                  <span class="project-outcome">A physical degree show preserved as a playable digital exhibition</span>
+                </span>
+                <time>2025</time>
+              </span>
+            </a>
+          </div>
+
+          <div class="project-card">
+            <a href="projects/justdesign-show/" aria-label="View JustDesign.Show">
+              <img class="project-video" src="media/projects/justdesign-show/thumb-720.avif" alt="JustDesign.Show project preview" width="720" height="900" loading="lazy" decoding="async">
+              <span class="project-caption glass">
+                <span class="project-caption-copy">
+                  <strong>JustDesign.Show</strong>
+                  <span class="project-category">Web design + development</span>
+                  <span class="project-outcome">A responsive exhibition website for 34 graduating designers</span>
+                </span>
+                <time>2024</time>
+              </span>
+            </a>
+          </div>
+        </div>
       </section>
 
       <script>

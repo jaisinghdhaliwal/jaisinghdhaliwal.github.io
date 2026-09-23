@@ -207,7 +207,52 @@
       <nav class="case-more page-shell" aria-label="More projects">
         <div class="section-heading"><h2>More work</h2><span aria-hidden="true"></span></div>
         <div class="project-grid">
-          <noscript><p class="load-error">Enable JavaScript to view more work.</p></noscript>
+          <div class="project-card">
+              <a href="../../projects/gadjet-displays/" aria-label="View GadJet Display Visualiser">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../../media/projects/gadjet-displays/thumb-720.avif" aria-hidden="true">
+                  <source src="../../media/projects/gadjet-displays/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../../media/projects/gadjet-displays/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass">
+                  <span class="project-caption-copy">
+                    <strong>GadJet Display Visualiser</strong>
+                    <span class="project-category">3D + Web AR</span>
+                    <span class="project-outcome">11 AR-ready retail displays across 3 live catalogue surfaces</span>
+                  </span>
+                  <time>2026</time>
+                </span>
+              </a>
+            </div><div class="project-card">
+              <a href="../../projects/degree-show/" aria-label="View Degree Show Exhibition">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../../media/projects/degree-show/thumb-720.avif" aria-hidden="true">
+                  <source src="../../media/projects/degree-show/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../../media/projects/degree-show/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass">
+                  <span class="project-caption-copy">
+                    <strong>Degree Show Exhibition</strong>
+                    <span class="project-category">3D + interactive experience</span>
+                    <span class="project-outcome">A physical degree show preserved as a playable digital exhibition</span>
+                  </span>
+                  <time>2025</time>
+                </span>
+              </a>
+            </div><div class="project-card">
+              <a href="../../projects/justdesign-show/" aria-label="View JustDesign.Show">
+                <video class="project-video" autoplay muted loop playsinline preload="metadata" poster="../../media/projects/justdesign-show/thumb-720.avif" aria-hidden="true">
+                  <source src="../../media/projects/justdesign-show/h265.mp4" type='video/mp4; codecs="hvc1"'>
+                  <source src="../../media/projects/justdesign-show/h264.mp4" type='video/mp4; codecs="avc1"'>
+                </video>
+                <span class="project-caption glass">
+                  <span class="project-caption-copy">
+                    <strong>JustDesign.Show</strong>
+                    <span class="project-category">Web design + development</span>
+                    <span class="project-outcome">A responsive exhibition website for 34 graduating designers</span>
+                  </span>
+                  <time>2024</time>
+                </span>
+              </a>
+            </div>
         </div>
       </nav>
     </main>
@@ -239,7 +284,6 @@
     </footer>
     <script src="../../app.js" defer></script>
     <script src="../../project.js" defer></script>
-    <script src="../../projects-grid.js" defer></script>
 <script type="module" src="/analytics.js"></script>
 </body>
 </html>
