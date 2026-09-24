@@ -639,9 +639,12 @@ if (caseNav) {
     link.append(label);
   });
 
-  // On phones, reuse this same navigation as a compact top-right menu.
+  // Reuse the same navigation as a compact top-right menu on phones and
+  // larger touch-first screens, where the desktop hover gutter is unavailable.
   const mobileNavQuery =
-    matchMedia("(max-width: 640px)");
+    matchMedia(
+      "(max-width: 640px), (hover: none) and (pointer: coarse)"
+    );
 
   const siteHeader =
     document.querySelector(".site-header");

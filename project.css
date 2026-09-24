@@ -1,19 +1,19 @@
 /* Generated project pages - content modules shared by every case study */
 .case-study { overflow-x: clip; }
 .case-hero {
-  position: relative; z-index: 6; min-height: 100vh;
+  position: relative; z-index: 6; min-height: 100svh;
   display: flex; flex-direction: column;
-  padding-block: clamp(190px, 18vw, 280px) 28px;
+  padding-block: clamp(88px, calc(36svh - 72px), 280px) clamp(20px, 4svh, 28px);
 }
 .case-hero > * { flex-shrink: 0; }
-.case-hero .case-actions { margin-bottom: clamp(50px, 7vw, 90px); }
+.case-hero .case-actions { margin-bottom: clamp(24px, calc(14svh - 30px), 90px); }
 .case-hero .case-facts { margin-top: auto; }
 .case-layout { margin-top: clamp(70px, 8vw, 120px); }
 .case-kicker { flex-wrap: wrap; margin: 18px 0 10px; color: var(--coral); }
 .case-kicker > span:first-child { min-width: 0; overflow-wrap: anywhere; }
 .case-meta-year { display: inline-flex; align-items: center; gap: 11px; white-space: nowrap; }
-.case-hero .page-title { max-width: 1050px; }
-.case-deck { max-width: 720px; margin: 16px 0 0; }
+.case-hero .page-title { max-width: 1050px; font-size: clamp(48px, min(7vw, 14svh), 96px); }
+.case-deck { max-width: 720px; margin: 16px 0 0; font-size: clamp(16px, calc(14px + .25vw), 18px); }
 .case-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 .case-website {
   color: var(--navy); border-color: var(--coral); background: var(--coral);
@@ -27,7 +27,7 @@
 .case-facts div:first-child { padding-left: 0; }
 .case-facts div + div { border-left: 1px solid var(--line); }
 .case-facts dt { color: var(--coral); }
-.case-facts dd { margin: 8px 0 0; font-size: 16px; line-height: 1.5; }
+.case-facts dd { margin: 8px 0 0; font-size: clamp(17px, calc(15px + .2vw), 18px); line-height: 1.5; }
 .case-layout {
   display: grid; grid-template-columns: minmax(0, 1fr);
   padding-bottom: clamp(90px, 12vw, 180px);
@@ -675,9 +675,14 @@
   }
 }
 
-/* Mobile case-study section menu.
-   A compact top-right control reuses the existing local-nav links. */
-@media (max-width: 640px) {
+/* Compact case-study section menu.
+   It serves narrow screens and touch-first screens that cannot reveal the
+   desktop sidebar by hovering in its left-hand activation gutter. */
+@media (max-width: 640px), (hover: none) and (pointer: coarse) {
+  .case-local-nav {
+    display: none;
+  }
+
   .case-body .case-section-heading {
     scroll-margin-top: calc(84px + env(safe-area-inset-top));
   }
@@ -700,6 +705,14 @@
       transform 180ms cubic-bezier(.2, .8, .2, 1),
       background-color 180ms ease,
       box-shadow 180ms ease;
+  }
+
+  .site-header .case-mobile-nav-toggle {
+    margin-left: 12px;
+  }
+
+  .site-header .site-nav {
+    margin-left: auto;
   }
 
   .case-mobile-nav-toggle[aria-expanded="true"] {
@@ -759,7 +772,7 @@
 
     border: 1px solid rgba(255, 255, 255, .88);
     border-radius: 24px;
-    background: rgba(248, 248, 246, .94);
+    background: rgba(248, 248, 246, .76);
     box-shadow:
       0 18px 40px rgba(17, 29, 56, .18),
       0 4px 12px rgba(17, 29, 56, .08),
@@ -849,13 +862,13 @@
   }
 }
 
-@media (min-width: 641px) {
+@media (min-width: 641px) and (hover: hover) and (pointer: fine) {
   .case-mobile-nav-toggle {
     display: none;
   }
 }
 
-@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce) {
   .case-mobile-nav-toggle,
   .case-mobile-nav-icon span,
   .case-local-nav.has-mobile-toggle,
