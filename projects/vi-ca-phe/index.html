@@ -86,16 +86,22 @@
 
       body[data-project="vi-ca-phe"] .vi-family-products {
         position: relative;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: end;
+        gap: clamp(24px, 5vw, 76px);
         width: min(1000px, 92vw);
         height: min(74svh, 760px);
+        padding-bottom: clamp(72px, 9svh, 96px);
+        box-sizing: border-box;
       }
 
       body[data-project="vi-ca-phe"] .vi-family-product {
-        position: absolute;
-        left: 50%;
-        bottom: 8%;
+        position: relative;
+        align-self: end;
+        justify-self: center;
         width: auto;
-        max-width: 32vw;
+        max-width: 100%;
         object-fit: contain;
         filter: drop-shadow(0 24px 28px rgba(19, 30, 41, .16));
         opacity: 0;
@@ -103,19 +109,22 @@
         will-change: transform, opacity;
       }
 
-      body[data-project="vi-ca-phe"] .vi-family-product--12 {
-        height: 46%;
-        --vi-target-x: calc(-1 * clamp(135px, 20vw, 285px));
+      body[data-project="vi-ca-phe"] .vi-family-product--can {
+        grid-column: 1;
+        width: 100%;
+        height: min(48%, 30vw);
+        object-fit: cover;
+        object-position: center;
       }
 
-      body[data-project="vi-ca-phe"] .vi-family-product--16 {
-        height: 56%;
-        --vi-target-x: 0px;
+      body[data-project="vi-ca-phe"] .vi-family-product--400 {
+        grid-column: 2;
+        height: min(48%, 30vw);
       }
 
       body[data-project="vi-ca-phe"] .vi-family-product--500 {
-        height: 68%;
-        --vi-target-x: clamp(135px, 20vw, 285px);
+        grid-column: 3;
+        height: min(58%, 36vw);
       }
 
       body[data-project="vi-ca-phe"] .vi-family-caption {
@@ -176,25 +185,24 @@
         body[data-project="vi-ca-phe"] .vi-family-products {
           width: 100vw;
           height: 68svh;
+          gap: clamp(10px, 3vw, 20px);
+          padding-inline: 16px;
         }
 
         body[data-project="vi-ca-phe"] .vi-family-product {
-          max-width: 40vw;
-          bottom: 12%;
+          max-width: 100%;
         }
 
-        body[data-project="vi-ca-phe"] .vi-family-product--12 {
-          height: 39%;
-          --vi-target-x: -29vw;
+        body[data-project="vi-ca-phe"] .vi-family-product--can {
+          height: min(42%, 36vw);
         }
 
-        body[data-project="vi-ca-phe"] .vi-family-product--16 {
-          height: 47%;
+        body[data-project="vi-ca-phe"] .vi-family-product--400 {
+          height: min(42%, 36vw);
         }
 
         body[data-project="vi-ca-phe"] .vi-family-product--500 {
-          height: 57%;
-          --vi-target-x: 29vw;
+          height: min(52%, 44vw);
         }
 
         body[data-project="vi-ca-phe"] .vi-storefront-gallery {
@@ -226,7 +234,7 @@
 
         body[data-project="vi-ca-phe"] .vi-family-product {
           opacity: 1 !important;
-          transform: translate3d(calc(-50% + var(--vi-target-x)), 0, 0) !important;
+          transform: translate3d(0, 0, 0) !important;
           will-change: auto;
         }
       }
@@ -298,31 +306,27 @@
           <div class="section-heading case-section-heading" id="designing-the-products"><h2>Designing the products</h2><span aria-hidden="true"></span></div>
           <p>The cup and can artwork is created in Adobe Illustrator, adapting the Vi Cà Phê identity across different proportions while keeping the products recognisable as one range. Specified Pantone references, including PANTONE 7599 C and PANTONE P 23-1, give production a repeatable colour target across the printed packaging and provide a fixed reference when the palette is translated into digital imagery.</p>
 
-          <!--
-            RANGE REVEAL ASSETS
-            Add three transparent product cut-outs to:
-            /media/projects/vi-ca-phe/
-
-            vi-range-12oz.avif
-            vi-range-16oz.avif
-            vi-range-500ml.avif
-
-            The reveal stays hidden automatically until all three files load, so
-            this page can be deployed before those assets are ready without broken
-            image icons appearing.
-          -->
           <section class="vi-family-reveal" data-vi-family-reveal hidden aria-label="Vi Cà Phê range shown across three product formats">
             <div class="vi-family-stage">
               <div class="vi-family-products">
-                <img class="vi-family-product vi-family-product--12"
-                     src="../../media/projects/vi-ca-phe/vi-range-12oz.avif"
-                     alt="Vi Cà Phê 12oz paper hot-drink cup">
-                <img class="vi-family-product vi-family-product--16"
-                     src="../../media/projects/vi-ca-phe/vi-range-16oz.avif"
-                     alt="Vi Cà Phê 16oz paper hot-drink cup">
+                <img class="vi-family-product vi-family-product--can"
+                     src="../../media/projects/vi-ca-phe/Can.AVIF"
+                     width="1254"
+                     height="1254"
+                     decoding="async"
+                     alt="Vi Cà Phê transparent 500ml can">
+                <img class="vi-family-product vi-family-product--400"
+                     src="../../media/projects/vi-ca-phe/400ml.AVIF"
+                     width="992"
+                     height="1485"
+                     decoding="async"
+                     alt="Vi Cà Phê 400ml paper hot-drink cup">
                 <img class="vi-family-product vi-family-product--500"
-                     src="../../media/projects/vi-ca-phe/vi-range-500ml.avif"
-                     alt="Vi Cà Phê 500ml transparent can">
+                     src="../../media/projects/vi-ca-phe/500ml.AVIF"
+                     width="992"
+                     height="1711"
+                     decoding="async"
+                     alt="Vi Cà Phê 500ml paper hot-drink cup">
               </div>
               <p class="vi-family-caption">One identity · three physical formats</p>
             </div>
@@ -556,16 +560,14 @@
           const progress = clamp(-rect.top / travel);
           const starts = [0.03, 0.28, 0.53];
           const ends = [0.36, 0.61, 0.86];
-          const entryRotations = [-7, 5, -4];
 
           products.forEach((product, index) => {
             const local = smooth((progress - starts[index]) / (ends[index] - starts[index]));
             const y = (1 - local) * Math.min(innerHeight * 0.78, 720);
-            const rotation = entryRotations[index] * (1 - local);
             const opacity = clamp(local * 1.8);
 
             product.style.opacity = opacity.toFixed(3);
-            product.style.transform = `translate3d(calc(-50% + var(--vi-target-x)), ${y.toFixed(1)}px, 0) rotate(${rotation.toFixed(2)}deg)`;
+            product.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
           });
         }
 
