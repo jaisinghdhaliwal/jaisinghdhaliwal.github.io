@@ -1,4 +1,4 @@
-/* Generated project pages - content modules shared by every case study */
+/* Shared content modules for every case study */
 .case-study { overflow-x: clip; }
 .case-hero {
   position: relative; z-index: 6; min-height: 100svh;

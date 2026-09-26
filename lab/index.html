@@ -7,16 +7,16 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Jai / SD">
-    <meta name="description" content="Personal photography, astrophotography, photogrammetry and 3D scene experiments by multidisciplinary graphic designer Jai Singh Dhaliwal.">
+    <meta name="description" content="Personal photography, astrophotography, photogrammetry, AR, Blender and self-hosted technology experiments by multidisciplinary designer Jai Singh Dhaliwal.">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Jai Singh Dhaliwal">
-    <meta property="og:title" content="Photography and 3D Experiments - Jai Singh Dhaliwal">
-    <meta property="og:description" content="A personal archive of photography, astrophotography, reconstructed objects and digital environments.">
+    <meta property="og:title" content="Photography, 3D and Self-Hosting Lab - Jai Singh Dhaliwal">
+    <meta property="og:description" content="A personal archive of photography, reconstructed objects, digital environments and self-hosted technology experiments.">
     <meta property="og:url" content="https://jaisinghdhaliwal.github.io/lab/">
     <meta property="og:image" content="https://jaisinghdhaliwal.github.io/media/lab/scenes/just-design-blender.AVIF">
     <meta property="og:image:alt" content="The Just Design virtual exhibition rendered in Blender">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Photography and 3D Experiments - Jai Singh Dhaliwal</title>
+    <title>Photography, 3D and Self-Hosting Lab - Jai Singh Dhaliwal</title>
     <link rel="canonical" href="https://jaisinghdhaliwal.github.io/lab/">
     <script type="application/ld+json">
       {
@@ -24,8 +24,8 @@
         "@type": "CollectionPage",
         "@id": "https://jaisinghdhaliwal.github.io/lab/#collection",
         "url": "https://jaisinghdhaliwal.github.io/lab/",
-        "name": "Photography and 3D Experiments - Jai Singh Dhaliwal",
-        "description": "A personal archive of photography, astrophotography, reconstructed objects and digital environments.",
+        "name": "Photography, 3D and Self-Hosting Lab - Jai Singh Dhaliwal",
+        "description": "A personal archive of photography, reconstructed objects, digital environments and self-hosted technology experiments.",
         "inLanguage": "en-GB",
         "isPartOf": { "@id": "https://jaisinghdhaliwal.github.io/#website" },
         "author": { "@id": "https://jaisinghdhaliwal.github.io/#person" }
@@ -37,6 +37,84 @@
     <link rel="preload" href="../media/lab/photography/switzerland/1.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="preload" href="../media/lab/photography/switzerland/2.webp" as="image" type="image/webp" fetchpriority="high">
     <link rel="stylesheet" href="../styles.css">
+    <style>
+      .joonga-grid {
+        display: grid;
+        grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+        gap: clamp(34px, 4.5vw, 66px) clamp(34px, 5vw, 72px);
+        align-items: stretch;
+      }
+      .joonga-grid figure { margin: 0; min-width: 0; }
+      .joonga-server-image {
+        display: grid;
+        place-items: center;
+        min-height: clamp(210px, 22vw, 300px);
+      }
+      .joonga-server-image img {
+        display: block;
+        width: min(82%, 320px);
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 14px 22px rgba(19, 30, 41, .10));
+      }
+      .joonga-copy {
+        align-self: center;
+        max-width: 720px;
+      }
+      .joonga-copy p {
+        margin: 0 0 16px;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .joonga-copy p:last-child { margin-bottom: 0; }
+      .joonga-screenshots {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(34px, 5vw, 72px);
+        min-width: 0;
+      }
+      .joonga-screenshot img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: cover;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      .joonga-screenshot figcaption {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 10px;
+        color: var(--coral);
+        font: 700 var(--label-size)/1.25 var(--font-mono);
+        text-transform: uppercase;
+      }
+      .joonga-screenshot figcaption span {
+        color: rgba(17, 29, 56, .46);
+        font-size: 10px;
+        white-space: nowrap;
+      }
+      @media (max-width: 900px) {
+        .joonga-grid {
+          grid-template-columns: minmax(180px, .65fr) minmax(0, 1.35fr);
+          column-gap: 32px;
+          row-gap: 30px;
+        }
+        .joonga-server-image { min-height: 200px; }
+        .joonga-screenshots { gap: 32px; }
+      }
+      @media (max-width: 640px) {
+        .joonga-grid { grid-template-columns: 1fr; gap: 24px; }
+        .joonga-server-image { min-height: 180px; }
+        .joonga-server-image img { width: min(74%, 250px); }
+        .joonga-copy { align-self: auto; }
+        .joonga-screenshots { grid-template-columns: 1fr; gap: 24px; }
+      }
+    </style>
     <link rel="apple-touch-startup-image" media="screen and (device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="../ios_pwa/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)" href="../ios_pwa/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_landscape.png">
     <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="../ios_pwa/iPhone_16_Plus__iPhone_15_Pro_Max__iPhone_15_Plus__iPhone_14_Pro_Max_portrait.png">
@@ -102,7 +180,7 @@
     <main id="main" class="lab-page" tabindex="-1">
       <section class="lab-intro page-shell">
         <h1 class="page-title">Lab</h1>
-        <p>A personal archive of photographs, scanned objects and worlds built away from the desk.</p>
+        <p>A personal archive of photographs, scanned objects, digital worlds and the systems I build and run for myself.</p>
       </section>
       <section class="lab-section page-shell" id="captured" aria-labelledby="captured-title">
         <header class="section-heading">
@@ -168,14 +246,12 @@
           </div>
         </div>
       </section>
-
       <section class="lab-section scan-section" id="scanned" aria-labelledby="scanned-title">
         <div class="page-shell">
           <header class="section-heading">
             <h2 id="scanned-title">Scanned - Photogrammetry + AR</h2><span></span>
           </header>
         </div>
-
         <div class="scan-marquee-shell">
           <div class="scan-rail drag-rail" data-scan-auto-scroll tabindex="0" aria-label="Automatically scrolling photogrammetry objects. Select an object to explore it in 3D.">
               <figure class="scan-thumb">
@@ -288,12 +364,10 @@
               </figure>
           </div>
         </div>
-
         <div class="page-shell">
           <p class="scan-hint">Select an object to explore it in 3D. Compatible mobile devices can also place the model in augmented reality.</p>
         </div>
       </section>
-
       <section class="lab-section page-shell" id="built" aria-labelledby="built-title">
         <header class="section-heading">
           <h2 id="built-title">Built - Blender scenes</h2><span></span>
@@ -314,8 +388,36 @@
           </div>
         </div>
       </section>
-    </main>
 
+      <section class="lab-section page-shell joonga-section" id="hosted" aria-labelledby="hosted-title">
+        <header class="section-heading">
+          <h2 id="hosted-title">Hosted - Joonga</h2><span></span>
+        </header>
+
+        <div class="joonga-grid">
+          <figure class="joonga-server-image">
+            <img src="../media/lab/beelink.AVIF" alt="Beelink mini PC used as the physical Joonga home server" loading="lazy" decoding="async">
+          </figure>
+
+          <div class="joonga-copy">
+            <p>Joonga is the name I have used for years across games, memory sticks, SSDs and personal projects. It eventually became the name of my home server and the services I run on it, using the same visual identity as the rest of my personal work.</p>
+            <p>Joonga Files is my self-hosted Nextcloud instance for files and synchronisation, while Joonga Photos is my self-hosted Immich library for organising and backing up photography. I run and maintain the server and both services myself.</p>
+          </div>
+
+          <div class="joonga-screenshots">
+            <figure class="joonga-screenshot">
+              <img src="../media/lab/nextcloud.AVIF" alt="Temporary image standing in for a Joonga Files Nextcloud screenshot" loading="lazy" decoding="async">
+              <figcaption>Joonga Files <span>Nextcloud</span></figcaption>
+            </figure>
+
+            <figure class="joonga-screenshot">
+              <img src="../media/lab/immich.AVIF" alt="Temporary image standing in for a Joonga Photos Immich screenshot" loading="lazy" decoding="async">
+              <figcaption>Joonga Photos <span>Immich</span></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </main>
     <dialog class="image-viewer" data-image-viewer aria-label="Expanded photograph">
       <button class="image-viewer-close" type="button" data-close-viewer aria-label="Close image viewer">Close</button>
       <img data-viewer-image alt="">
@@ -376,7 +478,6 @@
         const viewer = dialog?.querySelector("[data-model-viewer]");
         const title = dialog?.querySelector("[data-model-title]");
         const close = dialog?.querySelector("[data-close-model]");
-
         if (!dialog || !viewer || !title || !close) return;
 
         document.addEventListener("click", (event) => {
@@ -388,7 +489,6 @@
           viewer.setAttribute("alt", `Interactive 3D model of ${name}`);
           viewer.setAttribute("poster", trigger.dataset.poster);
           viewer.setAttribute("src", trigger.dataset.model);
-
           if (!dialog.open) {
             const scrollY = window.scrollY;
             dialog.dataset.scrollY = String(scrollY);
@@ -400,7 +500,6 @@
             document.body.style.left = "0";
             document.body.style.right = "0";
             document.body.style.width = "100%";
-
             dialog.showModal();
           }
         });
@@ -413,7 +512,6 @@
 
         dialog.addEventListener("close", () => {
           const scrollY = Number(dialog.dataset.scrollY || 0);
-
           document.documentElement.classList.remove("model-dialog-open");
           document.body.classList.remove("model-dialog-open");
           document.body.style.position = "";
@@ -424,7 +522,6 @@
 
           window.scrollTo(0, scrollY);
           delete dialog.dataset.scrollY;
-
           viewer.removeAttribute("src");
           viewer.removeAttribute("poster");
           viewer.removeAttribute("alt");
@@ -433,7 +530,6 @@
 
         const rail = document.querySelector("[data-scan-auto-scroll]");
         if (!rail) return;
-
         const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
         const originals = [...rail.children];
         const speed = 0.045; // px per millisecond; photography remains at 0.075
@@ -443,7 +539,6 @@
         let visible = false;
         let paused = false;
         let resumeTimer;
-
         originals.forEach((item) => {
           const clone = item.cloneNode(true);
           clone.setAttribute("aria-hidden", "true");
@@ -452,7 +547,6 @@
           });
           rail.append(clone);
         });
-
         const measure = () => {
           const firstOriginal = rail.children[0];
           const firstClone = rail.children[originals.length];
@@ -463,12 +557,10 @@
         const normaliseScroll = () => {
           if (loopWidth && rail.scrollLeft >= loopWidth) rail.scrollLeft -= loopWidth;
         };
-
         const resumeLater = () => {
           clearTimeout(resumeTimer);
           resumeTimer = setTimeout(() => { paused = false; }, 1600);
         };
-
         rail.addEventListener("pointerdown", () => {
           paused = true;
           clearTimeout(resumeTimer);
@@ -482,7 +574,6 @@
           clearTimeout(resumeTimer);
         });
         rail.addEventListener("focusout", resumeLater);
-
         const animate = (time) => {
           animationFrame = 0;
           if (!visible) {
@@ -498,14 +589,12 @@
             rail.scrollLeft += elapsed * speed;
             normaliseScroll();
           }
-
           animationFrame = requestAnimationFrame(animate);
         };
 
         const startAnimation = () => {
           if (!animationFrame) animationFrame = requestAnimationFrame(animate);
         };
-
         if ("IntersectionObserver" in window) {
           const observer = new IntersectionObserver(([entry]) => {
             visible = entry.isIntersecting;
@@ -519,11 +608,9 @@
           visible = true;
           startAnimation();
         }
-
         requestAnimationFrame(measure);
         window.addEventListener("resize", measure, { passive: true });
         rail.addEventListener("scrollend", normaliseScroll);
-
         if ("ResizeObserver" in window) {
           const sizeObserver = new ResizeObserver(measure);
           originals.forEach((item) => sizeObserver.observe(item));

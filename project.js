@@ -230,6 +230,16 @@ if (comparisonCards.length > 1) {
   new ResizeObserver(measure).observe(viewport);
   new ResizeObserver(measure).observe(track);
 
+  // Media and interactive sections above a gallery can finish laying out
+  // after its first measurement. Keep its document start position in sync so
+  // the vertical-to-horizontal hand-off begins and ends at the gallery itself.
+  const caseBody = gallery.closest('.case-body');
+  if (caseBody) {
+    new ResizeObserver(measure).observe(caseBody);
+  }
+
+  document.fonts?.ready.then(measure);
+
   measure();
 }
 
@@ -253,11 +263,12 @@ document.querySelectorAll(".case-image-set img").forEach((image) => {
 // Scrub transparent image sequences while their full-screen stage is pinned.
 document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
   const image = sequence.querySelector("img");
+  const stage = sequence.querySelector(".case-frame-sequence-sticky");
   const count = Number(sequence.dataset.frameCount);
   const path = sequence.dataset.framePath;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (!image || !count || !path || reduced.matches) return;
+  if (!image || !stage || !count || !path || reduced.matches) return;
 
   const frames = new Array(count);
   frames[0] = image;
@@ -329,7 +340,7 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
     start = sequence.getBoundingClientRect().top + scrollY;
     travel = Math.max(
       1,
-      sequence.offsetHeight - innerHeight
+      sequence.offsetHeight - stage.offsetHeight
     );
 
     draw();
@@ -377,6 +388,7 @@ document.querySelectorAll(".case-frame-sequence").forEach((sequence) => {
   window.addEventListener("load", measure, { once: true });
 
   new ResizeObserver(measure).observe(sequence);
+  new ResizeObserver(measure).observe(stage);
 
   measure();
 });
